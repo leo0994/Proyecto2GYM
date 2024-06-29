@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\micha\\Desktop\\jimmy\\Proyecto2\\API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ED59DD07-AA7B-4E48-AEE4-03FB944F7EDB}|..\\UI\\UI.csproj|c:\\users\\micha\\desktop\\jimmy\\proyecto2\\ui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD883C44-A2E8-4B07-8D4A-BF592C4D6F88}|..\\BL\\BL.csproj|c:\\users\\micha\\desktop\\jimmy\\proyecto2\\bl\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ECF7D700-E3BA-45A4-91F2-F5C0EAA8AB69}|DTO\\DTO.csproj|c:\\users\\micha\\desktop\\jimmy\\proyecto2\\api\\dto\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ECF7D700-E3BA-45A4-91F2-F5C0EAA8AB69}|DTO\\DTO.csproj|solutionrelative:dto\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3FF2C6A-6260-4C43-A17A-8DE610DC1334}|..\\DAO\\DAO.csproj|c:\\users\\micha\\desktop\\jimmy\\proyecto2\\dao\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\micha\\Desktop\\jimmy\\Proyecto2\\UI\\Program.cs",
+              "RelativeDocumentMoniker": "..\\UI\\Program.cs",
+              "ToolTip": "C:\\Users\\micha\\Desktop\\jimmy\\Proyecto2\\UI\\Program.cs",
+              "RelativeToolTip": "..\\UI\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T19:36:12.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\micha\\Desktop\\jimmy\\Proyecto2\\BL\\Class1.cs",
+              "RelativeDocumentMoniker": "..\\BL\\Class1.cs",
+              "ToolTip": "C:\\Users\\micha\\Desktop\\jimmy\\Proyecto2\\BL\\Class1.cs",
+              "RelativeToolTip": "..\\BL\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T19:29:24.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\micha\\Desktop\\jimmy\\Proyecto2\\API\\DTO\\Class1.cs",
+              "RelativeDocumentMoniker": "DTO\\Class1.cs",
+              "ToolTip": "C:\\Users\\micha\\Desktop\\jimmy\\Proyecto2\\API\\DTO\\Class1.cs",
+              "RelativeToolTip": "DTO\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T19:23:32.533Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\micha\\Desktop\\jimmy\\Proyecto2\\DAO\\Class1.cs",
+              "RelativeDocumentMoniker": "..\\DAO\\Class1.cs",
+              "ToolTip": "C:\\Users\\micha\\Desktop\\jimmy\\Proyecto2\\DAO\\Class1.cs",
+              "RelativeToolTip": "..\\DAO\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T19:19:52.606Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
