@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "f92nW9YD+CU=",
+  "dgSpecHash": "P991+m2Kz+s=",
   "success": true,
   "projectFilePath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/UI.csproj",
-  "expectedPackageFiles": [
-    "/Users/j.alvarez.mendoza/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
-    "/Users/j.alvarez.mendoza/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
-    "/Users/j.alvarez.mendoza/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
-    "/Users/j.alvarez.mendoza/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
-    "/Users/j.alvarez.mendoza/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
-    "/Users/j.alvarez.mendoza/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
