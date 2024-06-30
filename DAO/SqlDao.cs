@@ -1,87 +1,96 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAO
+namespace DataAccess.DAO
 {
-    public class SqlDao
+    public class SqlDAO
     {
-        private static SqlDao instance = new SqlDao();
-        private string _connString = "Server=localhost;Database=ISA_IEEE_DEMO;Trusted_Connection=True";
-        //Server=tcp:isa-iee-server.database.windows.net,1433;Initial Catalog=isa-ieee;Persist Security Info=False;User ID=sys_ieee_admin;Password=Cenfo123*;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-        //TESTESTSETSETST
-        public static SqlDao GetInstance() {
-            if (instance == null)
-                instance = new SqlDao();
-            return instance;
-        }
-
-        //Metodo que conecta a la Base de Datos, ejecuta un stored procedure
-        //que no devuelve ningun dato a la applicacion
-        public void ExecuteStoredProcedure(SqlOperation operation) {
-            //hacer la conexion
-            string connectionString = _connString;
-            SqlConnection conn = new SqlConnection(connectionString);
-
-            //Armar el query
-            SqlCommand command = new SqlCommand();
-            command.Connection = conn;
-            command.CommandText = operation.ProcedureName;
-            command.CommandType = CommandType.StoredProcedure;
-
-            //Agregar los parametros
-            foreach (var p in operation.parameters)
-            {
-                command.Parameters.Add(p);
-            }
-            //abrir conexion
-            conn.Open();
-            //Ejecutar el comando
-            command.ExecuteNonQuery();
-        }
-
-        public List<Dictionary<string, object>> ExecuteStoredProcedureWithQuery(SqlOperation operation)
+        private string _connectionString;
+        private static SqlDAO? _instance;
+        private SqlDAO()
         {
-            var conn = _connString;
-            List<Dictionary<string,object>> lstResults = new List<Dictionary<string,object>>();
+            _connectionString = Server=tcp:gym-proyecto2server.database.windows.net,1433;Initial Catalog=GYM-Proyecto-2;Persist Security Info=False;User ID=sysman;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+        }
 
-            var connection = new SqlConnection(conn);
-            var command = new SqlCommand();
-            
-            //preparar el comando a ejecutar
-            command.Connection = connection;
-            command.CommandText = operation.ProcedureName;
-            command.CommandType = CommandType.StoredProcedure;
-
-            //Agregar los parametros
-            foreach (var p in operation.parameters)
+        public static SqlDAO GetInstance()
+        {
+            if (_instance == null)
             {
-                command.Parameters.Add(p);
+                _instance = new SqlDAO();
             }
+            return _instance;
+        }
 
-            connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-
-            //Recorrer el resultado para poder armar la Lista de diccionarios
-            if (reader.HasRows)
+        public void ExecuteProcedure(SqlOperation sqlOperation)
+        {
+            // Cual BD se va a usar
+            using (var conn = new SqlConnection(_connectionString))
             {
-                while (reader.Read())
+                //Cual SP se va a usar
+                using (var command = new SqlCommand(sqlOperation.ProcedureName, conn)
                 {
-                    Dictionary<string, object> diccObj = new Dictionary<string, object>();
-
-                    for (var fieldCount = 0; fieldCount < reader.FieldCount; fieldCount++)
+                    CommandType = CommandType.StoredProcedure
+                })
+                {
+                    //Recorremos la lista de parametros y los agregamos a la ejecucion
+                    foreach (var param in sqlOperation.Parameters)
                     {
-                        diccObj.Add(reader.GetName(fieldCount), reader.GetValue(fieldCount));
+                        command.Parameters.Add(param);
+
                     }
-                  
-                  lstResults.Add(diccObj);
+
+                    //Ejecutamos "contra" la base datos
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                    //command.ExecuteReader
+                }
+
+            }
+        }
+
+        public List<Dictionary<string, object>> ExecuteQueryProcedure(SqlOperation sqlOperation)
+        {
+            var result = new List<Dictionary<string, object>>();
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                //Cual SP se va a usar
+                using (var command = new SqlCommand(sqlOperation.ProcedureName, conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                })
+                {
+                    foreach (var param in sqlOperation.Parameters) // Might throw exception since RetrieveAll receives no params
+                    {
+                        command.Parameters.Add(param);
+                    }
+
+                    //Ejecutamos "contra" la base datos
+                    conn.Open();
+
+                    var reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var row = new Dictionary<string, object>();
+                            for (var i = 0; i < reader.FieldCount; i++)
+                            {
+                                row[reader.GetName(i)] = reader.GetValue(i);
+                            }
+                            result.Add(row);
+                        }
+                    }
+
                 }
             }
-            return lstResults;
+
+            return result;
         }
     }
 }
