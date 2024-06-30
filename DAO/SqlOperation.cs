@@ -1,36 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 
-namespace DAO
+namespace DataAccess.DAO
 {
     public class SqlOperation
     {
-        public string ProcedureName { get; set; }
-
-        public List<SqlParameter> parameters;
+        public string? ProcedureName { get; set; }
+        public List<SqlParameter> Parameters { get; set; }
 
         public SqlOperation()
         {
-            parameters = new List<SqlParameter>();
+            Parameters = new List<SqlParameter>();
         }
 
-        public void AddVarcharParam(string parameterName, string paramValue)
+        public void AddVarcharParam(string paramName, string paramValue)
         {
-            parameters.Add(new SqlParameter("@" + parameterName, paramValue));
+            Parameters.Add(new SqlParameter(paramName, paramValue));
         }
 
-        public void AddIntegerParam(string parameterName, int paramValue)
+        public void AddIntParam(string paramName, int paramValue)
         {
-            parameters.Add(new SqlParameter("@" + parameterName, paramValue));
+            Parameters.Add(new SqlParameter(paramName, paramValue));
         }
 
-        public void AddDateTimeParam(string parameterName, DateTime paramValue)
+        public void AddDateTimeParam(string paramName, DateTime paramValue)
         {
-            parameters.Add(new SqlParameter("@" + parameterName, paramValue));
+            Parameters.Add(new SqlParameter(paramName, paramValue));
+        }
+
+        public void AddDateOnlyParam(string paramName, DateOnly paramValue)
+        {
+            Parameters.Add(new SqlParameter(paramName, paramValue));
+        }
+
+        public void AddFloatParam(string paramName, float paramValue)
+        {
+            Parameters.Add(new SqlParameter(paramName, paramValue));
         }
     }
 }
