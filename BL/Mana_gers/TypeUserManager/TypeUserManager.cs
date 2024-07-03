@@ -2,7 +2,7 @@ using DAO.Crud;
 using DTOs;
 using System.Collections.Generic;
 
-namespace BL
+namespace Mana_gers.TypeUserManager
 {
     public class TypeUserManager
     {

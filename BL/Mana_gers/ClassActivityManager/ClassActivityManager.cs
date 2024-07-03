@@ -3,7 +3,7 @@ using DAO.Crud.ClassActivity;
 using System;
 using System.Collections.Generic;
 
-namespace BL.ClassActivity
+namespace Bl.Mana_gers
 {
     public class ClassActivityManager
     {

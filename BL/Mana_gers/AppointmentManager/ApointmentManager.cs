@@ -3,7 +3,7 @@ using DAO.Crud.Appointment;
 using System;
 using System.Collections.Generic;
 
-namespace BL.Appointment
+namespace Bl.Mana_gers
 {
     public class AppointmentManager
     {

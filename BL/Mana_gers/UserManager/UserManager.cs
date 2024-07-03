@@ -1,7 +1,7 @@
 using DTOs;
 using DAO;
 
-namespace BL.User
+namespace Mana_gers.UserManager
 {
      public class UserManager
     {
