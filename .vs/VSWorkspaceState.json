@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\API\\Controllers",
+    "\\BL\\UserManager",
+    "\\DTO",
+    "\\DTO\\TypeAMRAPDTO",
+    "\\DTO\\TypeTimeDTO",
+    "\\UI\\Views",
+    "\\UI\\Views\\Home"
+  ],
+  "SelectedNode": "\\DTO\\TypeTimeDTO\\TypeTimeDTO.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -5,6 +5,7 @@ using BL.User;
 
 namespace API.Controllers
 {
+
     [ApiController]
     [Route("api/auth")]
     public class Auth : ControllerBase
