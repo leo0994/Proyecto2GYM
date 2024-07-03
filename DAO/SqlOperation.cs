@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 
-namespace DataAccess.DAO
+namespace DAO
 {
     public class SqlOperation
     {

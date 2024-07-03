@@ -1,4 +1,4 @@
-public class PaymentDTO : BaseDTO
+public class PaymentDTO
     {
         public int Id { get; set; }
         public int UserId { get; set; }

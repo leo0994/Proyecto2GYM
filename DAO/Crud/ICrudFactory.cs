@@ -1,4 +1,4 @@
-using DTO;
+using DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace DAO.Crud
 {
     public abstract class CrudFactory<T> 
     {
-        protected SqlDao dao;
+        protected SqlDAO dao;
 
         public abstract T Create( T entityDTO);
         public abstract T Update( T entityDTO);

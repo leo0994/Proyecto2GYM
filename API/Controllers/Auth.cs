@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using DTO;
-using DTO.User;
+using DTOs;
+using System;
+using System.Threading.Tasks;
 using BL.User;
 
 namespace API.Controllers
@@ -9,6 +10,13 @@ namespace API.Controllers
     [Route("api/auth")]
     public class Auth : ControllerBase
     {
+
+        private readonly UserManager _userManager;
+
+        public Auth()
+        {
+            _userManager = new UserManager();
+        }
 
         [HttpGet]
         [Route("login")]
@@ -23,16 +31,16 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("signup")]
-        public IActionResult signUp(UserEntity user)
+        public async Task<IActionResult> signUp(UserDTO user)
         {
             try
             {
-                var userManager = new UserManager();
-                return Ok(userManager.create(user));
+                _userManager.Create(user);
+                return Ok(user);
             }
             catch (System.Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
     }

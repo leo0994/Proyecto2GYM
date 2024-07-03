@@ -1,6 +1,5 @@
-using DTO;
-using DTO.User;
-using DAO.Crud.User;
+using DTOs;
+using DAO;
 
 namespace BL.User
 {

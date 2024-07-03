@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.DAO
+namespace DAO
 {
     public class SqlDAO
     {
@@ -14,7 +14,7 @@ namespace DataAccess.DAO
         private static SqlDAO? _instance;
         private SqlDAO()
         {
-            _connectionString = Server=tcp:gym-proyecto2server.database.windows.net,1433;Initial Catalog=GYM-Proyecto-2;Persist Security Info=False;User ID=sysman;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+            _connectionString = "Server=tcp:gym-proyecto2server.database.windows.net,1433;Initial Catalog=GYM-Proyecto-2;Persist Security Info=False;User ID=sysman;Password=Cenfotec123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
         }
 
         public static SqlDAO GetInstance()

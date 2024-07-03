@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace DAO.Mapper
 {
-    public class UserMapper : ISqlStatements, IObjectMapper
+    public class UserMapper : ICrudStatements<UserDTO>, IObjectMapper<UserDTO>
     {
         public UserDTO BuildObject(Dictionary<string, object> row)
         {

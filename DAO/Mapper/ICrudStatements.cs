@@ -1,4 +1,4 @@
-﻿using DTO.User;
+﻿using DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace DAO.Mapper
     {
         SqlOperation GetCreateStatement(T entityDTO);
         SqlOperation GetUpdateStatement(T entityDTO);
-        SqlOperation GetDeleteStatement(T entityDTO);
+        SqlOperation GetDeleteStatement(int id);
         SqlOperation GetRetrieveAllStatement();
         SqlOperation GetRetrieveByIdStatement(int Id);
     }

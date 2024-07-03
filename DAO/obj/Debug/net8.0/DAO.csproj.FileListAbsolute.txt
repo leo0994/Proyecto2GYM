@@ -13,3 +13,4 @@
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DAO/obj/Debug/net8.0/refint/DAO.dll
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DAO/obj/Debug/net8.0/DAO.pdb
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DAO/obj/Debug/net8.0/ref/DAO.dll
+/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DAO/obj/Debug/net8.0/DAO.sourcelink.json

@@ -9,3 +9,4 @@
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/obj/Debug/net8.0/refint/DTO.dll
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/obj/Debug/net8.0/DTO.pdb
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/obj/Debug/net8.0/ref/DTO.dll
+/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/obj/Debug/net8.0/DTO.sourcelink.json
