@@ -2,6 +2,7 @@
 
 namespace DTOs
 {
+    // hola test 
     public class TypeTimeDTO
     {
         public int Id { get; set; }
