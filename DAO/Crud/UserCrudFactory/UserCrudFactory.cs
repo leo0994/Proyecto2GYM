@@ -21,6 +21,19 @@ namespace DAO
             _dao.ExecuteProcedure(sqlOperation);
         }
 
+        public UserDTO RetrieveByCredentials(UserDTO user)
+        {
+             var sqlOperation = _mapper.RetrieveByCredentialsStatement(user);
+            var result = _dao.ExecuteQueryProcedure(sqlOperation);
+
+            if (result.Count > 0)
+            {
+                Console.WriteLine(result.Count);
+                return _mapper.BuildObject(result[0]);
+            }
+            return null;
+        }
+
         public UserDTO RetrieveById(int id)
         {
             var sqlOperation = _mapper.GetRetrieveByIdStatement(id);

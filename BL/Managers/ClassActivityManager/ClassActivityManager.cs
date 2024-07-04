@@ -1,5 +1,5 @@
 using DTOs;
-using DAO.Crud.ClassActivity;
+using DAO.Crud;
 using System;
 using System.Collections.Generic;
 

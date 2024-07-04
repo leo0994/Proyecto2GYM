@@ -15,4 +15,8 @@
     <ProjectReference Include="../DAO/DAO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Twilio.AspNet.Core" Version="8.0.2" />
+  </ItemGroup>
+
 </Project>

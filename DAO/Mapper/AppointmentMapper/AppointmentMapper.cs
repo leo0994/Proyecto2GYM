@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DAO.Mapper
 {
-    public class AppointmentMapper : ISqlStatements, IObjectMapper
+    public class AppointmentMapper : ICrudStatements<AppointmentDTO>, IObjectMapper<AppointmentDTO>
     {
         public AppointmentDTO BuildObject(Dictionary<string, object> row)
         {
