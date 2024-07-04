@@ -43,6 +43,11 @@ namespace BL.User
             return _userCrudFactory.RetrieveById(id);
         }
 
+        public UserDTO RetrieveByCredentials(UserDTO user)
+        {
+          return _userCrudFactory.RetrieveByCredentials(user);
+        }
+
         public UserDTO RetrieveByEmail(string email)
         {
             // Implementar lógica para recuperar usuario por email si es necesario

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DAO.Mapper
 {
-    public class ClassActivityMapper : ISqlStatements, IObjectMapper
+    public class ClassActivityMapper : ICrudStatements<ClassActivityDTO>, IObjectMapper<ClassActivityDTO>
     {
         public ClassActivityDTO BuildObject(Dictionary<string, object> row)
         {

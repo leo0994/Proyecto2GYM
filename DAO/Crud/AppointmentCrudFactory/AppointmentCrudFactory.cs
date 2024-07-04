@@ -62,26 +62,26 @@ namespace DAO.Crud.Appointment
 
         public List<AppointmentDTO> RetrieveByUserId(int userId)
         {
-            var sqlOperation = _mapper.GetRetrieveByUserIdStatement(userId);
-            var result = _dao.ExecuteQueryProcedure(sqlOperation);
+            // var sqlOperation = _mapper.GetRetrieveByUserIdStatement(userId);
+            // var result = _dao.ExecuteQueryProcedure(sqlOperation);
 
-            if (result.Count > 0)
-            {
-                return _mapper.BuildObjects(result);
-            }
+            // if (result.Count > 0)
+            // {
+            //     return _mapper.BuildObjects(result);
+            // }
 
             return new List<AppointmentDTO>();
         }
 
         public List<AppointmentDTO> RetrieveByDateRange(DateTime startDate, DateTime endDate)
         {
-            var sqlOperation = _mapper.GetRetrieveByDateRangeStatement(startDate, endDate);
-            var result = _dao.ExecuteQueryProcedure(sqlOperation);
+            // var sqlOperation = _mapper.GetRetrieveByDateRangeStatement(startDate, endDate);
+            // var result = _dao.ExecuteQueryProcedure(sqlOperation);
 
-            if (result.Count > 0)
-            {
-                return _mapper.BuildObjects(result);
-            }
+            // if (result.Count > 0)
+            // {
+            //     return _mapper.BuildObjects(result);
+            // }
 
             return new List<AppointmentDTO>();
         }

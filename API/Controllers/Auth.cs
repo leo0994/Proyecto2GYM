@@ -3,6 +3,7 @@ using DTOs;
 using System;
 using System.Threading.Tasks;
 using BL.User;
+using BL.TwilioManager;
 
 namespace API.Controllers
 {
@@ -18,15 +19,22 @@ namespace API.Controllers
             _userManager = new UserManager();
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("login")]
-        public IActionResult login()
+        public async Task<IActionResult> login(UserDTO user)
         {
-            Dictionary<string, string> map = new Dictionary<string, string>();
-            map["name"] = "jimmy";
-            map["email"] = "cuentageovacoc@gmail.com";
-            var response = ResponseHelper.Error("An Erro has occured ", map);
-            return Ok(response);
+            try
+            {   
+                var response = _userManager.RetrieveByCredentials(user);
+                if(response != null){
+                    return Ok(ResponseHelper.Success<UserDTO>(response, "got user"));
+                }                
+                return Ok(ResponseHelper.Error<UserDTO>("User incorrect blah blah blah", response));
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost]
@@ -34,9 +42,28 @@ namespace API.Controllers
         public async Task<IActionResult> signUp(UserDTO user)
         {
             try
+            {   
+                var authSendCodeUser  = await AuthSendCodeUser.send(user);
+                return Ok(ResponseHelper.Success(authSendCodeUser));
+            }
+            catch (System.Exception e)
             {
-                _userManager.Create(user);
-                return Ok(user);
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("verify-code")]
+        public async Task<IActionResult> verifyCode(UserDTO user, string userCode)
+        {
+            try
+            {   
+                var authSendCodeUser = await AuthSendCodeUser.verify(user, userCode);
+                if(authSendCodeUser.Status == "approved"){
+                    _userManager.Create(user);
+                    return Ok(ResponseHelper.Success(authSendCodeUser));
+                }                
+                return Ok(ResponseHelper.Error("Incorrect code", authSendCodeUser));
             }
             catch (System.Exception e)
             {

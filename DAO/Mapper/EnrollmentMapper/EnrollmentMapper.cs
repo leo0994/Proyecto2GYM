@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace DAO.Mapper
 {
-    public class EnrollmentMapper : ISqlStatements, IObjectMapper
+    public class EnrollmentMapper : ICrudStatements<EnrollmentDTO>, IObjectMapper<EnrollmentDTO>
     {
         public EnrollmentDTO BuildObject(Dictionary<string, object> row)
         {
@@ -32,7 +32,7 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "CreateEnrollment" };
 
-            sqlOperation.AddDecimalParam("@p_amount", enrollment.Amount);
+            //sqlOperation.AddDecimalParam("@p_amount", enrollment.Amount);
 
             return sqlOperation;
         }
