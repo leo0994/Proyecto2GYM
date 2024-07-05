@@ -71,5 +71,11 @@ namespace DAO
             var sqlOperation = _mapper.GetDeleteStatement(id);
             _dao.ExecuteProcedure(sqlOperation);
         }
+
+        public int ValidateEmailExist(UserDTO user){
+            var sqlOperation = _mapper.ValidateEmailExistStatement(user);
+            var result = _dao.ExecuteQueryProcedure(sqlOperation);
+            return (int)result[0]["EmailExists"];
+        }
     }
 }

@@ -48,6 +48,11 @@ namespace BL.User
           return _userCrudFactory.RetrieveByCredentials(user);
         }
 
+        public int ValidateEmailExist(UserDTO user)
+        {
+          return _userCrudFactory.ValidateEmailExist(user);
+        }
+
         public UserDTO RetrieveByEmail(string email)
         {
             // Implementar lógica para recuperar usuario por email si es necesario

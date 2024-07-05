@@ -12,30 +12,31 @@ namespace BL.TwilioManager
         public static async Task<VerificationResource> send(UserDTO user) {
             // Find your Account SID and Auth Token at twilio.com/console
             // and set the environment variables. See http://twil.io/secure
-            string accountSid = "x";
-            string authToken = "x";
+            string accountSid = "aaa";
+            string authToken = "bbb";
 
             TwilioClient.Init(accountSid, authToken);
 
             return await VerificationResource.CreateAsync(
-                to: user.Number,
+                to: "+506" + user.Number,
                 channel: "sms",
-                pathServiceSid: "x"
+                pathServiceSid: "ccc"
                 );
         }
 
         public static async Task<VerificationCheckResource> verify(UserDTO user, string userCode){
             // Find your Account SID and Auth Token at twilio.com/console
             // and set the environment variables. See http://twil.io/secure
-            string accountSid = "x";
-            string authToken = "x";
+             string accountSid = "aaa";
+            string authToken = "bbb";
+
 
             TwilioClient.Init(accountSid, authToken);
 
              return await VerificationCheckResource.CreateAsync(
-                to: user.Number,
+                to: "+506" + user.Number,
                 code: userCode,
-                pathServiceSid: "x");
+                pathServiceSid: "ccc");
         }
     }
 }
