@@ -18,7 +18,7 @@ namespace BL.ValidatorCredentialsManager
 
     public class Validator
     {
-        public ValidationResult Validate(string email, string phoneNumber, string password)
+        public ValidationResult ValidateCred(string email, string phoneNumber, string password)
         {
             ValidationResult result = new ValidationResult();
 
@@ -47,6 +47,21 @@ namespace BL.ValidatorCredentialsManager
             return result;
         }
 
+        public ValidationResult ValidatePassword(string password)
+        {
+            ValidationResult result = new ValidationResult();
+
+            // Validate password
+            string passwordError;
+            if (!IsValidPassword(password, out passwordError))
+            {
+                result.IsValid = false;
+                result.Errors.Add("password", passwordError);
+            }
+
+            return result;
+
+        }
         private bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))

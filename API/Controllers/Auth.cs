@@ -22,8 +22,8 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Route("login")]
-        public async Task<IActionResult> login(UserDTO user)
+        [Route("signin")]
+        public async Task<IActionResult> signin(UserDTO user)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace API.Controllers
             try
             {
                 // validate password - phone - email                 
-                ValidationResult validationResult = _validatorManager.Validate(user.Email, user.Number, user.Password);
+                ValidationResult validationResult = _validatorManager.ValidateCred(user.Email, user.Number, user.Password);
 
                 if (!validationResult.IsValid)
                 {
@@ -61,7 +61,7 @@ namespace API.Controllers
                 }
                 // Sending CodeUser
                 var authSendCodeUser = await AuthSendCodeUser.send(user);
-                return Ok(ResponseHelper.Success(authSendCodeUser));
+                return Ok(ResponseHelper.Success(authSendCodeUser, "Validating phone and credentials"));
             }
             catch (System.Exception e)
             {
@@ -69,17 +69,18 @@ namespace API.Controllers
             }
         }
 
+
         [HttpPost]
-        [Route("verify-code")]
-        public async Task<IActionResult> verifyCode(UserDTO user, string userCode)
+        [Route("sign-up-verification")]
+        public async Task<IActionResult> signUpVerificaton(UserDTO user, string code)
         {
             try
             {
-                var authSendCodeUser = await AuthSendCodeUser.verify(user, userCode);
+                var authSendCodeUser = await AuthSendCodeUser.verify(user, code);
                 if (authSendCodeUser.Status == "approved")
                 {
                     _userManager.Create(user);
-                    return Ok(ResponseHelper.Success(authSendCodeUser));
+                    return Ok(ResponseHelper.Success(authSendCodeUser, "User created"));
                 }
                 return BadRequest(ResponseHelper.Error("Incorrect code", authSendCodeUser));
             }
@@ -88,5 +89,17 @@ namespace API.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
+        //  Call GetUserByEmail Crud and call it using GetUserByEmail storeProcedure then create the recoveryPassword-verification like above code 
+        // public async Task<IActionResult> recoveryPassword(UserDTO user)
+        // {
+        //     // // Validation Email exist
+        //     // var response = _userManager.ValidateEmailExist(user);
+        //     // if (response == 1)
+        //     // {
+        //     //     return BadRequest(ResponseHelper.Error<string>("Email already exist"));
+        //     // }
+        // }
     }
 }

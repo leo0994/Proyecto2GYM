@@ -67,9 +67,9 @@ namespace DAO.Mapper
         }
         public SqlOperation RetrieveByCredentialsStatement(UserDTO user)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "GetUserCredentials" };
-            sqlOperation.AddVarcharParam("@p_email", user.Email);
-            sqlOperation.AddVarcharParam("@p_password", user.Password);
+            var sqlOperation = new SqlOperation { ProcedureName = "GetUserByCredentials" };
+            sqlOperation.AddVarcharParam("@email", user.Email);
+            sqlOperation.AddVarcharParam("@password", user.Password);
             return sqlOperation;
         }
 
