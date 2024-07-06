@@ -1,0 +1,2 @@
+1. Hashing password should be implemented
+2. Recovery password - User will be able to update the password and use the same only the fist time, after that they will have to update the password using a different from the last 5 registered.

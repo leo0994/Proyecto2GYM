@@ -1,16 +1,126 @@
-using DTOs;
 using DAO;
+using DTOs;
+using System;
+using Twilio;
+using BL.User;
+using BL.ValidatorCredentialsManager;
+using BL.TwilioManager;
+using Twilio.Rest.Verify.V2.Service;
+using System.Threading.Tasks;
 
 namespace BL.User
 {
      public class UserManager
     {
         private readonly UserCrudFactory _userCrudFactory;
+        private readonly Validator _validatorManager;
 
         public UserManager()
         {
             _userCrudFactory = new UserCrudFactory();
+            _validatorManager = new Validator();
         }
+
+        public UserDTO LoginUserHandler(UserDTO user)
+        {
+            var dataByCredentials = _userCrudFactory.RetrieveByCredentials(user);
+            if (dataByCredentials == null)
+            {
+                var error = ResponseHelper.Error<UserDTO>("User incorrect blah blah blah", user);
+                throw new ManagerException<ApiResponse<UserDTO>>(error);
+            }
+            return dataByCredentials;
+        }
+
+        public async Task<Dictionary<string, dynamic>> SignUpUserHandler(UserDTO user)
+        {
+            // validate password - phone - email                 
+            ValidationResult validationResult = _validatorManager.ValidateCred(user.Email, user.Number, user.Password);
+            if (!validationResult.IsValid)
+            {
+                var error = ResponseHelper.Error<Dictionary<string, string>>("Error credentials rules", validationResult.Errors);
+                throw new ManagerException<ApiResponse<Dictionary<string, string>>>(error);
+            }
+            // Validation Email exist
+            var dataByEmail = _userCrudFactory.RetrieveByEmail(user);
+            if (dataByEmail != null)
+            {
+                var error = ResponseHelper.Error<string>("Email already exist");
+                throw new ManagerException<ApiResponse<string>>(error);
+            }
+            // Sending CodeUser
+            var authSendCodeUser = await AuthSendCodeUser.send(user);
+            var response = new Dictionary<string, dynamic>();
+            response["user"] = user;
+            response["verificationResource"] = authSendCodeUser;
+            return response;
+        }
+
+        public async Task<VerificationCheckResource> SignUpValidationUserHandler(UserDTO user, string code) 
+        {
+            var authSendCodeUser = await AuthSendCodeUser.verify(user, code);
+            if (authSendCodeUser.Status != "approved")
+            {
+                var error = ResponseHelper.Error("Incorrect code", authSendCodeUser);
+                throw new ManagerException<ApiResponse<VerificationCheckResource>>(error);
+            }
+            // This should just be an endpoint to register client users
+            // that's why we are setting the typeUserId
+            user.TypeUserId = 2;
+            _userCrudFactory.Create(user);
+            return authSendCodeUser;
+        }
+
+        public async Task<Dictionary<string, dynamic>> RecoveryPasswordHandler(UserDTO user) {
+             // Validation Email exist
+            var dataByEmail = _userCrudFactory.RetrieveByEmail(user);
+            if (dataByEmail == null)
+            {
+                var error = ResponseHelper.Error<string>("email and user incorrect");
+                throw new ManagerException<ApiResponse<string>>(error);
+            }
+
+            // Validate new password rules from <UserDTO user>
+            ValidationResult validationResult = _validatorManager.ValidatePassword(user.Password);
+            if (!validationResult.IsValid)
+            {
+                var error = ResponseHelper.Error<Dictionary<string, string>>("Error credentials rules", validationResult.Errors);
+                throw new ManagerException<ApiResponse<Dictionary<string, string>>>(error);
+            }
+
+            // Validate history password from <UserDTO dataByEmail>
+            // Then we should assing the new password from <UserDTO user> to <UserDTO dataByEmail>
+            dataByEmail.Password = user.Password;
+            Console.WriteLine(dataByEmail.Password);
+            var IsPasswordValid = (int) _userCrudFactory.VerifyUserPassword(dataByEmail);
+            Console.WriteLine(IsPasswordValid);
+            if(IsPasswordValid == 0){
+                var error = ResponseHelper.Error<Dictionary<string, string>>("Password should be different from the last 5 passwords used.");
+                throw new ManagerException<ApiResponse<Dictionary<string, string>>>(error);
+            }
+
+            // Sending code to the user
+            var authSendCodeUser = await AuthSendCodeUser.send(dataByEmail);
+
+            // Componsing Response 
+            var response = new Dictionary<string, dynamic>();
+            response["user"] = dataByEmail;
+            response["verificationResource"] = authSendCodeUser;
+            return response;
+        }
+
+         public async Task<VerificationCheckResource> RecoveryPasswordVerificatonHandler(UserDTO user, string code) 
+        {
+            var authSendCodeUser = await AuthSendCodeUser.verify(user, code);
+            if (authSendCodeUser.Status != "approved")
+            {
+                var error = ResponseHelper.Error("Incorrect code", authSendCodeUser);
+                throw new ManagerException<ApiResponse<VerificationCheckResource>>(error);
+            }
+            _userCrudFactory.UpdatePassword(user);
+            return authSendCodeUser;
+        }
+    
 
         public void Create(UserDTO user)
         {
@@ -51,15 +161,6 @@ namespace BL.User
         public UserDTO RetrieveByEmail(UserDTO user)
         {
             return _userCrudFactory.RetrieveByEmail(user);
-        }
-
-        public void UpdatePassword(UserDTO user)
-        {
-            _userCrudFactory.UpdatePassword(user);
-        }
-        public int VerifyUserPassword(UserDTO user)
-        {
-            return _userCrudFactory.VerifyUserPassword(user);
         }
     }
 }
