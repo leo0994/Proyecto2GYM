@@ -72,10 +72,27 @@ namespace DAO
             _dao.ExecuteProcedure(sqlOperation);
         }
 
-        public int ValidateEmailExist(UserDTO user){
-            var sqlOperation = _mapper.ValidateEmailExistStatement(user);
+        public UserDTO RetrieveByEmail(UserDTO user){
+            var sqlOperation = _mapper.RetrieveByEmailtStatement(user);
             var result = _dao.ExecuteQueryProcedure(sqlOperation);
-            return (int)result[0]["EmailExists"];
+
+            if (result.Count > 0)
+            {
+                return _mapper.BuildObject(result[0]);
+            }
+
+            return null;
+        }
+
+        public void UpdatePassword(UserDTO user){
+            var sqlOperation = _mapper.UpdatePasswordStatement(user);
+            _dao.ExecuteProcedure(sqlOperation);
+        }
+
+        public int VerifyUserPassword(UserDTO user){
+            var sqlOperation = _mapper.VerifyUserPasswordStatement(user);
+            var result = _dao.ExecuteQueryProcedure(sqlOperation);
+            return (int)result[0]["IsPasswordValid"];
         }
     }
 }

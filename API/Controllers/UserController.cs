@@ -130,7 +130,7 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("RetrieveByEmail")]
-        public async Task<IActionResult> RetrieveByEmail(string email)
+        public async Task<IActionResult> RetrieveByEmail(UserDTO email)
         {
             try
             {
@@ -149,7 +149,7 @@ namespace API.Controllers
         {
             try
             {
-                _userManager.UpdatePassword(email);
+                //_userManager.UpdatePassword(email);
                 return Ok();
             }
             catch (Exception e)

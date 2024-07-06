@@ -59,12 +59,28 @@ namespace DAO.Mapper
             return new SqlOperation { ProcedureName = "GetAllUsers" };
         }
 
-        public SqlOperation ValidateEmailExistStatement(UserDTO user)
+        public SqlOperation RetrieveByEmailtStatement(UserDTO user)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "ValidateEmailExist" };
+            var sqlOperation = new SqlOperation { ProcedureName = "GetUserByEmail" };
             sqlOperation.AddVarcharParam("@email", user.Email);
             return sqlOperation;
         }
+
+        public SqlOperation UpdatePasswordStatement(UserDTO user){
+            var sqlOperation = new SqlOperation { ProcedureName = "UpdateUserPassword" };
+            sqlOperation.AddIntParam("@p_user_id", user.Id);
+            sqlOperation.AddVarcharParam("@p_new_password", user.Password);
+            sqlOperation.AddDateTimeParam("@p_date", DateTime.Now);
+            return sqlOperation;
+        }
+
+        public SqlOperation VerifyUserPasswordStatement(UserDTO user){
+            var sqlOperation = new SqlOperation { ProcedureName = "VerifyUserPassword_v2" };
+            sqlOperation.AddIntParam("@user_id", user.Id);
+            sqlOperation.AddVarcharParam("@new_password", user.Password);
+            return sqlOperation;
+        }
+
         public SqlOperation RetrieveByCredentialsStatement(UserDTO user)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetUserByCredentials" };
