@@ -27,7 +27,7 @@ namespace Policies {
             if (httpContext.Request.Cookies.TryGetValue("user", out var cookieUser))
             {
                 var user =  _userManager.RetrieveById(int.Parse(cookieUser)); // can be updated to string ID User --> db
-                if(user.TypeUserId == 1){
+                if(user != null && user.TypeUserId == 1){
                     context.Succeed(requirement);
                     return Task.CompletedTask;
                 }
