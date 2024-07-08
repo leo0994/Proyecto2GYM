@@ -28,6 +28,8 @@ namespace API.Controllers
             try
             {
                 var response =  _userManager.LoginUserHandler(user);
+                // Setting cookie user id to the client
+                HttpContext.Response.Cookies.Append("user", user.Id + "");
                 return Ok(ResponseHelper.Success<UserDTO>(response, "got user"));
             }
             catch (ManagerException<ApiResponse<UserDTO>> ex)
@@ -97,12 +99,12 @@ namespace API.Controllers
             }
             catch (ManagerException<ApiResponse<string>> ex)
             {
-                //Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
                 return BadRequest(ex.Data);
             }
             catch (ManagerException<ApiResponse<Dictionary<string, string>>> ex)
             {
-                //Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
                 return BadRequest(ex.Data);
             }
             catch (System.Exception e)

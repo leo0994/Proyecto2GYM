@@ -157,5 +157,13 @@ namespace API.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+
+        [HttpGet]
+        [Authorize(Policy = "Administrator")] // in use...!!
+        [Route("testing-admin-policy")]
+        public async Task<IActionResult> Testing()
+        {
+            return Ok("testing Administrator policy");
+        }
     }
 }

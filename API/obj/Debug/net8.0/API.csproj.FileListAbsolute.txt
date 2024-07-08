@@ -113,3 +113,4 @@ C:/Users/micha/Desktop/jimmy/Proyecto2/API/API/obj/Debug/net8.0/ref/API.dll
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/bin/Debug/net8.0/Twilio.dll
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/bin/Debug/net8.0/Twilio.AspNet.Common.dll
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/bin/Debug/net8.0/Twilio.AspNet.Core.dll
+/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
