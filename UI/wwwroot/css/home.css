@@ -1,0 +1,131 @@
+.hero {
+    background-image: url("https://img.freepik.com/premium-photo/dark-gym-with-red-wall-black-bar-that-says-gym_876956-1222.jpg");
+}
+
+.hero h1 {
+    font-size: var(--font-size-xlarge);
+    margin-bottom: var(--spacing-medium);
+    color: #fff;
+}
+
+.hero p {
+    margin-bottom: var(--spacing-medium);
+    color: #fff;
+}
+
+.cta-buttons a {
+    margin-right: var(--spacing-small);
+}
+
+.services {
+    /* padding: var(--spacing-xlarge) 0; */
+    margin: 96px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.services h2 {
+    font-size: var(--font-size-xlarge);
+    margin-bottom: var(--spacing-medium);
+    text-align: left;
+}
+
+.services p {
+    margin-bottom: var(--spacing-large);
+    text-align: left;
+}
+
+.service-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+}
+
+.service-cards .card {
+    padding: var(--spacing-medium);
+    text-align: left;
+    border: 1px solid var(--color-accent);
+    border-radius: var(--spacing-small);
+}
+
+.service-cards .card h3 {
+    font-size: var(--font-size-large);
+    margin-bottom: var(--spacing-small);
+}
+
+.service-cards .card p {
+    margin-bottom: var(--spacing-small);
+}
+
+.call-to-action {
+    background-image: url(https://es.habcdn.com/photos/project/big/diseno-de-gimnasio-con-estilo-minimalista-iluminado_620985.jpg);
+    color: var(--color-secondary);
+}
+
+.call-to-action h2 {
+    font-size: var(--font-size-xlarge);
+    margin-bottom: var(--spacing-medium);
+    color: #fff;
+}
+
+.call-to-action p {
+    margin-bottom: var(--spacing-medium);
+    color: #fff;
+}
+
+.join {
+    margin: 128px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.join .form-container {
+    min-width: 100%;
+}
+
+.join .form-container  .footnote {
+    font-size: 12px;
+    margin-top: 28px;
+    text-align: center;
+}
+
+.contact {
+    background-image: url(https://www.bodymedia.de/fileadmin/_processed_/b/0/csm_urban-gym-group-header_6cebd4961a.jpg);
+    color: var(--color-secondary);
+    margin: 128px 0;
+}
+
+.contact h2 {
+    font-size: var(--font-size-xlarge);
+    margin-bottom: var(--spacing-medium);
+    color: #fff;
+}
+
+.contact p {
+    margin-bottom: var(--spacing-medium);
+    color: #fff;
+}
+
+/* Responsive Design */
+@media only screen and (min-width: 768px) {
+    .service-cards {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .services {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 80px;
+        margin: 128px 0;
+    }
+
+    .services div {
+       width: 50%;
+    }
+
+    .join .form-container {
+        min-width: 380px;
+    }
+}

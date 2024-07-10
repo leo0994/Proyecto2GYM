@@ -16,7 +16,7 @@ namespace DAO.Mapper
                 Password = (string)row["password"],
                 TypeUserId = (int)row["typeUser_id"],
                 Number = (string)row["number"],
-                Age = (int)row["age"]
+                Age = (int)row["age"],
             };
 
             return userDTO;

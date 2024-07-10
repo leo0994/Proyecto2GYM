@@ -23,7 +23,7 @@ namespace DAO
 
         public UserDTO RetrieveByCredentials(UserDTO user)
         {
-             var sqlOperation = _mapper.RetrieveByCredentialsStatement(user);
+            var sqlOperation = _mapper.RetrieveByCredentialsStatement(user);
             var result = _dao.ExecuteQueryProcedure(sqlOperation);
 
             if (result.Count > 0)

@@ -7,24 +7,46 @@
     <title>@ViewData["Title"]</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
-    @*  CSS STYLES *@
+    @* CSS STYLES *@
 
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/reset.css" asp-append-version="true" />
-
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/header.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
 </head>
 
 <body>
     @* <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>*@
-    <header>
-
-    </header>
+    <div class="container">
+        <header class="header">
+            <div class="wrap-main-navigation">
+                <a href="/" class="logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1518/1518886.png" alt="">
+                </a>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Activities</a>
+                    <a href="/" class="nav-link">About</a>
+                    <a href="/" class="nav-link">Contact</a>
+                </nav>
+            </div>
+            <div class="wrap-management-navigation">
+                @* This will be dynamic *@
+                <a href="#join" class="btn btn-primary">Join</a>
+                @* This will be dynamic *@
+                <a href="" class="btn btn-secondary">Profile</a>
+            </div>
+        </header>
+    </div>
 
     <div class="container">
         <main role="main">
@@ -32,9 +54,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer">
         <div class="container">
-            &copy; 2024 - UI - test
+            <p>&copy; 2023 Gym Website. All rights reserved.</p>
         </div>
     </footer>
 

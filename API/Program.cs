@@ -12,7 +12,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
        {
             options.Events.OnRedirectToLogin = context =>
             {
-                context.Response.StatusCode = 403;
+                context.Response.StatusCode = 401;
                 return Task.CompletedTask;
             };
         });

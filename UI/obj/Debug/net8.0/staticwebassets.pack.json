@@ -1,12 +1,32 @@
 {
   "Files": [
     {
+      "Id": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/css/form.css",
+      "PackagePath": "staticwebassets/css/form.css"
+    },
+    {
+      "Id": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/css/header.css",
+      "PackagePath": "staticwebassets/css/header.css"
+    },
+    {
+      "Id": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/css/home.css",
+      "PackagePath": "staticwebassets/css/home.css"
+    },
+    {
+      "Id": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/css/reset.css",
+      "PackagePath": "staticwebassets/css/reset.css"
+    },
+    {
       "Id": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
       "Id": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/img/logo.webp",
+      "PackagePath": "staticwebassets/img/logo.webp"
     },
     {
       "Id": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/js/site.js",

@@ -142,7 +142,6 @@ namespace BL.User
             return authSendCodeUser;
         }
     
-
         public void Create(UserDTO user)
         {
             _userCrudFactory.Create(user);
