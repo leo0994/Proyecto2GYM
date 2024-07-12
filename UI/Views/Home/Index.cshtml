@@ -39,51 +39,62 @@
 
 <div class="join" id="join">
     <div class="form-container">
-        <form>
+        <form data-form data-state-form="login">
             <img class="logo"
                 src="https://png.pngtree.com/png-vector/20191004/ourmid/pngtree-lock-icon-png-image_1788630.jpg" alt="">
             <div class="form-main">
-                <div data-login style="display: noe;">
+                <div data-form-inputs data-login>
                     <h3 class="form-title">Have an acount?</h3>
                     <div class="form-group">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="text" id="email" class="form-input" placeholder="myEmail@gmail.com">
+                        <label for="email-login" class="form-label">Email</label>
+                        <input type="email" id="email-login" name="email" class="form-input"
+                            placeholder="myEmail@gmail.com">
+                        <small class="form-help-text error"></small>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" id="password" class="form-input" placeholder="mySecret123">
+                        <label for="password-login" class="form-label">Password</label>
+                        <input type="password" data-soft-rules id="password-login" name="password" class="form-input"
+                            placeholder="mySecret123">
+                        <small class="form-help-text error"></small>
                     </div>
                     <div class="form-group">
-                        <button style="text-align: left;">
+                        <button data-forgot-password>
                             <small class="form-help-text">Forgot password?</small>
                         </button>
                     </div>
                 </div>
-                <div data-forgotpass style="display: none;">
+                <div data-form-inputs data-forgotpass>
                     <h3 class="form-title">Forgot Password</h3>
                     <div class="form-group">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="text" id="email" class="form-input" placeholder="myEmail@gmail.com">
+                        <label for="email-forgot" class="form-label">Email</label>
+                        <input type="email" id="email-forgot" name="email" class="form-input"
+                            placeholder="myEmail@gmail.com">
+                        <small class="form-help-text error"></small>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="form-label">New password</label>
-                        <input type="password" id="password" class="form-input" placeholder="mySecret123">
+                        <label for="password-new" class="form-label">New password</label>
+                        <input type="password" id="password-new" name="password" class="form-input"
+                            placeholder="mySecret123">
+                        <small class="form-help-text error"></small>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="form-label">Confirm password</label>
-                        <input type="password" id="password" class="form-input" placeholder="mySecret123">
+                        <label for="password-confirm" class="form-label">Confirm password</label>
+                        <input type="password" id="password-confirm" name="password_confirmation" class="form-input"
+                            placeholder="mySecret123">
+                        <small class="form-help-text error"></small>
                     </div>
                     <div class="form-group">
-                        <button style="text-align: left;">
-                            <small class="form-help-text">Back to sign in</small>
+                        <button data-back-signin>
+                            <small class="form-help-text">Back to login?</small>
                         </button>
                     </div>
                 </div>
-                <div data-validate-code style="display: none;">
+                <div data-form-inputs data-validate-code>
                     <h3 class="form-title">Verification code</h3>
                     <div class="form-group">
                         <label for="code" class="form-label">Code</label>
-                        <input type="number" id="code" class="form-input" placeholder="xxxxx">
+                        <input type="number" id="code" name="code" class="form-input" placeholder="xxxxx">
+                        <small class="form-help-text error"></small>
                     </div>
                     <div class="form-group">
                         <button style="text-align: left;">
@@ -111,3 +122,5 @@
         <a href="#" class="btn btn-secondary">Contact</a>
     </div>
 </section>
+
+<script src="~/js/auth.js" asp-append-version="true"></script>

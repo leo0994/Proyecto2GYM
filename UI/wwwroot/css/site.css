@@ -96,6 +96,11 @@ button.btn {
   text-transform: capitalize;
 }
 
+a.btn:disabled,
+button.btn:disabled {
+  opacity: 0.5;
+}
+
 a:not(.btn):hover {
   text-decoration: underline #000000;
 }

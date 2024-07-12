@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets/img/logo.webp"
     },
     {
+      "Id": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/js/auth.js",
+      "PackagePath": "staticwebassets/js/auth.js"
+    },
+    {
       "Id": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },

@@ -72,9 +72,14 @@
 /* Help text */
 .form-help-text {
   display: block;
-  margin-top: 0.25rem;
-  font-size: 0.875rem;
+  margin-top: 0.50rem;
+  font-size: 0.750rem;
   color: #6c757d;
+}
+
+.form-help-text.error {
+  color: #a41616;
+  font-weight: bold;
 }
 
 /* Button styling */
@@ -144,4 +149,10 @@
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+input::placeholder {
+  opacity: 0.5;
+  font-style: italic;
+  font-size: 0.9rem;
 }

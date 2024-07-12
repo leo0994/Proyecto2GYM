@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "s7nIYtfascaMoFO3NCODV4Z8cGWjEQFim4rduecv8hQ=",
+  "Hash": "TFOtPDqf/uU4rdj9NFnXThCVPsJhBG1yh4klOAwCNZw=",
   "Source": "UI",
   "BasePath": "_content/UI",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/img/logo.webp"
+    },
+    {
+      "Identity": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/js/auth.js",
+      "SourceId": "UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/",
+      "BasePath": "_content/UI",
+      "RelativePath": "js/auth.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/auth.js"
     },
     {
       "Identity": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/UI/wwwroot/js/site.js",
