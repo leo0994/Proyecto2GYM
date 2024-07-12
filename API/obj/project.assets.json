@@ -5284,38 +5284,35 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Usuario\\.nuget\\packages\\": {}
+    "/Users/j.alvarez.mendoza/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Proyecto2\\API\\API.csproj",
+      "projectUniqueName": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Proyecto2\\API\\API.csproj",
-      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Proyecto2\\API\\obj\\",
+      "projectPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/API.csproj",
+      "packagesPath": "/Users/j.alvarez.mendoza/.nuget/packages/",
+      "outputPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/j.alvarez.mendoza/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Proyecto2\\BL\\BL.csproj": {
-              "projectPath": "C:\\Proyecto2\\BL\\BL.csproj"
+            "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/BL/BL.csproj": {
+              "projectPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/BL/BL.csproj"
             },
-            "C:\\Proyecto2\\DTO\\DTO.csproj": {
-              "projectPath": "C:\\Proyecto2\\DTO\\DTO.csproj"
+            "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/DTO.csproj": {
+              "projectPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/DTO.csproj"
             }
           }
         }
@@ -5375,7 +5372,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
@@ -5384,7 +5381,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "API depende de Microsoft.Data.SqlClient (>= 4.8.5), pero no se encontró Microsoft.Data.SqlClient 4.8.5. Se resolvió una mejor coincidencia aproximada de Microsoft.Data.SqlClient 5.0.0.",
+      "message": "API depends on Microsoft.Data.SqlClient (>= 4.8.5) but Microsoft.Data.SqlClient 4.8.5 was not found. An approximate best match of Microsoft.Data.SqlClient 5.0.0 was resolved.",
       "libraryId": "Microsoft.Data.SqlClient",
       "targetGraphs": [
         "net8.0"
@@ -5394,7 +5391,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "El paquete \"Microsoft.Data.SqlClient\" 5.0.0 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-98g6-xh36-x2p7",
+      "message": "Package 'Microsoft.Data.SqlClient' 5.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-98g6-xh36-x2p7",
       "libraryId": "Microsoft.Data.SqlClient",
       "targetGraphs": [
         "net8.0"

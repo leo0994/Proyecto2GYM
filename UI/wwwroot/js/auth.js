@@ -28,13 +28,15 @@
 
     function handleSubmit(e) {
         e.preventDefault();
-        const activeGroupForm = e.target.querySelector(`[data-${e.target.dataset.stateForm}]`);
-        const inputs = Array.from(activeGroupForm.querySelectorAll("input"));
-        const inputsErrors = validateForm(inputs)
-        if (Object.keys(inputsErrors).length > 0) {
-            showErrorUI(inputs, inputsErrors)
+        const currentForm = e.target.dataset.stateForm;
+        const currentGroupForm = e.target.querySelector(`[data-${currentForm}]`);
+        const inputsList = Array.from(currentGroupForm.querySelectorAll("input"));
+        const inputsListErrors = validateForm(inputsList)
+        if (Object.keys(inputsListErrors).length > 0) {
+            showErrorUI(inputsList, inputsListErrors);
             return
         }
+        console.log(currentForm)
         // send form data. and verify which group form is active
     }
 
@@ -74,7 +76,7 @@
                 return;
             }
 
-            if("softRules" in dataset){
+            if ("softRules" in dataset) {
                 return
             }
 

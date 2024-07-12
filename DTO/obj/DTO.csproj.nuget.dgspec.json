@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Proyecto2\\DTO\\DTO.csproj": {}
+    "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/DTO.csproj": {}
   },
   "projects": {
-    "C:\\Proyecto2\\DTO\\DTO.csproj": {
+    "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyecto2\\DTO\\DTO.csproj",
+        "projectUniqueName": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/DTO.csproj",
         "projectName": "DTO",
-        "projectPath": "C:\\Proyecto2\\DTO\\DTO.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyecto2\\DTO\\obj\\",
+        "projectPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/DTO.csproj",
+        "packagesPath": "/Users/j.alvarez.mendoza/.nuget/packages/",
+        "outputPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/j.alvarez.mendoza/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -61,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
