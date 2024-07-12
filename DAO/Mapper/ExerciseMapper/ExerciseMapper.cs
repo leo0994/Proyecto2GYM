@@ -1,14 +1,13 @@
 using DTOs;
-using DAO.Mapper;
 using System.Collections.Generic;
 
 namespace DAO.Mapper
 {
-    public class ExerciseMapper : ISqlStatements, IObjectMapper
+    public class ExerciseMapper : ICrudStatements<ExerciseDTO>, IObjectMapper<ExerciseDTO>
     {
         public ExerciseDTO BuildObject(Dictionary<string, object> row)
         {
-            var exerciseDTO = new ExerciseDTO
+            var exercise = new ExerciseDTO
             {
                 Id = (int)row["id"],
                 Description = (string)row["description"],
@@ -17,7 +16,7 @@ namespace DAO.Mapper
                 RoutineId = (int)row["routine_id"]
             };
 
-            return exerciseDTO;
+            return exercise;
         }
 
         public List<ExerciseDTO> BuildObjects(List<Dictionary<string, object>> rowsList)
@@ -25,8 +24,8 @@ namespace DAO.Mapper
             var resultsList = new List<ExerciseDTO>();
             foreach (var row in rowsList)
             {
-                var exerciseDTO = BuildObject(row);
-                resultsList.Add(exerciseDTO);
+                var exercise = BuildObject(row);
+                resultsList.Add(exercise);
             }
             return resultsList;
         }
@@ -35,18 +34,10 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "AddExerciseToRoutine" };
 
-            sqlOperation.AddVarcharParam("@p_description", exercise.Description);
-            sqlOperation.AddIntParam("@p_exerciseBase_id", exercise.ExerciseBaseId);
             sqlOperation.AddIntParam("@p_routine_id", exercise.RoutineId);
-
-            if (exercise.MachineId.HasValue)
-            {
-                sqlOperation.AddIntParam("@p_machine_id", exercise.MachineId.Value);
-            }
-            else
-            {
-                sqlOperation.AddIntParam("@p_machine_id", DBNull.Value);
-            }
+            sqlOperation.AddIntParam("@p_exerciseBase_id", exercise.ExerciseBaseId);
+            sqlOperation.AddVarcharParam("@p_description", exercise.Description);
+            sqlOperation.AddNullableIntParam("@p_machine_id", exercise.MachineId);
 
             return sqlOperation;
         }
@@ -60,12 +51,12 @@ namespace DAO.Mapper
 
         public SqlOperation GetRetrieveAllStatement()
         {
-            return new SqlOperation { ProcedureName = "GetAllExercises" };
+            return new SqlOperation { ProcedureName = "GetAllExercises" }; // Assuming the existence of this stored procedure
         }
 
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "GetExerciseById" };
+            var sqlOperation = new SqlOperation { ProcedureName = "GetExerciseById" }; // Assuming the existence of this stored procedure
             sqlOperation.AddIntParam("@p_exercise_id", id);
             return sqlOperation;
         }
@@ -76,17 +67,8 @@ namespace DAO.Mapper
 
             sqlOperation.AddIntParam("@p_exercise_id", exercise.Id);
             sqlOperation.AddVarcharParam("@p_description", exercise.Description);
+            sqlOperation.AddNullableIntParam("@p_machine_id", exercise.MachineId);
             sqlOperation.AddIntParam("@p_exerciseBase_id", exercise.ExerciseBaseId);
-            sqlOperation.AddIntParam("@p_routine_id", exercise.RoutineId);
-
-            if (exercise.MachineId.HasValue)
-            {
-                sqlOperation.AddIntParam("@p_machine_id", exercise.MachineId.Value);
-            }
-            else
-            {
-                sqlOperation.AddIntParam("@p_machine_id", DBNull.Value);
-            }
 
             return sqlOperation;
         }

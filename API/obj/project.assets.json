@@ -3250,35 +3250,43 @@
     ]
   },
   "packageFolders": {
-    "/Users/j.alvarez.mendoza/.nuget/packages/": {}
+    "C:\\Users\\leo\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/API.csproj",
+      "projectUniqueName": "C:\\Users\\leo\\source\\repos\\Proyecto2GYM\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/API.csproj",
-      "packagesPath": "/Users/j.alvarez.mendoza/.nuget/packages/",
-      "outputPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/obj/",
+      "projectPath": "C:\\Users\\leo\\source\\repos\\Proyecto2GYM\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\leo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\leo\\source\\repos\\Proyecto2GYM\\API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/j.alvarez.mendoza/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\leo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/BL/BL.csproj": {
-              "projectPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/BL/BL.csproj"
+            "C:\\Users\\leo\\source\\repos\\Proyecto2GYM\\BL\\BL.csproj": {
+              "projectPath": "C:\\Users\\leo\\source\\repos\\Proyecto2GYM\\BL\\BL.csproj"
             },
-            "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/DTO.csproj": {
-              "projectPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/DTO.csproj"
+            "C:\\Users\\leo\\source\\repos\\Proyecto2GYM\\DTO\\DTO.csproj": {
+              "projectPath": "C:\\Users\\leo\\source\\repos\\Proyecto2GYM\\DTO\\DTO.csproj"
             }
           }
         }
@@ -3326,7 +3334,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

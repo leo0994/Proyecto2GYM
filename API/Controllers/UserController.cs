@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BL.User;
+using BL.Managers;
 
 namespace API.Controllers
 {

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace DAO.Mapper
 {
-    public class RoutineMapper : ISqlStatements, IObjectMapper
+    public class RoutineMapper : ICrudStatements<RoutineDTO>, IObjectMapper<RoutineDTO>
     {
         public RoutineDTO BuildObject(Dictionary<string, object> row)
         {
-            var routineDTO = new RoutineDTO
+            var routine = new RoutineDTO
             {
-                Id = (int)row["id"],
-                UserId = (int)row["userId"],
-                CreatorId = (int)row["creatorId"]
+                Id = (int)row["Id"],
+                UserId = (int)row["UserId"],
+                CreatorId = (int)row["CreatorId"]
             };
 
-            return routineDTO;
+            return routine;
         }
 
         public List<RoutineDTO> BuildObjects(List<Dictionary<string, object>> rowsList)
@@ -22,8 +22,8 @@ namespace DAO.Mapper
             var resultsList = new List<RoutineDTO>();
             foreach (var row in rowsList)
             {
-                var routineDTO = BuildObject(row);
-                resultsList.Add(routineDTO);
+                var routine = BuildObject(row);
+                resultsList.Add(routine);
             }
             return resultsList;
         }
@@ -32,8 +32,8 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "CreateRoutine" };
 
-            sqlOperation.AddIntParam("@p_userId", routine.UserId);
-            sqlOperation.AddIntParam("@p_creatorId", routine.CreatorId);
+            sqlOperation.AddIntParam("@UserId", routine.UserId);
+            sqlOperation.AddIntParam("@CreatorId", routine.CreatorId);
 
             return sqlOperation;
         }
@@ -41,7 +41,7 @@ namespace DAO.Mapper
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "DeleteRoutine" };
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@Id", id);
             return sqlOperation;
         }
 
@@ -53,7 +53,7 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetRoutineById" };
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@Id", id);
             return sqlOperation;
         }
 
@@ -61,9 +61,9 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdateRoutine" };
 
-            sqlOperation.AddIntParam("@p_id", routine.Id);
-            sqlOperation.AddIntParam("@p_userId", routine.UserId);
-            sqlOperation.AddIntParam("@p_creatorId", routine.CreatorId);
+            sqlOperation.AddIntParam("@Id", routine.Id);
+            sqlOperation.AddIntParam("@UserId", routine.UserId);
+            sqlOperation.AddIntParam("@CreatorId", routine.CreatorId);
 
             return sqlOperation;
         }

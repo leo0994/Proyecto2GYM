@@ -1,12 +1,13 @@
 using DTOs;
-using BL.Managers;
 using Microsoft.AspNetCore.Mvc;
+using BL.Managers;
+using System;
 using System.Collections.Generic;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class RoutineController : ControllerBase
     {
         private readonly RoutineManager _manager;
@@ -16,39 +17,74 @@ namespace API.Controllers
             _manager = new RoutineManager();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create([FromBody] RoutineDTO routine)
         {
-            _manager.Create(routine);
-            return Ok();
+            try
+            {
+                var createdRoutine = _manager.Create(routine);
+                return Ok(createdRoutine);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public IActionResult Update([FromBody] RoutineDTO routine)
         {
-            _manager.Update(routine);
-            return Ok();
+            try
+            {
+                var updatedRoutine = _manager.Update(routine);
+                return Ok(updatedRoutine);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] RoutineDTO routine)
         {
-            _manager.Delete(id);
-            return Ok();
+            try
+            {
+                var deletedRoutine = _manager.Delete(routine);
+                return Ok(deletedRoutine);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("RetrieveAll")]
+        public IActionResult RetrieveAll()
         {
-            var routine = _manager.RetrieveById(id);
-            return Ok(routine);
+            try
+            {
+                var routines = _manager.RetrieveAll();
+                return Ok(routines);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("RetrieveById/{id}")]
+        public IActionResult RetrieveById(int id)
         {
-            var routines = _manager.RetrieveAll();
-            return Ok(routines);
+            try
+            {
+                var routine = _manager.RetrieveById(id);
+                return Ok(routine);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }

@@ -1,12 +1,12 @@
 using DTOs;
-using BL.Managers;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using BL.Managers;
+using System;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class HistoryPasswordUserController : ControllerBase
     {
         private readonly HistoryPasswordUserManager _manager;
@@ -16,39 +16,74 @@ namespace API.Controllers
             _manager = new HistoryPasswordUserManager();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create([FromBody] HistoryPasswordUserDTO historyPasswordUser)
         {
-            _manager.Create(historyPasswordUser);
-            return Ok();
+            try
+            {
+                var createdHistoryPasswordUser = _manager.Create(historyPasswordUser);
+                return Ok(createdHistoryPasswordUser);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public IActionResult Update([FromBody] HistoryPasswordUserDTO historyPasswordUser)
         {
-            _manager.Update(historyPasswordUser);
-            return Ok();
+            try
+            {
+                var updatedHistoryPasswordUser = _manager.Update(historyPasswordUser);
+                return Ok(updatedHistoryPasswordUser);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] HistoryPasswordUserDTO historyPasswordUser)
         {
-            _manager.Delete(id);
-            return Ok();
+            try
+            {
+                var deletedHistoryPasswordUser = _manager.Delete(historyPasswordUser);
+                return Ok(deletedHistoryPasswordUser);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("RetrieveAll")]
+        public IActionResult RetrieveAll()
         {
-            var historyPasswordUser = _manager.RetrieveById(id);
-            return Ok(historyPasswordUser);
+            try
+            {
+                var historyPasswordUsers = _manager.RetrieveAll();
+                return Ok(historyPasswordUsers);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("RetrieveById/{id}")]
+        public IActionResult RetrieveById(int id)
         {
-            var historyPasswordUsers = _manager.RetrieveAll();
-            return Ok(historyPasswordUsers);
+            try
+            {
+                var historyPasswordUser = _manager.RetrieveById(id);
+                return Ok(historyPasswordUser);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }

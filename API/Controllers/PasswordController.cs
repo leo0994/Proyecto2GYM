@@ -1,12 +1,12 @@
 using DTOs;
-using BL.Managers;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using BL.Managers;
+using System;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class PasswordController : ControllerBase
     {
         private readonly PasswordManager _manager;
@@ -16,39 +16,74 @@ namespace API.Controllers
             _manager = new PasswordManager();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create([FromBody] PasswordDTO password)
         {
-            _manager.Create(password);
-            return Ok();
+            try
+            {
+                var createdPassword = _manager.Create(password);
+                return Ok(createdPassword);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public IActionResult Update([FromBody] PasswordDTO password)
         {
-            _manager.Update(password);
-            return Ok();
+            try
+            {
+                var updatedPassword = _manager.Update(password);
+                return Ok(updatedPassword);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] PasswordDTO password)
         {
-            _manager.Delete(id);
-            return Ok();
+            try
+            {
+                var deletedPassword = _manager.Delete(password);
+                return Ok(deletedPassword);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("RetrieveAll")]
+        public IActionResult RetrieveAll()
         {
-            var password = _manager.RetrieveById(id);
-            return Ok(password);
+            try
+            {
+                var passwords = _manager.RetrieveAll();
+                return Ok(passwords);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("RetrieveById/{id}")]
+        public IActionResult RetrieveById(int id)
         {
-            var passwords = _manager.RetrieveAll();
-            return Ok(passwords);
+            try
+            {
+                var password = _manager.RetrieveById(id);
+                return Ok(password);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }

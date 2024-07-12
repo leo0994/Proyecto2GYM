@@ -1,12 +1,13 @@
-using System.Collections.Generic;
-using System.Web.Http;
-using BL.Mana_ger;
 using DTOs;
+using Managers;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace API.Controllers
 {
-    [RoutePrefix("api/exercises")]
-    public class ExerciseController : ApiController
+    [ApiController]
+    [Route("[controller]")]
+    public class ExerciseController : ControllerBase
     {
         private readonly ExerciseManager _exerciseManager;
 
@@ -16,43 +17,39 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Route("create")]
-        public IHttpActionResult CreateExercise([FromBody] ExerciseDTO exercise)
+        public IActionResult Create(ExerciseDTO exerciseDTO)
         {
-            _exerciseManager.CreateExercise(exercise);
-            return Ok();
+            var result = _exerciseManager.Create(exerciseDTO);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var result = _exerciseManager.RetrieveAll();
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var result = _exerciseManager.RetrieveById(id);
+            return Ok(result);
         }
 
         [HttpPut]
-        [Route("update")]
-        public IHttpActionResult UpdateExercise([FromBody] ExerciseDTO exercise)
+        public IActionResult Update(ExerciseDTO exerciseDTO)
         {
-            _exerciseManager.UpdateExercise(exercise);
-            return Ok();
+            var result = _exerciseManager.Update(exerciseDTO);
+            return Ok(result);
         }
 
-        [HttpDelete]
-        [Route("delete/{id}")]
-        public IHttpActionResult DeleteExercise(int id)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
-            _exerciseManager.DeleteExercise(id);
-            return Ok();
-        }
-
-        [HttpGet]
-        [Route("{id}")]
-        public IHttpActionResult GetExerciseById(int id)
-        {
-            var exercise = _exerciseManager.GetExerciseById(id);
-            return Ok(exercise);
-        }
-
-        [HttpGet]
-        [Route("all")]
-        public IHttpActionResult GetAllExercises()
-        {
-            var exercises = _exerciseManager.GetAllExercises();
-            return Ok(exercises);
+            var exerciseDTO = new ExerciseDTO { Id = id };
+            var result = _exerciseManager.Delete(exerciseDTO);
+            return Ok(result);
         }
     }
 }

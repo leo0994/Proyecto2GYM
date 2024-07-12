@@ -1,12 +1,12 @@
 using DTOs;
-using BL.Managers;
+using Managers;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class PaymentMethodController : ControllerBase
     {
         private readonly PaymentMethodManager _manager;
@@ -17,14 +17,26 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] PaymentMethodDTO paymentMethod)
+        public IActionResult Create(PaymentMethodDTO paymentMethod)
         {
             _manager.Create(paymentMethod);
             return Ok();
         }
 
+        [HttpGet]
+        public IActionResult RetrieveAll()
+        {
+            return Ok(_manager.RetrieveAll());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult RetrieveById(int id)
+        {
+            return Ok(_manager.RetrieveById(id));
+        }
+
         [HttpPut]
-        public IActionResult Update([FromBody] PaymentMethodDTO paymentMethod)
+        public IActionResult Update(PaymentMethodDTO paymentMethod)
         {
             _manager.Update(paymentMethod);
             return Ok();
@@ -35,20 +47,6 @@ namespace API.Controllers
         {
             _manager.Delete(id);
             return Ok();
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
-        {
-            var paymentMethod = _manager.RetrieveById(id);
-            return Ok(paymentMethod);
-        }
-
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var paymentMethods = _manager.RetrieveAll();
-            return Ok(paymentMethods);
         }
     }
 }

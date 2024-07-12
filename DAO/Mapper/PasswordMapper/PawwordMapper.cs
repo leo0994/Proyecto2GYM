@@ -1,10 +1,9 @@
 using DTOs;
-using DAO.Mapper;
 using System.Collections.Generic;
 
 namespace DAO.Mapper
 {
-    public class PasswordMapper : ISqlStatements, IObjectMapper
+    public class PasswordMapper : ICrudStatements<PasswordDTO>, IObjectMapper<PasswordDTO>
     {
         public PasswordDTO BuildObject(Dictionary<string, object> row)
         {
@@ -30,7 +29,7 @@ namespace DAO.Mapper
 
         public SqlOperation GetCreateStatement(PasswordDTO password)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "CreatePassword" };
+            var sqlOperation = new SqlOperation { ProcedureName = "CreatePassword" }; // Assuming this stored procedure exists
 
             sqlOperation.AddVarcharParam("@p_password", password.Password);
 
@@ -39,26 +38,26 @@ namespace DAO.Mapper
 
         public SqlOperation GetDeleteStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "DeletePassword" };
+            var sqlOperation = new SqlOperation { ProcedureName = "DeletePassword" }; // Assuming this stored procedure exists
             sqlOperation.AddIntParam("@p_id", id);
             return sqlOperation;
         }
 
         public SqlOperation GetRetrieveAllStatement()
         {
-            return new SqlOperation { ProcedureName = "GetAllPasswords" };
+            return new SqlOperation { ProcedureName = "GetAllPasswords" }; // Assuming this stored procedure exists
         }
 
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "GetPasswordById" };
+            var sqlOperation = new SqlOperation { ProcedureName = "GetPasswordById" }; // Assuming this stored procedure exists
             sqlOperation.AddIntParam("@p_id", id);
             return sqlOperation;
         }
 
         public SqlOperation GetUpdateStatement(PasswordDTO password)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "UpdatePassword" };
+            var sqlOperation = new SqlOperation { ProcedureName = "UpdatePassword" }; // Assuming this stored procedure exists
 
             sqlOperation.AddIntParam("@p_id", password.Id);
             sqlOperation.AddVarcharParam("@p_password", password.Password);

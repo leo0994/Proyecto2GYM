@@ -1,24 +1,23 @@
 using DTOs;
-using DAO.Mapper;
 using System.Collections.Generic;
 
 namespace DAO.Mapper
 {
-    public class PaymentMapper : ISqlStatements, IObjectMapper
+    public class PaymentMapper : ICrudStatements<PaymentDTO>, IObjectMapper<PaymentDTO>
     {
         public PaymentDTO BuildObject(Dictionary<string, object> row)
         {
-            var paymentDTO = new PaymentDTO
+            var payment = new PaymentDTO
             {
                 Id = (int)row["id"],
-                UserId = (int)row["userId"],
+                UserId = (int)row["user_id"],
                 Date = (DateTime)row["date"],
                 Amount = (decimal)row["amount"],
-                PaymentMethodId = (int)row["paymentMethodId"],
+                PaymentMethodId = (int)row["payment_method_id"],
                 Status = (string)row["status"]
             };
 
-            return paymentDTO;
+            return payment;
         }
 
         public List<PaymentDTO> BuildObjects(List<Dictionary<string, object>> rowsList)
@@ -26,20 +25,20 @@ namespace DAO.Mapper
             var resultsList = new List<PaymentDTO>();
             foreach (var row in rowsList)
             {
-                var paymentDTO = BuildObject(row);
-                resultsList.Add(paymentDTO);
+                var payment = BuildObject(row);
+                resultsList.Add(payment);
             }
             return resultsList;
         }
 
         public SqlOperation GetCreateStatement(PaymentDTO payment)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "CreatePayment" };
+            var sqlOperation = new SqlOperation { ProcedureName = "RecordPayment" };
 
-            sqlOperation.AddIntParam("@p_userId", payment.UserId);
+            sqlOperation.AddIntParam("@p_user_id", payment.UserId);
             sqlOperation.AddDateTimeParam("@p_date", payment.Date);
-            sqlOperation.AddDecimalParam("@p_amount", payment.Amount);
-            sqlOperation.AddIntParam("@p_paymentMethodId", payment.PaymentMethodId);
+            sqlOperation.AddFloatParam("@p_amount", (float)payment.Amount);
+            sqlOperation.AddIntParam("@p_payment_method_id", payment.PaymentMethodId);
             sqlOperation.AddVarcharParam("@p_status", payment.Status);
 
             return sqlOperation;
@@ -48,7 +47,7 @@ namespace DAO.Mapper
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "DeletePayment" };
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@p_payment_id", id);
             return sqlOperation;
         }
 
@@ -60,7 +59,7 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetPaymentById" };
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@p_payment_id", id);
             return sqlOperation;
         }
 
@@ -68,11 +67,11 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdatePayment" };
 
-            sqlOperation.AddIntParam("@p_id", payment.Id);
-            sqlOperation.AddIntParam("@p_userId", payment.UserId);
+            sqlOperation.AddIntParam("@p_payment_id", payment.Id);
+            sqlOperation.AddIntParam("@p_user_id", payment.UserId);
             sqlOperation.AddDateTimeParam("@p_date", payment.Date);
-            sqlOperation.AddDecimalParam("@p_amount", payment.Amount);
-            sqlOperation.AddIntParam("@p_paymentMethodId", payment.PaymentMethodId);
+            sqlOperation.AddFloatParam("@p_amount", (float)payment.Amount);
+            sqlOperation.AddIntParam("@p_payment_method_id", payment.PaymentMethodId);
             sqlOperation.AddVarcharParam("@p_status", payment.Status);
 
             return sqlOperation;

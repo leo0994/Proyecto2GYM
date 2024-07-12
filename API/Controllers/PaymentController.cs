@@ -1,12 +1,13 @@
 using DTOs;
-using BL.Managers;
 using Microsoft.AspNetCore.Mvc;
+using BL.Managers;
+using System;
 using System.Collections.Generic;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class PaymentController : ControllerBase
     {
         private readonly PaymentManager _manager;
@@ -16,39 +17,74 @@ namespace API.Controllers
             _manager = new PaymentManager();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create([FromBody] PaymentDTO payment)
         {
-            _manager.Create(payment);
-            return Ok();
+            try
+            {
+                var createdPayment = _manager.Create(payment);
+                return Ok(createdPayment);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public IActionResult Update([FromBody] PaymentDTO payment)
         {
-            _manager.Update(payment);
-            return Ok();
+            try
+            {
+                var updatedPayment = _manager.Update(payment);
+                return Ok(updatedPayment);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] PaymentDTO payment)
         {
-            _manager.Delete(id);
-            return Ok();
+            try
+            {
+                var deletedPayment = _manager.Delete(payment);
+                return Ok(deletedPayment);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("RetrieveAll")]
+        public IActionResult RetrieveAll()
         {
-            var payment = _manager.RetrieveById(id);
-            return Ok(payment);
+            try
+            {
+                var payments = _manager.RetrieveAll();
+                return Ok(payments);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("RetrieveById/{id}")]
+        public IActionResult RetrieveById(int id)
         {
-            var payments = _manager.RetrieveAll();
-            return Ok(payments);
+            try
+            {
+                var payment = _manager.RetrieveById(id);
+                return Ok(payment);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }

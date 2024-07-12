@@ -1,12 +1,13 @@
 using DTOs;
-using BL.Managers;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using BL.Managers;
+using System;
+using BL.Managers;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class MeasureController : ControllerBase
     {
         private readonly MeasureManager _manager;
@@ -16,39 +17,74 @@ namespace API.Controllers
             _manager = new MeasureManager();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create([FromBody] MeasureDTO measure)
         {
-            _manager.Create(measure);
-            return Ok();
+            try
+            {
+                var createdMeasure = _manager.Create(measure);
+                return Ok(createdMeasure);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public IActionResult Update([FromBody] MeasureDTO measure)
         {
-            _manager.Update(measure);
-            return Ok();
+            try
+            {
+                var updatedMeasure = _manager.Update(measure);
+                return Ok(updatedMeasure);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] MeasureDTO measure)
         {
-            _manager.Delete(id);
-            return Ok();
+            try
+            {
+                var deletedMeasure = _manager.Delete(measure);
+                return Ok(deletedMeasure);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("RetrieveAll")]
+        public IActionResult RetrieveAll()
         {
-            var measure = _manager.RetrieveById(id);
-            return Ok(measure);
+            try
+            {
+                var measures = _manager.RetrieveAll();
+                return Ok(measures);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("RetrieveById/{id}")]
+        public IActionResult RetrieveById(int id)
         {
-            var measures = _manager.RetrieveAll();
-            return Ok(measures);
+            try
+            {
+                var measure = _manager.RetrieveById(id);
+                return Ok(measure);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }

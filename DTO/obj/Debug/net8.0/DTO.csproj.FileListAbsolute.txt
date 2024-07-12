@@ -10,3 +10,15 @@
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/obj/Debug/net8.0/DTO.pdb
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/obj/Debug/net8.0/ref/DTO.dll
 /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/obj/Debug/net8.0/DTO.sourcelink.json
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\bin\Debug\net8.0\DTO.deps.json
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\bin\Debug\net8.0\DTO.dll
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\bin\Debug\net8.0\DTO.pdb
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\obj\Debug\net8.0\DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\obj\Debug\net8.0\DTO.AssemblyInfoInputs.cache
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\obj\Debug\net8.0\DTO.AssemblyInfo.cs
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\obj\Debug\net8.0\DTO.csproj.CoreCompileInputs.cache
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\obj\Debug\net8.0\DTO.sourcelink.json
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\obj\Debug\net8.0\DTO.dll
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\obj\Debug\net8.0\refint\DTO.dll
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\obj\Debug\net8.0\DTO.pdb
+C:\Users\leo\source\repos\Proyecto2GYM\DTO\obj\Debug\net8.0\ref\DTO.dll

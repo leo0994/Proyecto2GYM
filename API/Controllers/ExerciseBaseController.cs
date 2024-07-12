@@ -1,12 +1,12 @@
 using DTOs;
-using BL.Managers;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using BL.Managers;
+using System;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class ExerciseBaseController : ControllerBase
     {
         private readonly ExerciseBaseManager _manager;
@@ -16,39 +16,74 @@ namespace API.Controllers
             _manager = new ExerciseBaseManager();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create([FromBody] ExerciseBaseDTO exerciseBase)
         {
-            _manager.Create(exerciseBase);
-            return Ok();
+            try
+            {
+                var createdExerciseBase = _manager.Create(exerciseBase);
+                return Ok(createdExerciseBase);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public IActionResult Update([FromBody] ExerciseBaseDTO exerciseBase)
         {
-            _manager.Update(exerciseBase);
-            return Ok();
+            try
+            {
+                var updatedExerciseBase = _manager.Update(exerciseBase);
+                return Ok(updatedExerciseBase);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] ExerciseBaseDTO exerciseBase)
         {
-            _manager.Delete(id);
-            return Ok();
+            try
+            {
+                var deletedExerciseBase = _manager.Delete(exerciseBase);
+                return Ok(deletedExerciseBase);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("RetrieveAll")]
+        public IActionResult RetrieveAll()
         {
-            var exerciseBase = _manager.RetrieveById(id);
-            return Ok(exerciseBase);
+            try
+            {
+                var exerciseBases = _manager.RetrieveAll();
+                return Ok(exerciseBases);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("RetrieveById/{id}")]
+        public IActionResult RetrieveById(int id)
         {
-            var exerciseBases = _manager.RetrieveAll();
-            return Ok(exerciseBases);
+            try
+            {
+                var exerciseBase = _manager.RetrieveById(id);
+                return Ok(exerciseBase);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }

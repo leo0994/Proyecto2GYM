@@ -1,74 +1,68 @@
 using DTOs;
 using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
 
 namespace DAO.Mapper
 {
-    public class PaymentMethodMapper : ISqlStatements, IObjectMapper
+    public class PaymentMethodMapper : ICrudStatements<PaymentMethodDTO>, IObjectMapper<PaymentMethodDTO>
     {
         public PaymentMethodDTO BuildObject(Dictionary<string, object> row)
         {
-            var paymentMethodDTO = new PaymentMethodDTO
+            return new PaymentMethodDTO
             {
                 Id = (int)row["id"],
                 Name = (string)row["name"],
                 Description = (string)row["description"],
                 Active = (bool)row["active"]
             };
-
-            return paymentMethodDTO;
         }
 
-        public List<PaymentMethodDTO> BuildObjects(List<Dictionary<string, object>> rowsList)
+        public List<PaymentMethodDTO> BuildObjects(List<Dictionary<string, object>> rows)
         {
-            var resultsList = new List<PaymentMethodDTO>();
-            foreach (var row in rowsList)
+            var results = new List<PaymentMethodDTO>();
+            foreach (var row in rows)
             {
-                var paymentMethodDTO = BuildObject(row);
-                resultsList.Add(paymentMethodDTO);
+                results.Add(BuildObject(row));
             }
-            return resultsList;
+            return results;
         }
 
         public SqlOperation GetCreateStatement(PaymentMethodDTO paymentMethod)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "CreatePaymentMethod" };
+            var operation = new SqlOperation { ProcedureName = "CreatePaymentMethod" };
+            operation.AddVarcharParam("@name", paymentMethod.Name);
+            operation.AddVarcharParam("@description", paymentMethod.Description);
+            operation.AddBoolParam("@active", paymentMethod.Active);
+            return operation;
+        }
 
-            sqlOperation.AddVarcharParam("@p_name", paymentMethod.Name);
-            sqlOperation.AddVarcharParam("@p_description", paymentMethod.Description);
-            sqlOperation.AddBoolParam("@p_active", paymentMethod.Active);
+        public SqlOperation GetRetrieveByIdStatement(int id)
+        {
+            var operation = new SqlOperation { ProcedureName = "GetPaymentMethodById" };
+            operation.AddIntParam("@id", id);
+            return operation;
+        }
 
-            return sqlOperation;
+        public SqlOperation GetUpdateStatement(PaymentMethodDTO paymentMethod)
+        {
+            var operation = new SqlOperation { ProcedureName = "UpdatePaymentMethod" };
+            operation.AddIntParam("@id", paymentMethod.Id);
+            operation.AddVarcharParam("@name", paymentMethod.Name);
+            operation.AddVarcharParam("@description", paymentMethod.Description);
+            operation.AddBoolParam("@active", paymentMethod.Active);
+            return operation;
         }
 
         public SqlOperation GetDeleteStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "DeletePaymentMethod" };
-            sqlOperation.AddIntParam("@p_id", id);
-            return sqlOperation;
+            var operation = new SqlOperation { ProcedureName = "DeletePaymentMethod" };
+            operation.AddIntParam("@id", id);
+            return operation;
         }
 
         public SqlOperation GetRetrieveAllStatement()
         {
             return new SqlOperation { ProcedureName = "GetAllPaymentMethods" };
-        }
-
-        public SqlOperation GetRetrieveByIdStatement(int id)
-        {
-            var sqlOperation = new SqlOperation { ProcedureName = "GetPaymentMethodById" };
-            sqlOperation.AddIntParam("@p_id", id);
-            return sqlOperation;
-        }
-
-        public SqlOperation GetUpdateStatement(PaymentMethodDTO paymentMethod)
-        {
-            var sqlOperation = new SqlOperation { ProcedureName = "UpdatePaymentMethod" };
-
-            sqlOperation.AddIntParam("@p_id", paymentMethod.Id);
-            sqlOperation.AddVarcharParam("@p_name", paymentMethod.Name);
-            sqlOperation.AddVarcharParam("@p_description", paymentMethod.Description);
-            sqlOperation.AddBoolParam("@p_active", paymentMethod.Active);
-
-            return sqlOperation;
         }
     }
 }

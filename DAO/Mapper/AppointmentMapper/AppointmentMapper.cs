@@ -1,23 +1,21 @@
 using DTOs;
-using DAO.Mapper;
-using System;
 using System.Collections.Generic;
 
 namespace DAO.Mapper
 {
-    public class AppointmentMapper : ISqlStatements, IObjectMapper
+    public class AppointmentMapper : ICrudStatements<AppointmentDTO>, IObjectMapper<AppointmentDTO>
     {
         public AppointmentDTO BuildObject(Dictionary<string, object> row)
         {
-            var appointmentDTO = new AppointmentDTO
+            var appointment = new AppointmentDTO
             {
-                Id = Convert.ToInt32(row["id"]),
-                Date = Convert.ToDateTime(row["date"]),
-                UserAId = Convert.ToInt32(row["user_A_id"]),
-                UserBId = Convert.ToInt32(row["user_B_id"])
+                Id = (int)row["id"],
+                Date = (DateTime)row["date"],
+                UserAId = (int)row["user_A_id"],
+                UserBId = (int)row["user_B_id"]
             };
 
-            return appointmentDTO;
+            return appointment;
         }
 
         public List<AppointmentDTO> BuildObjects(List<Dictionary<string, object>> rowsList)
@@ -25,8 +23,8 @@ namespace DAO.Mapper
             var resultsList = new List<AppointmentDTO>();
             foreach (var row in rowsList)
             {
-                var appointmentDTO = BuildObject(row);
-                resultsList.Add(appointmentDTO);
+                var appointment = BuildObject(row);
+                resultsList.Add(appointment);
             }
             return resultsList;
         }
@@ -44,28 +42,28 @@ namespace DAO.Mapper
 
         public SqlOperation GetDeleteStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "DeleteAppointment" };
+            var sqlOperation = new SqlOperation { ProcedureName = "DeleteAppointment" }; // Assuming the existence of this stored procedure
             sqlOperation.AddIntParam("@p_id", id);
             return sqlOperation;
         }
 
         public SqlOperation GetRetrieveAllStatement()
         {
-            return new SqlOperation { ProcedureName = "GetAllAppointments" };
+            return new SqlOperation { ProcedureName = "GetAllAppointments" }; // Assuming the existence of this stored procedure
         }
 
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "GetAppointmentById" };
-            sqlOperation.AddIntParam("@p_appointment_id", id);
+            var sqlOperation = new SqlOperation { ProcedureName = "GetAppointmentById" }; // Assuming the existence of this stored procedure
+            sqlOperation.AddIntParam("@p_id", id);
             return sqlOperation;
         }
 
         public SqlOperation GetUpdateStatement(AppointmentDTO appointment)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "UpdateAppointment" };
+            var sqlOperation = new SqlOperation { ProcedureName = "UpdateAppointment" }; // Assuming the existence of this stored procedure
 
-            sqlOperation.AddIntParam("@p_appointment_id", appointment.Id);
+            sqlOperation.AddIntParam("@p_id", appointment.Id);
             sqlOperation.AddIntParam("@p_user_A_id", appointment.UserAId);
             sqlOperation.AddIntParam("@p_user_B_id", appointment.UserBId);
             sqlOperation.AddDateTimeParam("@p_date", appointment.Date);

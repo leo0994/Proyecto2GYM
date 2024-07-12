@@ -1,70 +1,89 @@
-using BL.Appointment;
 using DTOs;
 using Microsoft.AspNetCore.Mvc;
+using BL.Managers;
 using System;
-using System.Collections.Generic;
 
 namespace API.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api/appointments")]
     public class AppointmentController : ControllerBase
     {
-        private readonly AppointmentManager _appointmentManager;
+        private readonly AppointmentManager _manager;
 
         public AppointmentController()
         {
-            _appointmentManager = new AppointmentManager();
+            _manager = new AppointmentManager();
         }
 
-        [HttpGet]
-        public ActionResult<List<AppointmentDTO>> GetAll()
+        [HttpPost("Create")]
+        public IActionResult Create([FromBody] AppointmentDTO appointment)
         {
-            var appointments = _appointmentManager.RetrieveAll();
-            return Ok(appointments);
-        }
-
-        [HttpGet("{id}")]
-        public ActionResult<AppointmentDTO> GetById(int id)
-        {
-            var appointment = _appointmentManager.RetrieveById(id);
-            if (appointment == null)
+            try
             {
-                return NotFound();
+                var createdAppointment = _manager.Create(appointment);
+                return Ok(createdAppointment);
             }
-            return Ok(appointment);
-        }
-
-        [HttpPost]
-        public IActionResult Create(AppointmentDTO appointment)
-        {
-            _appointmentManager.Create(appointment);
-            return CreatedAtAction(nameof(GetById), new { id = appointment.Id }, appointment);
-        }
-
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, AppointmentDTO appointment)
-        {
-            if (id != appointment.Id)
+            catch (Exception e)
             {
-                return BadRequest();
+                return StatusCode(500, e.Message);
             }
-
-            _appointmentManager.Update(appointment);
-            return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpPut("Update")]
+        public IActionResult Update([FromBody] AppointmentDTO appointment)
         {
-            var appointment = _appointmentManager.RetrieveById(id);
-            if (appointment == null)
+            try
             {
-                return NotFound();
+                var updatedAppointment = _manager.Update(appointment);
+                return Ok(updatedAppointment);
             }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
 
-            _appointmentManager.Delete(id);
-            return NoContent();
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] AppointmentDTO appointment)
+        {
+            try
+            {
+                var deletedAppointment = _manager.Delete(appointment);
+                return Ok(deletedAppointment);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        [HttpGet("RetrieveAll")]
+        public IActionResult RetrieveAll()
+        {
+            try
+            {
+                var appointments = _manager.RetrieveAll();
+                return Ok(appointments);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        [HttpGet("RetrieveById/{id}")]
+        public IActionResult RetrieveById(int id)
+        {
+            try
+            {
+                var appointment = _manager.RetrieveById(id);
+                return Ok(appointment);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }

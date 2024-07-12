@@ -1,12 +1,12 @@
 using DTOs;
-using BL.Managers;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using BL.Managers;
+using System;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class ParticipantController : ControllerBase
     {
         private readonly ParticipantManager _manager;
@@ -16,39 +16,74 @@ namespace API.Controllers
             _manager = new ParticipantManager();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create([FromBody] ParticipantDTO participant)
         {
-            _manager.Create(participant);
-            return Ok();
+            try
+            {
+                var createdParticipant = _manager.Create(participant);
+                return Ok(createdParticipant);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public IActionResult Update([FromBody] ParticipantDTO participant)
         {
-            _manager.Update(participant);
-            return Ok();
+            try
+            {
+                var updatedParticipant = _manager.Update(participant);
+                return Ok(updatedParticipant);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] ParticipantDTO participant)
         {
-            _manager.Delete(id);
-            return Ok();
+            try
+            {
+                var deletedParticipant = _manager.Delete(participant);
+                return Ok(deletedParticipant);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("RetrieveAll")]
+        public IActionResult RetrieveAll()
         {
-            var participant = _manager.RetrieveById(id);
-            return Ok(participant);
+            try
+            {
+                var participants = _manager.RetrieveAll();
+                return Ok(participants);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("RetrieveById/{id}")]
+        public IActionResult RetrieveById(int id)
         {
-            var participants = _manager.RetrieveAll();
-            return Ok(participants);
+            try
+            {
+                var participant = _manager.RetrieveById(id);
+                return Ok(participant);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }
