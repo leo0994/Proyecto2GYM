@@ -1,42 +1,47 @@
 using DTOs;
+<<<<<<< HEAD
 using DAO.Crud;
 using System;
+=======
+using DAO;
+>>>>>>> d2c19281475524053010af6b91c4e29ab8621293
 using System.Collections.Generic;
+using DAO.Crud;
 
-namespace BL.ClassActivity
+namespace Managers
 {
     public class ClassActivityManager
     {
-        private readonly ClassActivityCrudFactory _classActivityCrudFactory;
+        private readonly ClassActivityCrudFactory _crudFactory;
 
         public ClassActivityManager()
         {
-            _classActivityCrudFactory = new ClassActivityCrudFactory();
+            _crudFactory = new ClassActivityCrudFactory();
         }
 
         public void Create(ClassActivityDTO classActivity)
         {
-            _classActivityCrudFactory.Create(classActivity);
+            _crudFactory.Create(classActivity);
         }
 
         public void Update(ClassActivityDTO classActivity)
         {
-            _classActivityCrudFactory.Update(classActivity);
+            _crudFactory.Update(classActivity);
         }
 
         public void Delete(int id)
         {
-            _classActivityCrudFactory.Delete(id);
+            _crudFactory.Delete(id);
         }
 
         public List<ClassActivityDTO> RetrieveAll()
         {
-            return _classActivityCrudFactory.RetrieveAll();
+            return _crudFactory.RetrieveAll();
         }
 
         public ClassActivityDTO RetrieveById(int id)
         {
-            return _classActivityCrudFactory.RetrieveById(id);
+            return _crudFactory.RetrieveById(id);
         }
     }
 }

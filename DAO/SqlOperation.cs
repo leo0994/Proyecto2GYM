@@ -6,7 +6,7 @@ namespace DAO
 {
     public class SqlOperation
     {
-        public string? ProcedureName { get; set; }
+        public string ProcedureName { get; set; }
         public List<SqlParameter> Parameters { get; set; }
 
         public SqlOperation()
@@ -24,6 +24,18 @@ namespace DAO
             Parameters.Add(new SqlParameter(paramName, paramValue));
         }
 
+        public void AddNullableIntParam(string paramName, int? paramValue)
+        {
+            if (paramValue.HasValue)
+            {
+                Parameters.Add(new SqlParameter(paramName, paramValue.Value));
+            }
+            else
+            {
+                Parameters.Add(new SqlParameter(paramName, DBNull.Value));
+            }
+        }
+
         public void AddDateTimeParam(string paramName, DateTime paramValue)
         {
             Parameters.Add(new SqlParameter(paramName, paramValue));
@@ -35,6 +47,16 @@ namespace DAO
         }
 
         public void AddFloatParam(string paramName, float paramValue)
+        {
+            Parameters.Add(new SqlParameter(paramName, paramValue));
+        }
+
+        public void AddDecimalParam(string paramName, decimal paramValue)
+        {
+            Parameters.Add(new SqlParameter(paramName, paramValue));
+        }
+
+        public void AddBoolParam(string paramName, bool paramValue)
         {
             Parameters.Add(new SqlParameter(paramName, paramValue));
         }

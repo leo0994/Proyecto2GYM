@@ -9,7 +9,7 @@ using BL.PasswordManager;
 using Twilio.Rest.Verify.V2.Service;
 using System.Threading.Tasks;
 
-namespace BL.User
+namespace BL.Managers
 {
      public class UserManager
     {

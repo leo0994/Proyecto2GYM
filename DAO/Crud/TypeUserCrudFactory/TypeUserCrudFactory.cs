@@ -1,11 +1,10 @@
-using DAO.Crud;
-using DAO.Mapper;
 using DTOs;
+using DAO.Mapper;
 using System.Collections.Generic;
 
 namespace DAO.Crud
 {
-    public class TypeUserCrudFactory
+    public class TypeUserCrudFactory : CrudFactory<TypeUserDTO>
     {
         private readonly SqlDAO _dao;
         private readonly TypeUserMapper _mapper;
@@ -16,48 +15,43 @@ namespace DAO.Crud
             _mapper = new TypeUserMapper();
         }
 
-        public void Create(TypeUserDTO typeUser)
+        public override TypeUserDTO Create(TypeUserDTO entityDTO)
         {
-            var sqlOperation = _mapper.GetCreateStatement(typeUser);
-            _dao.ExecuteProcedure(sqlOperation);
+            var operation = _mapper.GetCreateStatement(entityDTO);
+            _dao.ExecuteProcedure(operation);
+            return entityDTO;
         }
 
-        public TypeUserDTO RetrieveById(int id)
+        public override TypeUserDTO Update(TypeUserDTO entityDTO)
         {
-            var sqlOperation = _mapper.GetRetrieveByIdStatement(id);
-            var result = _dao.ExecuteQueryProcedure(sqlOperation);
+            var operation = _mapper.GetUpdateStatement(entityDTO);
+            _dao.ExecuteProcedure(operation);
+            return entityDTO;
+        }
 
-            if (result.Count > 0)
+        public override TypeUserDTO Delete(TypeUserDTO entityDTO)
+        {
+            var operation = _mapper.GetDeleteStatement(entityDTO.Id);
+            _dao.ExecuteProcedure(operation);
+            return entityDTO;
+        }
+
+        public override List<TypeUserDTO> RetrieveAll()
+        {
+            var operation = _mapper.GetRetrieveAllStatement();
+            var results = _dao.ExecuteQueryProcedure(operation);
+            return _mapper.BuildObjects(results);
+        }
+
+        public override TypeUserDTO RetrieveById(int id)
+        {
+            var operation = _mapper.GetRetrieveByIdStatement(id);
+            var results = _dao.ExecuteQueryProcedure(operation);
+            if (results.Count > 0)
             {
-                return _mapper.BuildObject(result[0]);
+                return _mapper.BuildObject(results[0]);
             }
-
             return null;
-        }
-
-        public List<TypeUserDTO> RetrieveAll()
-        {
-            var sqlOperation = _mapper.GetRetrieveAllStatement();
-            var result = _dao.ExecuteQueryProcedure(sqlOperation);
-
-            if (result.Count > 0)
-            {
-                return _mapper.BuildObjects(result);
-            }
-
-            return new List<TypeUserDTO>();
-        }
-
-        public void Update(TypeUserDTO typeUser)
-        {
-            var sqlOperation = _mapper.GetUpdateStatement(typeUser);
-            _dao.ExecuteProcedure(sqlOperation);
-        }
-
-        public void Delete(int id)
-        {
-            var sqlOperation = _mapper.GetDeleteStatement(id);
-            _dao.ExecuteProcedure(sqlOperation);
         }
     }
 }

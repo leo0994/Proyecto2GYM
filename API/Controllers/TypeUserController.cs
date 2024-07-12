@@ -1,14 +1,12 @@
-using BL;
 using DTOs;
+using Managers;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Api.Controllers
+namespace API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class TypeUserController : ControllerBase
     {
         private readonly TypeUserManager _typeUserManager;
@@ -19,78 +17,39 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        [Route("Create")]
-        public async Task<IActionResult> Create(TypeUserDTO typeUser)
+        public IActionResult Create(TypeUserDTO typeUserDTO)
         {
-            try
-            {
-                _typeUserManager.Create(typeUser);
-                return Ok(typeUser);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
+            var result = _typeUserManager.Create(typeUserDTO);
+            return Ok(result);
         }
 
         [HttpGet]
-        [Route("RetrieveById")]
-        public async Task<IActionResult> RetrieveById(int id)
+        public IActionResult GetAll()
         {
-            try
-            {
-                var typeUser = _typeUserManager.RetrieveById(id);
-                return Ok(typeUser);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
+            var result = _typeUserManager.RetrieveAll();
+            return Ok(result);
         }
 
-        [HttpGet]
-        [Route("RetrieveAll")]
-        public async Task<IActionResult> RetrieveAll()
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
         {
-            try
-            {
-                var typeUsers = _typeUserManager.RetrieveAll();
-                return Ok(typeUsers);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
+            var result = _typeUserManager.RetrieveById(id);
+            return Ok(result);
         }
 
         [HttpPut]
-        [Route("Update")]
-        public async Task<IActionResult> Update(TypeUserDTO typeUser)
+        public IActionResult Update(TypeUserDTO typeUserDTO)
         {
-            try
-            {
-                _typeUserManager.Update(typeUser);
-                return Ok(typeUser);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
+            var result = _typeUserManager.Update(typeUserDTO);
+            return Ok(result);
         }
 
-        [HttpDelete]
-        [Route("Delete")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
-            try
-            {
-                _typeUserManager.Delete(id);
-                return Ok(id);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-            }
+            var typeUserDTO = new TypeUserDTO { Id = id };
+            var result = _typeUserManager.Delete(typeUserDTO);
+            return Ok(result);
         }
     }
 }

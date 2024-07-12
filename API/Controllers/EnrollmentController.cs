@@ -1,52 +1,89 @@
 using DTOs;
-using DAO.Crud;
 using Microsoft.AspNetCore.Mvc;
+using BL.Managers;
 using System;
-using System.Collections.Generic;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class EnrollmentController : ControllerBase
     {
-        private readonly EnrollmentCrudFactory _enrollmentCrudFactory;
+        private readonly EnrollmentManager _manager;
 
         public EnrollmentController()
         {
-            _enrollmentCrudFactory = new EnrollmentCrudFactory();
+            _manager = new EnrollmentManager();
         }
 
-        [HttpGet]
-        public ActionResult<List<EnrollmentDTO>> GetAllEnrollments()
+        [HttpPost("Create")]
+        public IActionResult Create([FromBody] EnrollmentDTO enrollment)
         {
-            var enrollments = _enrollmentCrudFactory.RetrieveAll();
-            return Ok(enrollments);
-        }
-
-        [HttpGet("{id}")]
-        public ActionResult<EnrollmentDTO> GetEnrollmentById(int id)
-        {
-            var enrollment = _enrollmentCrudFactory.RetrieveById(id);
-            if (enrollment == null)
+            try
             {
-                return NotFound();
+                var createdEnrollment = _manager.Create(enrollment);
+                return Ok(createdEnrollment);
             }
-            return Ok(enrollment);
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpPost]
-        public IActionResult CreateEnrollment(EnrollmentDTO enrollment)
+        [HttpPut("Update")]
+        public IActionResult Update([FromBody] EnrollmentDTO enrollment)
         {
-            _enrollmentCrudFactory.Create(enrollment);
-            return Ok();
+            try
+            {
+                var updatedEnrollment = _manager.Update(enrollment);
+                return Ok(updatedEnrollment);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteEnrollment(int id)
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] EnrollmentDTO enrollment)
         {
-            _enrollmentCrudFactory.Delete(id);
-            return Ok();
+            try
+            {
+                var deletedEnrollment = _manager.Delete(enrollment);
+                return Ok(deletedEnrollment);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        [HttpGet("RetrieveAll")]
+        public IActionResult RetrieveAll()
+        {
+            try
+            {
+                var enrollments = _manager.RetrieveAll();
+                return Ok(enrollments);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        [HttpGet("RetrieveById/{id}")]
+        public IActionResult RetrieveById(int id)
+        {
+            try
+            {
+                var enrollment = _manager.RetrieveById(id);
+                return Ok(enrollment);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
     }
 }
