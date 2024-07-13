@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
-using BL.User;
+using BL.Managers;
 
 namespace Policies {
     public class AdminPolicy 

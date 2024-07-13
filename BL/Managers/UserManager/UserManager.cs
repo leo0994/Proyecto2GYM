@@ -2,10 +2,6 @@ using DAO;
 using DTOs;
 using System;
 using Twilio;
-using BL.User;
-using BL.ValidatorCredentialsManager;
-using BL.TwilioManager;
-using BL.PasswordManager;
 using Twilio.Rest.Verify.V2.Service;
 using System.Threading.Tasks;
 
@@ -26,11 +22,10 @@ namespace BL.Managers
         {
             string hashedPassword = PasswordService.HashPassword(user.Password);
             user.Password = hashedPassword;
-            
             var dataByCredentials = _userCrudFactory.RetrieveByCredentials(user);
             if (dataByCredentials == null)
             {
-                var error = ResponseHelper.Error<UserDTO>("User incorrect blah blah blah", user);
+                var error = ResponseHelper.Error<UserDTO>("The email and the passwords you entered did not match our records. Please double check and try it again", user);
                 throw new ManagerException<ApiResponse<UserDTO>>(error);
             }
 
@@ -76,7 +71,6 @@ namespace BL.Managers
 
             // Hash the password from user input to save it in db hashed
             string hashedPassword = PasswordService.HashPassword(user.Password);
-            Console.WriteLine("Hashed Password: " + hashedPassword);
             user.Password = hashedPassword;
 
             // This should just be an endpoint to register client users
@@ -92,7 +86,7 @@ namespace BL.Managers
             var dataByEmail = _userCrudFactory.RetrieveByEmail(user);
             if (dataByEmail == null)
             {
-                var error = ResponseHelper.Error<string>("email and user incorrect");
+                var error = ResponseHelper.Error<string>("The email and the passwords you entered did not match our records. Please double check and try it again.");
                 throw new ManagerException<ApiResponse<string>>(error);
             }
 
@@ -106,9 +100,10 @@ namespace BL.Managers
 
             // Validate history password from <UserDTO dataByEmail>
             // Then we should assing the new password from <UserDTO user> to <UserDTO dataByEmail>
-            dataByEmail.Password = user.Password;
-            var IsPasswordValid = (int) _userCrudFactory.VerifyUserPassword(dataByEmail);
+            string hashedPassword = PasswordService.HashPassword(user.Password);
 
+            dataByEmail.Password = hashedPassword;
+            var IsPasswordValid = (int) _userCrudFactory.VerifyUserPassword(dataByEmail);
             if(IsPasswordValid == 0){
                 var error = ResponseHelper.Error<Dictionary<string, string>>("Password should be different from the last 5 passwords used.");
                 throw new ManagerException<ApiResponse<Dictionary<string, string>>>(error);
@@ -134,9 +129,6 @@ namespace BL.Managers
                 throw new ManagerException<ApiResponse<VerificationCheckResource>>(error);
             }
 
-            string hashedPassword = PasswordService.HashPassword(user.Password);
-            user.Password = hashedPassword;
-            
             _userCrudFactory.UpdatePassword(user);
 
             return authSendCodeUser;

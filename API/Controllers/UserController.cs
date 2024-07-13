@@ -97,7 +97,7 @@ namespace API.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrador")]
+        // [Authorize(Roles = "Administrador")]
         [HttpGet]
         [Route("RetrieveAll")]
         public async Task<IActionResult> RetrieveAll()

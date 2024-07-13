@@ -1,12 +1,8 @@
 using DTOs;
-<<<<<<< HEAD
 using DAO.Crud;
 using System;
-=======
 using DAO;
->>>>>>> d2c19281475524053010af6b91c4e29ab8621293
 using System.Collections.Generic;
-using DAO.Crud;
 
 namespace Managers
 {
