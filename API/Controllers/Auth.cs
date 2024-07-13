@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using DTOs;
 using System;
 using System.Threading.Tasks;
-using BL.User;
-using BL.ValidatorCredentialsManager;
+using BL.Managers;
 using Twilio.Rest.Verify.V2.Service;
 
 namespace API.Controllers

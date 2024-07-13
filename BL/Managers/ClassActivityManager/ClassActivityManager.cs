@@ -1,42 +1,43 @@
 using DTOs;
 using DAO.Crud;
 using System;
+using DAO;
 using System.Collections.Generic;
 
-namespace BL.ClassActivity
+namespace Managers
 {
     public class ClassActivityManager
     {
-        private readonly ClassActivityCrudFactory _classActivityCrudFactory;
+        private readonly ClassActivityCrudFactory _crudFactory;
 
         public ClassActivityManager()
         {
-            _classActivityCrudFactory = new ClassActivityCrudFactory();
+            _crudFactory = new ClassActivityCrudFactory();
         }
 
         public void Create(ClassActivityDTO classActivity)
         {
-            _classActivityCrudFactory.Create(classActivity);
+            _crudFactory.Create(classActivity);
         }
 
         public void Update(ClassActivityDTO classActivity)
         {
-            _classActivityCrudFactory.Update(classActivity);
+            _crudFactory.Update(classActivity);
         }
 
         public void Delete(int id)
         {
-            _classActivityCrudFactory.Delete(id);
+            _crudFactory.Delete(id);
         }
 
         public List<ClassActivityDTO> RetrieveAll()
         {
-            return _classActivityCrudFactory.RetrieveAll();
+            return _crudFactory.RetrieveAll();
         }
 
         public ClassActivityDTO RetrieveById(int id)
         {
-            return _classActivityCrudFactory.RetrieveById(id);
+            return _crudFactory.RetrieveById(id);
         }
     }
 }

@@ -1,41 +1,41 @@
-using DAO.Crud;
 using DTOs;
+using DAO.Crud;
 using System.Collections.Generic;
 
-namespace BL
+namespace Managers
 {
-    public class TypeUserManager
+    public class TypeUserManager : CrudFactory<TypeUserDTO>
     {
-        private readonly TypeUserCrudFactory _crudFactory;
+        private readonly TypeUserCrudFactory _typeUserCrudFactory;
 
         public TypeUserManager()
         {
-            _crudFactory = new TypeUserCrudFactory();
+            _typeUserCrudFactory = new TypeUserCrudFactory();
         }
 
-        public void Create(TypeUserDTO typeUser)
+        public override TypeUserDTO Create(TypeUserDTO entityDTO)
         {
-            _crudFactory.Create(typeUser);
+            return _typeUserCrudFactory.Create(entityDTO);
         }
 
-        public TypeUserDTO RetrieveById(int id)
+        public override TypeUserDTO Update(TypeUserDTO entityDTO)
         {
-            return _crudFactory.RetrieveById(id);
+            return _typeUserCrudFactory.Update(entityDTO);
         }
 
-        public List<TypeUserDTO> RetrieveAll()
+        public override TypeUserDTO Delete(TypeUserDTO entityDTO)
         {
-            return _crudFactory.RetrieveAll();
+            return _typeUserCrudFactory.Delete(entityDTO);
         }
 
-        public void Update(TypeUserDTO typeUser)
+        public override List<TypeUserDTO> RetrieveAll()
         {
-            _crudFactory.Update(typeUser);
+            return _typeUserCrudFactory.RetrieveAll();
         }
 
-        public void Delete(int id)
+        public override TypeUserDTO RetrieveById(int id)
         {
-            _crudFactory.Delete(id);
+            return _typeUserCrudFactory.RetrieveById(id);
         }
     }
 }

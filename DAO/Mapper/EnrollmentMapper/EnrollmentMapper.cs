@@ -1,6 +1,5 @@
 using DTOs;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 
 namespace DAO.Mapper
 {
@@ -8,13 +7,13 @@ namespace DAO.Mapper
     {
         public EnrollmentDTO BuildObject(Dictionary<string, object> row)
         {
-            var enrollmentDTO = new EnrollmentDTO
+            var enrollment = new EnrollmentDTO
             {
                 Id = (int)row["id"],
                 Amount = (decimal)row["amount"]
             };
 
-            return enrollmentDTO;
+            return enrollment;
         }
 
         public List<EnrollmentDTO> BuildObjects(List<Dictionary<string, object>> rowsList)
@@ -22,8 +21,8 @@ namespace DAO.Mapper
             var resultsList = new List<EnrollmentDTO>();
             foreach (var row in rowsList)
             {
-                var enrollmentDTO = BuildObject(row);
-                resultsList.Add(enrollmentDTO);
+                var enrollment = BuildObject(row);
+                resultsList.Add(enrollment);
             }
             return resultsList;
         }
@@ -52,14 +51,18 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetEnrollmentById" };
-            sqlOperation.AddIntParam("@p_enrollment_id", id);
+            sqlOperation.AddIntParam("@p_id", id);
             return sqlOperation;
         }
 
         public SqlOperation GetUpdateStatement(EnrollmentDTO enrollment)
         {
-            // Assuming there's no update statement needed for enrollment in this context
-            return null;
+            var sqlOperation = new SqlOperation { ProcedureName = "UpdateEnrollment" };
+
+            sqlOperation.AddIntParam("@p_id", enrollment.Id);
+            sqlOperation.AddDecimalParam("@p_amount", enrollment.Amount);
+
+            return sqlOperation;
         }
     }
 }
