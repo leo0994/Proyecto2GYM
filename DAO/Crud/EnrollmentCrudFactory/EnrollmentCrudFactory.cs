@@ -1,57 +1,60 @@
-using DTOs;
 using DAO.Mapper;
+using DTOs;
 using System.Collections.Generic;
 
 namespace DAO.Crud
 {
-    public class EnrollmentCrudFactory
+    public class EnrollmentCrudFactory : CrudFactory<EnrollmentDTO>
     {
-        private readonly SqlDAO _dao;
         private readonly EnrollmentMapper _mapper;
 
         public EnrollmentCrudFactory()
         {
-            _dao = SqlDAO.GetInstance();
+            dao = SqlDAO.GetInstance();
             _mapper = new EnrollmentMapper();
         }
 
-        public void Create(EnrollmentDTO enrollment)
+        public override EnrollmentDTO Create(EnrollmentDTO entityDTO)
         {
-            var sqlOperation = _mapper.GetCreateStatement(enrollment);
-            _dao.ExecuteProcedure(sqlOperation);
+            var sqlOperation = _mapper.GetCreateStatement(entityDTO);
+            dao.ExecuteProcedure(sqlOperation);
+            return entityDTO;
         }
 
-        public EnrollmentDTO RetrieveById(int id)
+        public override EnrollmentDTO Update(EnrollmentDTO entityDTO)
         {
-            var sqlOperation = _mapper.GetRetrieveByIdStatement(id);
-            var result = _dao.ExecuteQueryProcedure(sqlOperation);
-
-            if (result.Count > 0)
-            {
-                return _mapper.BuildObject(result[0]);
-            }
-
-            return null;
+            var sqlOperation = _mapper.GetUpdateStatement(entityDTO);
+            dao.ExecuteProcedure(sqlOperation);
+            return entityDTO;
         }
 
-        public List<EnrollmentDTO> RetrieveAll()
+        public override EnrollmentDTO Delete(EnrollmentDTO entityDTO)
+        {
+            var sqlOperation = _mapper.GetDeleteStatement(entityDTO.Id);
+            dao.ExecuteProcedure(sqlOperation);
+            return entityDTO;
+        }
+
+        public override List<EnrollmentDTO> RetrieveAll()
         {
             var sqlOperation = _mapper.GetRetrieveAllStatement();
-            var result = _dao.ExecuteQueryProcedure(sqlOperation);
-
+            var result = dao.ExecuteQueryProcedure(sqlOperation);
             if (result.Count > 0)
             {
                 return _mapper.BuildObjects(result);
             }
-
             return new List<EnrollmentDTO>();
         }
 
-        public void Delete(int id)
+        public override EnrollmentDTO RetrieveById(int id)
         {
-            var sqlOperation = _mapper.GetDeleteStatement(id);
-            _dao.ExecuteProcedure(sqlOperation);
+            var sqlOperation = _mapper.GetRetrieveByIdStatement(id);
+            var result = dao.ExecuteQueryProcedure(sqlOperation);
+            if (result.Count > 0)
+            {
+                return _mapper.BuildObject(result[0]);
+            }
+            return null;
         }
     }
 }
-

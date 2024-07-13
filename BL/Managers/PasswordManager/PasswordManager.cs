@@ -1,11 +1,51 @@
+
+using DTOs;
+using DAO.Crud;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace BL.PasswordManager
+
+namespace BL.Managers
 {
+    public class PasswordManager
+    {
+        private readonly PasswordCrudFactory _crudFactory;
+
+        public PasswordManager()
+        {
+            _crudFactory = new PasswordCrudFactory();
+        }
+
+        public PasswordDTO Create(PasswordDTO password)
+        {
+            return _crudFactory.Create(password);
+        }
+
+        public PasswordDTO Update(PasswordDTO password)
+        {
+            return _crudFactory.Update(password);
+        }
+
+        public PasswordDTO Delete(PasswordDTO password)
+        {
+            return _crudFactory.Delete(password);
+        }
+
+        public List<PasswordDTO> RetrieveAll()
+        {
+            return _crudFactory.RetrieveAll();
+        }
+
+        public PasswordDTO RetrieveById(int id)
+        {
+            return _crudFactory.RetrieveById(id);
+        }
+    }
+
     public class PasswordService
     {
           
@@ -30,5 +70,4 @@ namespace BL.PasswordManager
             return Convert.ToBase64String(hashBytes);
         }
     }
-
 }

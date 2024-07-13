@@ -28,6 +28,17 @@ builder.Services.AddSingleton<IAuthorizationHandler, AdminPolicyHandler>();
 
 builder.Services.AddControllers();
 
+var  MyAllowSpecificOrigins = "NocheCorsPolicy";
+
+builder.Services.AddCors(options => {
+    options.AddPolicy(name: "NocheCorsPolicy",
+        policy => {
+            policy.WithOrigins("*");
+            policy.AllowAnyHeader(); //application/json  application/xml application/text
+            policy.AllowAnyMethod(); //GET, POST, PUT, DELETE
+        });
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -41,10 +52,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(MyAllowSpecificOrigins);
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

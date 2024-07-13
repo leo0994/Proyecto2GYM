@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BL.User;
+using BL.Managers;
 
 namespace API.Controllers
 {
@@ -97,7 +97,7 @@ namespace API.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrador")]
+        // [Authorize(Roles = "Administrador")]
         [HttpGet]
         [Route("RetrieveAll")]
         public async Task<IActionResult> RetrieveAll()

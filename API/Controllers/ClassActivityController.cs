@@ -1,70 +1,52 @@
-using BL.ClassActivity;
 using DTOs;
+using Managers;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 
 namespace API.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api/classactivities")]
     public class ClassActivityController : ControllerBase
     {
-        private readonly ClassActivityManager _classActivityManager;
+        private readonly ClassActivityManager _manager;
 
         public ClassActivityController()
         {
-            _classActivityManager = new ClassActivityManager();
-        }
-
-        [HttpGet]
-        public ActionResult<List<ClassActivityDTO>> GetAll()
-        {
-            var classActivities = _classActivityManager.RetrieveAll();
-            return Ok(classActivities);
-        }
-
-        [HttpGet("{id}")]
-        public ActionResult<ClassActivityDTO> GetById(int id)
-        {
-            var classActivity = _classActivityManager.RetrieveById(id);
-            if (classActivity == null)
-            {
-                return NotFound();
-            }
-            return Ok(classActivity);
+            _manager = new ClassActivityManager();
         }
 
         [HttpPost]
         public IActionResult Create(ClassActivityDTO classActivity)
         {
-            _classActivityManager.Create(classActivity);
-            return CreatedAtAction(nameof(GetById), new { id = classActivity.Id }, classActivity);
+            _manager.Create(classActivity);
+            return Ok();
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, ClassActivityDTO classActivity)
+        [HttpGet]
+        public IActionResult RetrieveAll()
         {
-            if (id != classActivity.Id)
-            {
-                return BadRequest();
-            }
+            return Ok(_manager.RetrieveAll());
+        }
 
-            _classActivityManager.Update(classActivity);
-            return NoContent();
+        [HttpGet("{id}")]
+        public IActionResult RetrieveById(int id)
+        {
+            return Ok(_manager.RetrieveById(id));
+        }
+
+        [HttpPut]
+        public IActionResult Update(ClassActivityDTO classActivity)
+        {
+            _manager.Update(classActivity);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var classActivity = _classActivityManager.RetrieveById(id);
-            if (classActivity == null)
-            {
-                return NotFound();
-            }
-
-            _classActivityManager.Delete(id);
-            return NoContent();
+            _manager.Delete(id);
+            return Ok();
         }
     }
 }

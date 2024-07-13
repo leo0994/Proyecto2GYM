@@ -1,0 +1,22 @@
+# .NET
+**/bin/
+**/obj/
+**/artifacts/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
