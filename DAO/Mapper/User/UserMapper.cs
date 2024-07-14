@@ -17,6 +17,7 @@ namespace DAO.Mapper
                 TypeUserId = (int)row["typeUser_id"],
                 Number = (string)row["number"],
                 Age = (int)row["age"],
+                DateOfBirth = (DateTime)row["dateOfBirth"],
             };
 
             return userDTO;

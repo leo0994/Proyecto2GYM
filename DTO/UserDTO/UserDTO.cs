@@ -12,5 +12,6 @@ namespace DTOs
         public int TypeUserId { get; set; }
         public string Number { get; set; }
         public int Age { get; set; }
+        public DateTime DateOfBirth { get; set; }
     }
 }

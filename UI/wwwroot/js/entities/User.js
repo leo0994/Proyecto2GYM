@@ -6,4 +6,5 @@ export default {
     typeUserId: 0,
     number: "",
     age: 0,
+    dateOfBirth: new Date(),
 }
