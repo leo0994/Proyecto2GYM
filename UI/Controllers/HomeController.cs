@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using UI.Models;
 
 namespace UI.Controllers;
@@ -22,6 +23,7 @@ public class HomeController : Controller
     {
         return View();
     }
+    [Authorize(Policy = "Administrator")] 
      public IActionResult SignUp()
     {
         return View();

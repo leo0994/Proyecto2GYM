@@ -1,7 +1,34 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using BL.Policies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+       {
+            // options.LoginPath = "/home/";
+            options.Events.OnRedirectToLogin = context =>
+        {
+            context.Response.Redirect("/home/#join");
+            return Task.CompletedTask;
+        };
+        });
+
+            
+builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("Administrator", policy =>
+            policy.Requirements.Add(new AdminPolicyRequirement()));
+    });
+
+builder.Services.AddSingleton<IAuthorizationHandler, AdminPolicyHandler>();
+
 
 var app = builder.Build();
 
@@ -18,6 +45,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

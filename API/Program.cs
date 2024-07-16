@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Policies;
+using BL.Policies;
 
 var builder = WebApplication.CreateBuilder(args);
 
