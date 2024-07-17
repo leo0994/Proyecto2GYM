@@ -16,8 +16,14 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
             options.Events.OnRedirectToLogin = context =>
         {
             context.Response.Redirect("/home/#join");
+             context.Response.StatusCode = 403;
             return Task.CompletedTask;
         };
+        options.Events.OnRedirectToAccessDenied = context =>
+            {
+                context.Response.StatusCode = 403;
+                return Task.CompletedTask;
+            };
         });
 
             
@@ -27,7 +33,43 @@ builder.Services.AddAuthorization(options =>
             policy.Requirements.Add(new AdminPolicyRequirement()));
     });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Employee", policy =>
+        policy.Requirements.Add(new EmployeePolicyRequirement()));
+});
+    
+builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("SuperAdministrator", policy =>
+            policy.Requirements.Add(new SuperAdminPolicyRequirement()));
+    });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Subscribers", policy =>
+        policy.Requirements.Add(new SubscribersPolicyRequirement()));
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Goers", policy =>
+        policy.Requirements.Add(new GoersPolicyRequirement()));
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Coach", policy =>
+        policy.Requirements.Add(new CoachPolicyRequirement()));
+});
+
+
+// Register custom handlers
 builder.Services.AddSingleton<IAuthorizationHandler, AdminPolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, EmployeePolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, SuperAdminPolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, SubscribersPolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, GoersPolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, CoachPolicyHandler>();
 
 
 var app = builder.Build();

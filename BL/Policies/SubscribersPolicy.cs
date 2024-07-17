@@ -3,40 +3,39 @@ using Microsoft.AspNetCore.Http;
 using BL.Managers;
 
 namespace BL.Policies {
-    public class AdminPolicy 
+    public class SubscribersPolicy 
     {
     }
 
-    public class AdminPolicyRequirement : IAuthorizationRequirement
+    public class SubscribersPolicyRequirement : IAuthorizationRequirement
     {
     }
 
-    public class AdminPolicyHandler : AuthorizationHandler<AdminPolicyRequirement>
+    public class SubscribersPolicyHandler : AuthorizationHandler<SubscribersPolicyRequirement>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager _userManager; 
 
-        public AdminPolicyHandler(IHttpContextAccessor httpContextAccessor) // we can use inyection dependecies for userManager 
+        public SubscribersPolicyHandler(IHttpContextAccessor httpContextAccessor) // we can use inyection dependecies for userManager 
         {
             _httpContextAccessor = httpContextAccessor;
             _userManager = new UserManager();
         }
 
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, AdminPolicyRequirement requirement)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, SubscribersPolicyRequirement requirement)
         {
             var httpContext = _httpContextAccessor.HttpContext;
             if (httpContext.Request.Cookies.TryGetValue("user", out var cookieUser))
             {
+                Console.WriteLine("cookie");
                 Console.WriteLine(cookieUser);
-                Console.WriteLine("user");
                 var user =  _userManager.RetrieveById(int.Parse(cookieUser)); // can be updated to string ID User --> db
-                Console.WriteLine(user.Name);
-                if(user != null && user.TypeUserId == 1 || user.TypeUserId == 4){
+                if(user != null){
                     context.Succeed(requirement);
                     return Task.CompletedTask;
                 }
             }
-            context.Fail();
+                        context.Fail();
             return Task.CompletedTask; 
         }
     }

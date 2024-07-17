@@ -3,35 +3,33 @@ using Microsoft.AspNetCore.Http;
 using BL.Managers;
 
 namespace BL.Policies {
-    public class AdminPolicy 
+    public class CoachPolicy 
     {
     }
 
-    public class AdminPolicyRequirement : IAuthorizationRequirement
+    public class CoachPolicyRequirement : IAuthorizationRequirement
     {
     }
 
-    public class AdminPolicyHandler : AuthorizationHandler<AdminPolicyRequirement>
+    public class CoachPolicyHandler : AuthorizationHandler<CoachPolicyRequirement>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager _userManager; 
 
-        public AdminPolicyHandler(IHttpContextAccessor httpContextAccessor) // we can use inyection dependecies for userManager 
+        public CoachPolicyHandler(IHttpContextAccessor httpContextAccessor) // we can use inyection dependecies for userManager 
         {
             _httpContextAccessor = httpContextAccessor;
             _userManager = new UserManager();
         }
 
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, AdminPolicyRequirement requirement)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, CoachPolicyRequirement requirement)
         {
             var httpContext = _httpContextAccessor.HttpContext;
             if (httpContext.Request.Cookies.TryGetValue("user", out var cookieUser))
             {
                 Console.WriteLine(cookieUser);
-                Console.WriteLine("user");
                 var user =  _userManager.RetrieveById(int.Parse(cookieUser)); // can be updated to string ID User --> db
-                Console.WriteLine(user.Name);
-                if(user != null && user.TypeUserId == 1 || user.TypeUserId == 4){
+                if(user != null && user.TypeUserId == 3){
                     context.Succeed(requirement);
                     return Task.CompletedTask;
                 }

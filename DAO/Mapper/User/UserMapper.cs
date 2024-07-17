@@ -8,6 +8,7 @@ namespace DAO.Mapper
     {
         public UserDTO BuildObject(Dictionary<string, object> row)
         {
+            
             var userDTO = new UserDTO
             {
                 Id = (int)row["id"],
@@ -17,7 +18,7 @@ namespace DAO.Mapper
                 TypeUserId = (int)row["typeUser_id"],
                 Number = (string)row["number"],
                 Age = (int)row["age"],
-                DateOfBirth = (DateTime)row["dateOfBirth"],
+                DateOfBirth = row["dateOfBirth"] == null ? DateTime.Now.ToString() : ((DateTime)row["dateOfBirth"]).ToString("yyyy-MM-ddTHH:mm:ss.fffZ"),
             };
 
             return userDTO;
@@ -44,6 +45,7 @@ namespace DAO.Mapper
             sqlOperation.AddIntParam("@p_typeUser_id", user.TypeUserId);
             sqlOperation.AddVarcharParam("@p_number", user.Number);
             sqlOperation.AddIntParam("@p_age", user.Age);
+            sqlOperation.AddDateTimeParam("@p_dateOfBirth", DateTime.Parse(user.DateOfBirth));
 
             return sqlOperation;
         }
