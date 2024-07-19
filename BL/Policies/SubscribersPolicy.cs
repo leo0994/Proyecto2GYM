@@ -27,8 +27,7 @@ namespace BL.Policies {
             var httpContext = _httpContextAccessor.HttpContext;
             if (httpContext.Request.Cookies.TryGetValue("user", out var cookieUser))
             {
-                Console.WriteLine("cookie");
-                Console.WriteLine(cookieUser);
+               
                 var user =  _userManager.RetrieveById(int.Parse(cookieUser)); // can be updated to string ID User --> db
                 if(user != null){
                     context.Succeed(requirement);

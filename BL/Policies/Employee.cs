@@ -27,12 +27,12 @@ namespace BL.Policies {
             var httpContext = _httpContextAccessor.HttpContext;
             if (httpContext.Request.Cookies.TryGetValue("user", out var cookieUser))
             {
-                Console.WriteLine("cookie");
-                Console.WriteLine(cookieUser);
                 var user =  _userManager.RetrieveById(int.Parse(cookieUser)); // can be updated to string ID User --> db
-                if(user != null && user.TypeUserId == 1 || user.TypeUserId == 3 || user.TypeUserId == 4 ){
-                    context.Succeed(requirement);
-                    return Task.CompletedTask;
+                if(user != null ){
+                    if(user.TypeUserId == 1 || user.TypeUserId == 3 || user.TypeUserId == 4 ){
+                        context.Succeed(requirement);
+                        return Task.CompletedTask;
+                    }
                 }
             }
             return Task.CompletedTask; 

@@ -16,14 +16,14 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
             options.Events.OnRedirectToLogin = context =>
         {
             context.Response.Redirect("/home/#join");
-             context.Response.StatusCode = 403;
+            //context.Response.StatusCode = 403;
             return Task.CompletedTask;
         };
-        options.Events.OnRedirectToAccessDenied = context =>
-            {
-                context.Response.StatusCode = 403;
-                return Task.CompletedTask;
-            };
+        // options.Events.OnRedirectToAccessDenied = context =>
+        //     {
+        //         context.Response.StatusCode = 403;
+        //         return Task.CompletedTask;
+        //     };
         });
 
             
