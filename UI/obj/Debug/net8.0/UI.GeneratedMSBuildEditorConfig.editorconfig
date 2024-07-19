@@ -9,35 +9,35 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = UI
 build_property.RootNamespace = UI
-build_property.ProjectDir = C:\Proyecto2\UI\
+build_property.ProjectDir = C:\Dev\Proyecto 2 GYM VF\UI\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Proyecto2\UI
+build_property.MSBuildProjectDirectory = C:\Dev\Proyecto 2 GYM VF\UI
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Proyecto2/UI/Views/Home/Components.cshtml]
+[C:/Dev/Proyecto 2 GYM VF/UI/Views/Home/Components.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb21wb25lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyecto2/UI/Views/Home/Index.cshtml]
+[C:/Dev/Proyecto 2 GYM VF/UI/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyecto2/UI/Views/Home/SignUp.cshtml]
+[C:/Dev/Proyecto 2 GYM VF/UI/Views/Home/SignUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyecto2/UI/Views/Shared/_Layout.cshtml]
+[C:/Dev/Proyecto 2 GYM VF/UI/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyecto2/UI/Views/_ViewImports.cshtml]
+[C:/Dev/Proyecto 2 GYM VF/UI/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyecto2/UI/Views/_ViewStart.cshtml]
+[C:/Dev/Proyecto 2 GYM VF/UI/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

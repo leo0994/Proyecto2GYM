@@ -4875,19 +4875,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Usuario\\.nuget\\packages\\": {}
+    "C:\\Users\\leo\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Proyecto2\\BL\\BL.csproj",
+      "projectUniqueName": "C:\\Dev\\Proyecto 2 GYM VF\\BL\\BL.csproj",
       "projectName": "BL",
-      "projectPath": "C:\\Proyecto2\\BL\\BL.csproj",
-      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Proyecto2\\BL\\obj\\",
+      "projectPath": "C:\\Dev\\Proyecto 2 GYM VF\\BL\\BL.csproj",
+      "packagesPath": "C:\\Users\\leo\\.nuget\\packages\\",
+      "outputPath": "C:\\Dev\\Proyecto 2 GYM VF\\BL\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\leo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4902,11 +4907,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Proyecto2\\DAO\\DAO.csproj": {
-              "projectPath": "C:\\Proyecto2\\DAO\\DAO.csproj"
+            "C:\\Dev\\Proyecto 2 GYM VF\\DAO\\DAO.csproj": {
+              "projectPath": "C:\\Dev\\Proyecto 2 GYM VF\\DAO\\DAO.csproj"
             },
-            "C:\\Proyecto2\\DTO\\DTO.csproj": {
-              "projectPath": "C:\\Proyecto2\\DTO\\DTO.csproj"
+            "C:\\Dev\\Proyecto 2 GYM VF\\DTO\\DTO.csproj": {
+              "projectPath": "C:\\Dev\\Proyecto 2 GYM VF\\DTO\\DTO.csproj"
             }
           }
         }
@@ -4960,7 +4965,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "DAO depende de Microsoft.Data.SqlClient (>= 4.8.5), pero no se encontró Microsoft.Data.SqlClient 4.8.5. Se resolvió una mejor coincidencia aproximada de Microsoft.Data.SqlClient 5.0.0.",
+      "message": "DAO depends on Microsoft.Data.SqlClient (>= 4.8.5) but Microsoft.Data.SqlClient 4.8.5 was not found. An approximate best match of Microsoft.Data.SqlClient 5.0.0 was resolved.",
       "libraryId": "Microsoft.Data.SqlClient",
       "targetGraphs": [
         "net8.0"

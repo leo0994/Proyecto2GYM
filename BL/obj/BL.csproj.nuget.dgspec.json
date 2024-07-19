@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Proyecto2\\BL\\BL.csproj": {}
+    "C:\\Dev\\Proyecto 2 GYM VF\\BL\\BL.csproj": {}
   },
   "projects": {
-    "C:\\Proyecto2\\BL\\BL.csproj": {
+    "C:\\Dev\\Proyecto 2 GYM VF\\BL\\BL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyecto2\\BL\\BL.csproj",
+        "projectUniqueName": "C:\\Dev\\Proyecto 2 GYM VF\\BL\\BL.csproj",
         "projectName": "BL",
-        "projectPath": "C:\\Proyecto2\\BL\\BL.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyecto2\\BL\\obj\\",
+        "projectPath": "C:\\Dev\\Proyecto 2 GYM VF\\BL\\BL.csproj",
+        "packagesPath": "C:\\Users\\leo\\.nuget\\packages\\",
+        "outputPath": "C:\\Dev\\Proyecto 2 GYM VF\\BL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\leo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,11 +33,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Proyecto2\\DAO\\DAO.csproj": {
-                "projectPath": "C:\\Proyecto2\\DAO\\DAO.csproj"
+              "C:\\Dev\\Proyecto 2 GYM VF\\DAO\\DAO.csproj": {
+                "projectPath": "C:\\Dev\\Proyecto 2 GYM VF\\DAO\\DAO.csproj"
               },
-              "C:\\Proyecto2\\DTO\\DTO.csproj": {
-                "projectPath": "C:\\Proyecto2\\DTO\\DTO.csproj"
+              "C:\\Dev\\Proyecto 2 GYM VF\\DTO\\DTO.csproj": {
+                "projectPath": "C:\\Dev\\Proyecto 2 GYM VF\\DTO\\DTO.csproj"
               }
             }
           }
@@ -82,17 +86,21 @@
         }
       }
     },
-    "C:\\Proyecto2\\DAO\\DAO.csproj": {
+    "C:\\Dev\\Proyecto 2 GYM VF\\DAO\\DAO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyecto2\\DAO\\DAO.csproj",
+        "projectUniqueName": "C:\\Dev\\Proyecto 2 GYM VF\\DAO\\DAO.csproj",
         "projectName": "DAO",
-        "projectPath": "C:\\Proyecto2\\DAO\\DAO.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyecto2\\DAO\\obj\\",
+        "projectPath": "C:\\Dev\\Proyecto 2 GYM VF\\DAO\\DAO.csproj",
+        "packagesPath": "C:\\Users\\leo\\.nuget\\packages\\",
+        "outputPath": "C:\\Dev\\Proyecto 2 GYM VF\\DAO\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\leo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -107,8 +115,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Proyecto2\\DTO\\DTO.csproj": {
-                "projectPath": "C:\\Proyecto2\\DTO\\DTO.csproj"
+              "C:\\Dev\\Proyecto 2 GYM VF\\DTO\\DTO.csproj": {
+                "projectPath": "C:\\Dev\\Proyecto 2 GYM VF\\DTO\\DTO.csproj"
               }
             }
           }
@@ -157,17 +165,21 @@
         }
       }
     },
-    "C:\\Proyecto2\\DTO\\DTO.csproj": {
+    "C:\\Dev\\Proyecto 2 GYM VF\\DTO\\DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyecto2\\DTO\\DTO.csproj",
+        "projectUniqueName": "C:\\Dev\\Proyecto 2 GYM VF\\DTO\\DTO.csproj",
         "projectName": "DTO",
-        "projectPath": "C:\\Proyecto2\\DTO\\DTO.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyecto2\\DTO\\obj\\",
+        "projectPath": "C:\\Dev\\Proyecto 2 GYM VF\\DTO\\DTO.csproj",
+        "packagesPath": "C:\\Users\\leo\\.nuget\\packages\\",
+        "outputPath": "C:\\Dev\\Proyecto 2 GYM VF\\DTO\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\leo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

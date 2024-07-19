@@ -35,5 +35,26 @@
     </div>
 
     <br><br>
+    <div class="form-container">
+        <div class="form-group">
+            <label for="machine-search" class="form-label">Search Machines</label>
+            <input type="text" id="machine-search" class="form-input" placeholder="Search for a machine" oninput="searchMachines()">
+            <button type="button" class="btn btn-secondary" onclick="searchMachines()">Search</button>
+        </div>
+        <div class="form-group">
+            <ul id="machine-results" class="form-list">
+                <!-- Results will be appended here -->
+            </ul>
+        </div>
+    </div>
+
+    <div class="form-container">
+    <div class="form-group">
+        <label for="feedback" class="form-label">Your Feedback</label>
+        <textarea id="feedback" class="form-input" placeholder="Write your feedback here"></textarea>
+        <button type="button" class="btn btn-primary">Submit Feedback</button>
+    </div>
+    </div>
+
 
 </div>
