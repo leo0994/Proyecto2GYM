@@ -114,6 +114,10 @@
     display: block;
 }
 
+[data-state-form="signup"] [data-signup] {
+    display: block;
+}
+
 [data-state-form="forgotpass"] [data-forgotpass] {
     display: block;
 }
