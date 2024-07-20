@@ -30,9 +30,7 @@ namespace DAO.Mapper
         public SqlOperation GetCreateStatement(EnrollmentDTO enrollment)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "CreateEnrollment" };
-
-            //sqlOperation.AddDecimalParam("@p_amount", enrollment.Amount);
-
+            sqlOperation.AddDecimalParam("@p_amount",enrollment.Amount);
             return sqlOperation;
         }
 
