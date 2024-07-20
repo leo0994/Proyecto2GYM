@@ -1,89 +1,56 @@
 using DTOs;
 using DAO.Mapper;
-using System;
 using System.Collections.Generic;
 
-namespace DAO.Crud.Appointment
+namespace DAO.Crud
 {
-    public class AppointmentCrudFactory
+    public class AppointmentCrudFactory : CrudFactory<AppointmentDTO>
     {
-        private readonly SqlDAO _dao;
         private readonly AppointmentMapper _mapper;
 
         public AppointmentCrudFactory()
         {
-            _dao = SqlDAO.GetInstance();
+            dao = SqlDAO.GetInstance();
             _mapper = new AppointmentMapper();
         }
 
-        public void Create(AppointmentDTO appointment)
+        public override AppointmentDTO Create(AppointmentDTO appointment)
         {
             var sqlOperation = _mapper.GetCreateStatement(appointment);
-            _dao.ExecuteProcedure(sqlOperation);
+            dao.ExecuteProcedure(sqlOperation);
+            return appointment;
         }
 
-        public AppointmentDTO RetrieveById(int id)
+        public override AppointmentDTO Delete(AppointmentDTO appointment)
+        {
+            var sqlOperation = _mapper.GetDeleteStatement(appointment.Id);
+            dao.ExecuteProcedure(sqlOperation);
+            return appointment;
+        }
+
+        public override List<AppointmentDTO> RetrieveAll()
+        {
+            var sqlOperation = _mapper.GetRetrieveAllStatement();
+            var result = dao.ExecuteQueryProcedure(sqlOperation);
+            return _mapper.BuildObjects(result);
+        }
+
+        public override AppointmentDTO RetrieveById(int id)
         {
             var sqlOperation = _mapper.GetRetrieveByIdStatement(id);
-            var result = _dao.ExecuteQueryProcedure(sqlOperation);
-
+            var result = dao.ExecuteQueryProcedure(sqlOperation);
             if (result.Count > 0)
             {
                 return _mapper.BuildObject(result[0]);
             }
-
             return null;
         }
 
-        public List<AppointmentDTO> RetrieveAll()
-        {
-            var sqlOperation = _mapper.GetRetrieveAllStatement();
-            var result = _dao.ExecuteQueryProcedure(sqlOperation);
-
-            if (result.Count > 0)
-            {
-                return _mapper.BuildObjects(result);
-            }
-
-            return new List<AppointmentDTO>();
-        }
-
-        public void Update(AppointmentDTO appointment)
+        public override AppointmentDTO Update(AppointmentDTO appointment)
         {
             var sqlOperation = _mapper.GetUpdateStatement(appointment);
-            _dao.ExecuteProcedure(sqlOperation);
-        }
-
-        public void Delete(int id)
-        {
-            var sqlOperation = _mapper.GetDeleteStatement(id);
-            _dao.ExecuteProcedure(sqlOperation);
-        }
-
-        public List<AppointmentDTO> RetrieveByUserId(int userId)
-        {
-            // var sqlOperation = _mapper.GetRetrieveByUserIdStatement(userId);
-            // var result = _dao.ExecuteQueryProcedure(sqlOperation);
-
-            // if (result.Count > 0)
-            // {
-            //     return _mapper.BuildObjects(result);
-            // }
-
-            return new List<AppointmentDTO>();
-        }
-
-        public List<AppointmentDTO> RetrieveByDateRange(DateTime startDate, DateTime endDate)
-        {
-            // var sqlOperation = _mapper.GetRetrieveByDateRangeStatement(startDate, endDate);
-            // var result = _dao.ExecuteQueryProcedure(sqlOperation);
-
-            // if (result.Count > 0)
-            // {
-            //     return _mapper.BuildObjects(result);
-            // }
-
-            return new List<AppointmentDTO>();
+            dao.ExecuteProcedure(sqlOperation);
+            return appointment;
         }
     }
 }

@@ -1,52 +1,41 @@
 using DTOs;
-using DAO.Crud.Appointment;
-using System;
+using DAO.Crud;
 using System.Collections.Generic;
 
-namespace BL.Appointment
+namespace BL.Managers
 {
     public class AppointmentManager
     {
-        private readonly AppointmentCrudFactory _appointmentCrudFactory;
+        private readonly AppointmentCrudFactory _crudFactory;
 
         public AppointmentManager()
         {
-            _appointmentCrudFactory = new AppointmentCrudFactory();
+            _crudFactory = new AppointmentCrudFactory();
         }
 
-        public void Create(AppointmentDTO appointment)
+        public AppointmentDTO Create(AppointmentDTO appointment)
         {
-            _appointmentCrudFactory.Create(appointment);
+            return _crudFactory.Create(appointment);
         }
 
-        public void Update(AppointmentDTO appointment)
+        public AppointmentDTO Update(AppointmentDTO appointment)
         {
-            _appointmentCrudFactory.Update(appointment);
+            return _crudFactory.Update(appointment);
         }
 
-        public void Delete(int id)
+        public AppointmentDTO Delete(AppointmentDTO appointment)
         {
-            _appointmentCrudFactory.Delete(id);
+            return _crudFactory.Delete(appointment);
         }
 
         public List<AppointmentDTO> RetrieveAll()
         {
-            return _appointmentCrudFactory.RetrieveAll();
+            return _crudFactory.RetrieveAll();
         }
 
         public AppointmentDTO RetrieveById(int id)
         {
-            return _appointmentCrudFactory.RetrieveById(id);
-        }
-
-        public List<AppointmentDTO> RetrieveByUserId(int userId)
-        {
-            return _appointmentCrudFactory.RetrieveByUserId(userId);
-        }
-
-        public List<AppointmentDTO> RetrieveByDateRange(DateTime startDate, DateTime endDate)
-        {
-            return _appointmentCrudFactory.RetrieveByDateRange(startDate, endDate);
+            return _crudFactory.RetrieveById(id);
         }
     }
 }

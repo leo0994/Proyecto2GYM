@@ -2,7 +2,7 @@ using System;
 
 using System.Text.RegularExpressions;
 
-namespace BL.ValidatorCredentialsManager
+namespace BL.Managers
 {
     public class ValidationResult
     {

@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
-using BL.User;
+using Microsoft.AspNetCore.Http;
+using BL.Managers;
 
-namespace Policies {
+namespace BL.Policies {
     public class AdminPolicy 
     {
     }
@@ -26,13 +27,13 @@ namespace Policies {
             var httpContext = _httpContextAccessor.HttpContext;
             if (httpContext.Request.Cookies.TryGetValue("user", out var cookieUser))
             {
+                Console.WriteLine(cookieUser);
                 var user =  _userManager.RetrieveById(int.Parse(cookieUser)); // can be updated to string ID User --> db
                 if(user != null && user.TypeUserId == 1){
                     context.Succeed(requirement);
                     return Task.CompletedTask;
                 }
             }
-            context.Fail();
             return Task.CompletedTask; 
         }
     }

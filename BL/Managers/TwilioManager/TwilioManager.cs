@@ -5,7 +5,7 @@ using Twilio;
 using Twilio.Rest.Verify.V2.Service;
 using System.Threading.Tasks;
 
-namespace BL.TwilioManager
+namespace BL.Managers
 {
      public class AuthSendCodeUser
     {

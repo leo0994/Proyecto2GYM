@@ -1,6 +1,6 @@
 using DTOs;
-using DAO.Mapper;
 using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
 
 namespace DAO.Mapper
 {
@@ -8,65 +8,58 @@ namespace DAO.Mapper
     {
         public ClassActivityDTO BuildObject(Dictionary<string, object> row)
         {
-            var classActivityDTO = new ClassActivityDTO
+            return new ClassActivityDTO
             {
                 Id = (int)row["id"],
                 Name = (string)row["name"],
                 Description = (string)row["description"]
             };
-
-            return classActivityDTO;
         }
 
-        public List<ClassActivityDTO> BuildObjects(List<Dictionary<string, object>> rowsList)
+        public List<ClassActivityDTO> BuildObjects(List<Dictionary<string, object>> rows)
         {
-            var resultsList = new List<ClassActivityDTO>();
-            foreach (var row in rowsList)
+            var results = new List<ClassActivityDTO>();
+            foreach (var row in rows)
             {
-                var classActivityDTO = BuildObject(row);
-                resultsList.Add(classActivityDTO);
+                results.Add(BuildObject(row));
             }
-            return resultsList;
+            return results;
         }
 
         public SqlOperation GetCreateStatement(ClassActivityDTO classActivity)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "CreateClassActivity" };
+            var operation = new SqlOperation { ProcedureName = "CreateClassActivity" };
+            operation.AddVarcharParam("@name", classActivity.Name);
+            operation.AddVarcharParam("@description", classActivity.Description);
+            return operation;
+        }
 
-            sqlOperation.AddVarcharParam("@p_name", classActivity.Name);
-            sqlOperation.AddVarcharParam("@p_description", classActivity.Description);
+        public SqlOperation GetRetrieveByIdStatement(int id)
+        {
+            var operation = new SqlOperation { ProcedureName = "GetClassActivityById" };
+            operation.AddIntParam("@id", id);
+            return operation;
+        }
 
-            return sqlOperation;
+        public SqlOperation GetUpdateStatement(ClassActivityDTO classActivity)
+        {
+            var operation = new SqlOperation { ProcedureName = "UpdateClassActivity" };
+            operation.AddIntParam("@id", classActivity.Id);
+            operation.AddVarcharParam("@name", classActivity.Name);
+            operation.AddVarcharParam("@description", classActivity.Description);
+            return operation;
         }
 
         public SqlOperation GetDeleteStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "DeleteClassActivity" };
-            sqlOperation.AddIntParam("@p_id", id);
-            return sqlOperation;
+            var operation = new SqlOperation { ProcedureName = "DeleteClassActivity" };
+            operation.AddIntParam("@id", id);
+            return operation;
         }
 
         public SqlOperation GetRetrieveAllStatement()
         {
             return new SqlOperation { ProcedureName = "GetAllClassActivities" };
-        }
-
-        public SqlOperation GetRetrieveByIdStatement(int id)
-        {
-            var sqlOperation = new SqlOperation { ProcedureName = "GetClassActivityById" };
-            sqlOperation.AddIntParam("@p_class_id", id);
-            return sqlOperation;
-        }
-
-        public SqlOperation GetUpdateStatement(ClassActivityDTO classActivity)
-        {
-            var sqlOperation = new SqlOperation { ProcedureName = "UpdateClassActivity" };
-
-            sqlOperation.AddIntParam("@p_class_id", classActivity.Id);
-            sqlOperation.AddVarcharParam("@p_name", classActivity.Name);
-            sqlOperation.AddVarcharParam("@p_description", classActivity.Description);
-
-            return sqlOperation;
         }
     }
 }
