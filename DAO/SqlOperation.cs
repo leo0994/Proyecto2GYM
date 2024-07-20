@@ -60,5 +60,14 @@ namespace DAO
         {
             Parameters.Add(new SqlParameter(paramName, paramValue));
         }
+        public void AddTimeParamAsString(string paramName, TimeSpan paramValue)
+        {
+            Parameters.Add(new SqlParameter(paramName, paramValue.ToString()));
+        }
+
+        internal void AddTimeParamAsString(string v, string time)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

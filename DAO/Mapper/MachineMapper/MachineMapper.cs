@@ -29,6 +29,7 @@ namespace DAO.Mapper
         public SqlOperation GetCreateStatement(MachineDTO machine)
         {
             var operation = new SqlOperation { ProcedureName = "RegisterMachine" };
+            operation.AddIntParam("@id",machine.Id);
             operation.AddVarcharParam("@name", machine.Name);
             operation.AddVarcharParam("@description", machine.Description);
             return operation;

@@ -30,8 +30,9 @@ namespace DAO.Mapper
 
         public SqlOperation GetCreateStatement(ExerciseBaseDTO exerciseBase)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "CreateExerciseBase" }; // Assuming the existence of this stored procedure
+            var sqlOperation = new SqlOperation { ProcedureName = "dbo.InsertExerciseBase" }; 
 
+            sqlOperation.AddIntParam("@p_id", exerciseBase.Id);
             sqlOperation.AddVarcharParam("@p_name", exerciseBase.Name);
             sqlOperation.AddVarcharParam("@p_typeExercise", exerciseBase.TypeExercise);
 
@@ -40,26 +41,25 @@ namespace DAO.Mapper
 
         public SqlOperation GetDeleteStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "DeleteExerciseBase" }; // Assuming the existence of this stored procedure
+            var sqlOperation = new SqlOperation { ProcedureName = "dbo.DeleteExerciseBaseById" };
             sqlOperation.AddIntParam("@p_id", id);
             return sqlOperation;
         }
 
         public SqlOperation GetRetrieveAllStatement()
         {
-            return new SqlOperation { ProcedureName = "GetAllExerciseBases" }; // Assuming the existence of this stored procedure
+            return new SqlOperation { ProcedureName = "dbo.GetAllExerciseBase" }; 
         }
 
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "GetExerciseBaseById" }; // Assuming the existence of this stored procedure
-            sqlOperation.AddIntParam("@p_id", id);
+            var sqlOperation = new SqlOperation { ProcedureName = "dbo.GetExerciseBaseById" };
             return sqlOperation;
         }
 
         public SqlOperation GetUpdateStatement(ExerciseBaseDTO exerciseBase)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "UpdateExerciseBase" }; // Assuming the existence of this stored procedure
+            var sqlOperation = new SqlOperation { ProcedureName = "dbo.UpdateExerciseBaseById" };
 
             sqlOperation.AddIntParam("@p_id", exerciseBase.Id);
             sqlOperation.AddVarcharParam("@p_name", exerciseBase.Name);
