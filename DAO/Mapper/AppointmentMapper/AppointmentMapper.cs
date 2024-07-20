@@ -42,32 +42,36 @@ namespace DAO.Mapper
 
         public SqlOperation GetDeleteStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "DeleteAppointment" }; // Assuming the existence of this stored procedure
-            sqlOperation.AddIntParam("@p_id", id);
+            var sqlOperation = new SqlOperation { ProcedureName = "DeleteAppointment" };
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
         public SqlOperation GetRetrieveAllStatement()
         {
-            return new SqlOperation { ProcedureName = "GetAllAppointments" }; // Assuming the existence of this stored procedure
+            return new SqlOperation { ProcedureName = "RetrieveAllAppointments" };
         }
 
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "GetAppointmentById" }; // Assuming the existence of this stored procedure
-            sqlOperation.AddIntParam("@p_id", id);
+            var sqlOperation = new SqlOperation { ProcedureName = "RetrieveAppointmentById" };
+            sqlOperation.AddIntParam("@id", id);
+            return sqlOperation;
+        }
+        public SqlOperation GetRetrieveByUserStatement(int id)
+        {
+            var sqlOperation = new SqlOperation { ProcedureName = "RetrieveAppointmentsByUser" };
+            sqlOperation.AddIntParam("@userId", id);
             return sqlOperation;
         }
 
         public SqlOperation GetUpdateStatement(AppointmentDTO appointment)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "UpdateAppointment" }; // Assuming the existence of this stored procedure
-
-            sqlOperation.AddIntParam("@p_id", appointment.Id);
-            sqlOperation.AddIntParam("@p_user_A_id", appointment.UserAId);
-            sqlOperation.AddIntParam("@p_user_B_id", appointment.UserBId);
-            sqlOperation.AddDateTimeParam("@p_date", appointment.Date);
-
+            var sqlOperation = new SqlOperation { ProcedureName = "UpdateAppointment" };
+            sqlOperation.AddIntParam("@id", appointment.Id);
+            sqlOperation.AddDateTimeParam("@date", appointment.Date);
+            sqlOperation.AddIntParam("@userAId", appointment.UserAId);
+            sqlOperation.AddIntParam("@userBId", appointment.UserBId);
             return sqlOperation;
         }
     }

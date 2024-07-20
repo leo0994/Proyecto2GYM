@@ -35,6 +35,13 @@ namespace DAO.Crud
             return _mapper.BuildObjects(result);
         }
 
+        public List<AppointmentDTO> RetrieveByUser(int id)
+        {
+            var sqlOperation = _mapper.GetRetrieveByUserStatement(id);
+            var result = dao.ExecuteQueryProcedure(sqlOperation);
+             return _mapper.BuildObjects(result);
+        }
+
         public override AppointmentDTO RetrieveById(int id)
         {
             var sqlOperation = _mapper.GetRetrieveByIdStatement(id);
