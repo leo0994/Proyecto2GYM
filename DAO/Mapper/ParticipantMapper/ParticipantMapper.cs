@@ -35,11 +35,11 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "RegisterClassAttendance" };
 
-            sqlOperation.AddDateTimeParam("@p_date", participant.Date);
-            sqlOperation.AddIntParam("@p_user_id", participant.UserId);
-            sqlOperation.AddIntParam("@p_instructor_id", participant.InstructorId);
-            sqlOperation.AddIntParam("@p_class_id", participant.ClassId);
-            sqlOperation.AddIntParam("@p_max", participant.Max);
+            sqlOperation.AddDateTimeParam("@date", participant.Date);
+            sqlOperation.AddIntParam("@user_id", participant.UserId);
+            sqlOperation.AddIntParam("@instructor_id", participant.InstructorId);
+            sqlOperation.AddIntParam("@class_id", participant.ClassId);
+            sqlOperation.AddIntParam("@max", participant.Max);
 
             return sqlOperation;
         }
@@ -47,7 +47,7 @@ namespace DAO.Mapper
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "DeleteParticipant" }; // Assuming the existence of this stored procedure
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -59,7 +59,7 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetParticipantById" }; // Assuming the existence of this stored procedure
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -67,12 +67,12 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdateClassAttendance" };
 
-            sqlOperation.AddIntParam("@p_participant_id", participant.Id);
-            sqlOperation.AddDateTimeParam("@p_date", participant.Date);
-            sqlOperation.AddIntParam("@p_user_id", participant.UserId);
-            sqlOperation.AddIntParam("@p_instructor_id", participant.InstructorId);
-            sqlOperation.AddIntParam("@p_class_id", participant.ClassId);
-            sqlOperation.AddIntParam("@p_max", participant.Max);
+            sqlOperation.AddIntParam("@participant_id", participant.Id);
+            sqlOperation.AddDateTimeParam("@date", participant.Date);
+            sqlOperation.AddIntParam("@user_id", participant.UserId);
+            sqlOperation.AddIntParam("@instructor_id", participant.InstructorId);
+            sqlOperation.AddIntParam("@class_id", participant.ClassId);
+            sqlOperation.AddIntParam("@max", participant.Max);
 
             return sqlOperation;
         }
