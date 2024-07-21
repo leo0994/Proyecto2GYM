@@ -33,9 +33,9 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdateUserPassword" };
 
-            sqlOperation.AddIntParam("@p_user_id", historyPasswordUser.UserId);
-            sqlOperation.AddIntParam("@p_password_id", historyPasswordUser.PasswordId);
-            sqlOperation.AddDateTimeParam("@p_date", historyPasswordUser.Date);
+            sqlOperation.AddIntParam("@user_id", historyPasswordUser.UserId);
+            sqlOperation.AddIntParam("@password_id", historyPasswordUser.PasswordId);
+            sqlOperation.AddDateTimeParam("@date", historyPasswordUser.Date);
 
             return sqlOperation;
         }
@@ -43,7 +43,7 @@ namespace DAO.Mapper
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "DeleteHistoryPasswordUser" }; // Assuming the existence of this stored procedure
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -55,7 +55,7 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetHistoryPasswordUserById" }; // Assuming the existence of this stored procedure
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -63,10 +63,10 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdateHistoryPasswordUser" }; // Assuming the existence of this stored procedure
 
-            sqlOperation.AddIntParam("@p_id", historyPasswordUser.Id);
-            sqlOperation.AddDateTimeParam("@p_date", historyPasswordUser.Date);
-            sqlOperation.AddIntParam("@p_user_id", historyPasswordUser.UserId);
-            sqlOperation.AddIntParam("@p_password_id", historyPasswordUser.PasswordId);
+            sqlOperation.AddIntParam("@id", historyPasswordUser.Id);
+            sqlOperation.AddDateTimeParam("@date", historyPasswordUser.Date);
+            sqlOperation.AddIntParam("@user_id", historyPasswordUser.UserId);
+            sqlOperation.AddIntParam("@password_id", historyPasswordUser.PasswordId);
 
             return sqlOperation;
         }

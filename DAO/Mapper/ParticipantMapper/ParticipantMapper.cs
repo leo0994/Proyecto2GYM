@@ -46,19 +46,19 @@ namespace DAO.Mapper
 
         public SqlOperation GetDeleteStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "DeleteParticipant" }; // Assuming the existence of this stored procedure
+            var sqlOperation = new SqlOperation { ProcedureName = "DeleteParticipant" };
             sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
         public SqlOperation GetRetrieveAllStatement()
         {
-            return new SqlOperation { ProcedureName = "GetAllParticipants" }; // Assuming the existence of this stored procedure
+            return new SqlOperation { ProcedureName = "GetAllParticipants" }; 
         }
 
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "GetParticipantById" }; // Assuming the existence of this stored procedure
+            var sqlOperation = new SqlOperation { ProcedureName = "GetParticipantById" }; 
             sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
