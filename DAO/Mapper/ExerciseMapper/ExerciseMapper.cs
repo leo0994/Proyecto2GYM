@@ -34,10 +34,10 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "AddExerciseToRoutine" };
 
-            sqlOperation.AddIntParam("@p_routine_id", exercise.RoutineId);
-            sqlOperation.AddIntParam("@p_exerciseBase_id", exercise.ExerciseBaseId);
-            sqlOperation.AddVarcharParam("@p_description", exercise.Description);
-            sqlOperation.AddNullableIntParam("@p_machine_id", exercise.MachineId);
+            sqlOperation.AddIntParam("@routine_id", exercise.RoutineId);
+            sqlOperation.AddIntParam("@exerciseBase_id", exercise.ExerciseBaseId);
+            sqlOperation.AddVarcharParam("@description", exercise.Description);
+            sqlOperation.AddNullableIntParam("@machine_id", exercise.MachineId);
 
             return sqlOperation;
         }
@@ -45,7 +45,7 @@ namespace DAO.Mapper
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "DeleteExercise" };
-            sqlOperation.AddIntParam("@p_exercise_id", id);
+            sqlOperation.AddIntParam("@exercise_id", id);
             return sqlOperation;
         }
 
@@ -57,7 +57,7 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetExerciseById" }; // Assuming the existence of this stored procedure
-            sqlOperation.AddIntParam("@p_exercise_id", id);
+            sqlOperation.AddIntParam("@exercise_id", id);
             return sqlOperation;
         }
 
@@ -65,10 +65,10 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdateExercise" };
 
-            sqlOperation.AddIntParam("@p_exercise_id", exercise.Id);
-            sqlOperation.AddVarcharParam("@p_description", exercise.Description);
-            sqlOperation.AddNullableIntParam("@p_machine_id", exercise.MachineId);
-            sqlOperation.AddIntParam("@p_exerciseBase_id", exercise.ExerciseBaseId);
+            sqlOperation.AddIntParam("@exercise_id", exercise.Id);
+            sqlOperation.AddVarcharParam("@description", exercise.Description);
+            sqlOperation.AddNullableIntParam("@machine_id", exercise.MachineId);
+            sqlOperation.AddIntParam("@exerciseBase_id", exercise.ExerciseBaseId);
 
             return sqlOperation;
         }

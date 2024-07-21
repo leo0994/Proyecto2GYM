@@ -35,11 +35,11 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "RegisterMeasurement" };
 
-            sqlOperation.AddIntParam("@p_user_id", measure.UserId);
-            sqlOperation.AddFloatParam("@p_weight", (float)measure.Weight);
-            sqlOperation.AddFloatParam("@p_height", (float)measure.Height);
-            sqlOperation.AddFloatParam("@p_bodyFat", (float)measure.BodyFat);
-            sqlOperation.AddDateTimeParam("@p_date", measure.Date);
+            sqlOperation.AddIntParam("@user_id", measure.UserId);
+            sqlOperation.AddFloatParam("@weight", (float)measure.Weight);
+            sqlOperation.AddFloatParam("@height", (float)measure.Height);
+            sqlOperation.AddFloatParam("@bodyFat", (float)measure.BodyFat);
+            sqlOperation.AddDateTimeParam("@date", measure.Date);
 
             return sqlOperation;
         }
@@ -47,7 +47,7 @@ namespace DAO.Mapper
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "DeleteMeasurement" };
-            sqlOperation.AddIntParam("@p_measure_id", id);
+            sqlOperation.AddIntParam("@measure_id", id);
             return sqlOperation;
         }
 
@@ -59,7 +59,7 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetMeasurementById" }; // Assuming the existence of this stored procedure
-            sqlOperation.AddIntParam("@p_measure_id", id);
+            sqlOperation.AddIntParam("@measure_id", id);
             return sqlOperation;
         }
 
@@ -67,11 +67,11 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdateMeasurement" };
 
-            sqlOperation.AddIntParam("@p_measure_id", measure.Id);
-            sqlOperation.AddFloatParam("@p_weight", (float)measure.Weight);
-            sqlOperation.AddFloatParam("@p_height", (float)measure.Height);
-            sqlOperation.AddFloatParam("@p_bodyFat", (float)measure.BodyFat);
-            sqlOperation.AddDateTimeParam("@p_date", measure.Date);
+            sqlOperation.AddIntParam("@measure_id", measure.Id);
+            sqlOperation.AddFloatParam("@weight", (float)measure.Weight);
+            sqlOperation.AddFloatParam("@height", (float)measure.Height);
+            sqlOperation.AddFloatParam("@bodyFat", (float)measure.BodyFat);
+            sqlOperation.AddDateTimeParam("@date", measure.Date);
 
             return sqlOperation;
         }

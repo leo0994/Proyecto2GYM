@@ -27,29 +27,29 @@ namespace DAO.Mapper
         public SqlOperation GetCreateStatement(TypeUserDTO typeUser)
         {
             var operation = new SqlOperation { ProcedureName = "CreateTypeUser" };
-            operation.AddVarcharParam("@p_name", typeUser.Name);
+            operation.AddVarcharParam("@name", typeUser.Name);
             return operation;
         }
 
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var operation = new SqlOperation { ProcedureName = "GetTypeUserById" };
-            operation.AddIntParam("@p_id", id);
+            operation.AddIntParam("@id", id);
             return operation;
         }
 
         public SqlOperation GetUpdateStatement(TypeUserDTO typeUser)
         {
             var operation = new SqlOperation { ProcedureName = "UpdateTypeUser" };
-            operation.AddIntParam("@p_id", typeUser.Id);
-            operation.AddVarcharParam("@p_name", typeUser.Name);
+            operation.AddIntParam("@id", typeUser.Id);
+            operation.AddVarcharParam("@name", typeUser.Name);
             return operation;
         }
 
         public SqlOperation GetDeleteStatement(int id)
         {
             var operation = new SqlOperation { ProcedureName = "DeleteTypeUser" };
-            operation.AddIntParam("@p_id", id);
+            operation.AddIntParam("@id", id);
             return operation;
         }
 

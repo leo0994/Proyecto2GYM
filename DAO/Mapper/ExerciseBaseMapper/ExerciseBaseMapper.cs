@@ -32,8 +32,8 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "CreateExerciseBase" }; // Assuming the existence of this stored procedure
 
-            sqlOperation.AddVarcharParam("@p_name", exerciseBase.Name);
-            sqlOperation.AddVarcharParam("@p_typeExercise", exerciseBase.TypeExercise);
+            sqlOperation.AddVarcharParam("@name", exerciseBase.Name);
+            sqlOperation.AddVarcharParam("@typeExercise", exerciseBase.TypeExercise);
 
             return sqlOperation;
         }
@@ -41,7 +41,7 @@ namespace DAO.Mapper
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "DeleteExerciseBase" }; // Assuming the existence of this stored procedure
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -53,7 +53,7 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetExerciseBaseById" }; // Assuming the existence of this stored procedure
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -61,9 +61,9 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdateExerciseBase" }; // Assuming the existence of this stored procedure
 
-            sqlOperation.AddIntParam("@p_id", exerciseBase.Id);
-            sqlOperation.AddVarcharParam("@p_name", exerciseBase.Name);
-            sqlOperation.AddVarcharParam("@p_typeExercise", exerciseBase.TypeExercise);
+            sqlOperation.AddIntParam("@id", exerciseBase.Id);
+            sqlOperation.AddVarcharParam("@name", exerciseBase.Name);
+            sqlOperation.AddVarcharParam("@typeExercise", exerciseBase.TypeExercise);
 
             return sqlOperation;
         }

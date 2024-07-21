@@ -9,9 +9,9 @@ namespace DAO.Mapper
         {
             var routine = new RoutineDTO
             {
-                Id = (int)row["Id"],
-                UserId = (int)row["UserId"],
-                CreatorId = (int)row["CreatorId"]
+                Id = (int)row["id"],
+                UserId = (int)row["user_id"],
+                CreatorId = (int)row["creator_id"]
             };
 
             return routine;
@@ -32,8 +32,8 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "CreateRoutine" };
 
-            sqlOperation.AddIntParam("@UserId", routine.UserId);
-            sqlOperation.AddIntParam("@CreatorId", routine.CreatorId);
+            sqlOperation.AddIntParam("@user_Id", routine.UserId);
+            sqlOperation.AddIntParam("@creator_id", routine.CreatorId);
 
             return sqlOperation;
         }
@@ -41,7 +41,7 @@ namespace DAO.Mapper
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "DeleteRoutine" };
-            sqlOperation.AddIntParam("@Id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -53,7 +53,7 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetRoutineById" };
-            sqlOperation.AddIntParam("@Id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -61,9 +61,9 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdateRoutine" };
 
-            sqlOperation.AddIntParam("@Id", routine.Id);
-            sqlOperation.AddIntParam("@UserId", routine.UserId);
-            sqlOperation.AddIntParam("@CreatorId", routine.CreatorId);
+            sqlOperation.AddIntParam("@id", routine.Id);
+            sqlOperation.AddIntParam("@user_id", routine.UserId);
+            sqlOperation.AddIntParam("@creator_id", routine.CreatorId);
 
             return sqlOperation;
         }
