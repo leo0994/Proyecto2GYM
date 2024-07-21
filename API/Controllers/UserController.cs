@@ -159,6 +159,28 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Route("RetrieveAllCoaches")]
+        public async Task<IActionResult> RetrieveAllCoaches(int id)
+        {
+            try
+            {
+                var coaches = new List<UserDTO>();
+                var users = _userManager.RetrieveAll();
+                foreach (var user in users)
+                {
+                    if( user.TypeUserId == 3){
+                        coaches.Add(user);
+                    }
+                }
+                return Ok(coaches);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        [HttpGet]
         [Authorize(Policy = "Administrator")] // in use...!!
         [Route("testing-admin-policy")]
         public async Task<IActionResult> Testing()

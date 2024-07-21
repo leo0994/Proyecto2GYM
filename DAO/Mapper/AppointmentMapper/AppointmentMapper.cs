@@ -12,7 +12,9 @@ namespace DAO.Mapper
                 Id = (int)row["id"],
                 Date = (DateTime)row["date"],
                 UserAId = (int)row["user_A_id"],
-                UserBId = (int)row["user_B_id"]
+                UserBId = (int)row["user_B_id"],
+                UserAName = (string)row["user_A_name"],
+                UserBName = (string)row["user_B_name"],
             };
 
             return appointment;

@@ -26,8 +26,7 @@ namespace API.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                return BadRequest(e.Data);
+                return BadRequest(ResponseHelper.Error<AppointmentDTO>("Error creating the Appoinment"));
             }
         }
 
@@ -42,7 +41,7 @@ namespace API.Controllers
              catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return BadRequest(e.Data);
+                return BadRequest(ResponseHelper.Error<AppointmentDTO>("Error updating the Appoinment"));
             }
         }
 
@@ -57,7 +56,7 @@ namespace API.Controllers
              catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return BadRequest(e.Data);
+                return BadRequest(ResponseHelper.Error<AppointmentDTO>("Error deleting the Appoinment"));
             }
         }
 
