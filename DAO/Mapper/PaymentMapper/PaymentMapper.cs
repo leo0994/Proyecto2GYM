@@ -35,11 +35,11 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "RecordPayment" };
 
-            sqlOperation.AddIntParam("@p_user_id", payment.UserId);
-            sqlOperation.AddDateTimeParam("@p_date", payment.Date);
-            sqlOperation.AddFloatParam("@p_amount", (float)payment.Amount);
-            sqlOperation.AddIntParam("@p_payment_method_id", payment.PaymentMethodId);
-            sqlOperation.AddVarcharParam("@p_status", payment.Status);
+            sqlOperation.AddIntParam("@user_id", payment.UserId);
+            sqlOperation.AddDateTimeParam("@date", payment.Date);
+            sqlOperation.AddFloatParam("@amount", (float)payment.Amount);
+            sqlOperation.AddIntParam("@payment_method_id", payment.PaymentMethodId);
+            sqlOperation.AddVarcharParam("@status", payment.Status);
 
             return sqlOperation;
         }
@@ -47,7 +47,7 @@ namespace DAO.Mapper
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "DeletePayment" };
-            sqlOperation.AddIntParam("@p_payment_id", id);
+            sqlOperation.AddIntParam("@payment_id", id);
             return sqlOperation;
         }
 
@@ -59,7 +59,7 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetPaymentById" };
-            sqlOperation.AddIntParam("@p_payment_id", id);
+            sqlOperation.AddIntParam("@payment_id", id);
             return sqlOperation;
         }
 
@@ -67,12 +67,12 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdatePayment" };
 
-            sqlOperation.AddIntParam("@p_payment_id", payment.Id);
-            sqlOperation.AddIntParam("@p_user_id", payment.UserId);
-            sqlOperation.AddDateTimeParam("@p_date", payment.Date);
-            sqlOperation.AddFloatParam("@p_amount", (float)payment.Amount);
-            sqlOperation.AddIntParam("@p_payment_method_id", payment.PaymentMethodId);
-            sqlOperation.AddVarcharParam("@p_status", payment.Status);
+            sqlOperation.AddIntParam("@payment_id", payment.Id);
+            sqlOperation.AddIntParam("@user_id", payment.UserId);
+            sqlOperation.AddDateTimeParam("@date", payment.Date);
+            sqlOperation.AddFloatParam("@amount", (float)payment.Amount);
+            sqlOperation.AddIntParam("@payment_method_id", payment.PaymentMethodId);
+            sqlOperation.AddVarcharParam("@status", payment.Status);
 
             return sqlOperation;
         }
