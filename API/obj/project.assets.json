@@ -139,6 +139,26 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Microsoft.AspNetCore.Cors/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cors.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cors.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/2.2.0": {
         "type": "package",
         "compile": {
@@ -1767,6 +1787,24 @@
         "runtime": {
           "bin/placeholder/DTO.dll": {}
         }
+      },
+      "UI/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "BL": "1.0.0",
+          "DTO": "1.0.0",
+          "Microsoft.AspNetCore.Cors": "2.2.0"
+        },
+        "compile": {
+          "bin/placeholder/UI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UI.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -1874,6 +1912,19 @@
         "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
         "microsoft.aspnetcore.authentication.jwtbearer.8.0.6.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Cors/2.2.0": {
+      "sha512": "LFlTM3ThS3ZCILuKnjy8HyK9/IlDh3opogdbCVx6tMGyDzTQBgMPXLjGDLtMk5QmLDCcP3l1TO3z/+1viA8GUg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.cors/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cors.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cors.xml",
+        "microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.cors.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/2.2.0": {
@@ -5270,6 +5321,11 @@
       "type": "project",
       "path": "../DTO/DTO.csproj",
       "msbuildProject": "../DTO/DTO.csproj"
+    },
+    "UI/1.0.0": {
+      "type": "project",
+      "path": "../UI/UI.csproj",
+      "msbuildProject": "../UI/UI.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5278,41 +5334,54 @@
       "DTO >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.Cookies >= 2.2.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.6",
+      "Microsoft.AspNetCore.Cors >= 2.2.0",
       "Microsoft.Data.SqlClient >= 4.8.5",
       "Swashbuckle.AspNetCore >= 6.4.0",
-      "Twilio.AspNet.Core >= 8.0.2"
+      "Twilio.AspNet.Core >= 8.0.2",
+      "UI >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "/Users/j.alvarez.mendoza/.nuget/packages/": {}
+    "C:\\Users\\Inspiron\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/API.csproj",
+      "projectUniqueName": "C:\\Users\\Inspiron\\Desktop\\ProyectoIng2\\Proyecto2GYM\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/API.csproj",
-      "packagesPath": "/Users/j.alvarez.mendoza/.nuget/packages/",
-      "outputPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/API/obj/",
+      "projectPath": "C:\\Users\\Inspiron\\Desktop\\ProyectoIng2\\Proyecto2GYM\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\Inspiron\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Inspiron\\Desktop\\ProyectoIng2\\Proyecto2GYM\\API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/j.alvarez.mendoza/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Inspiron\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/BL/BL.csproj": {
-              "projectPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/BL/BL.csproj"
+            "C:\\Users\\Inspiron\\Desktop\\ProyectoIng2\\Proyecto2GYM\\BL\\BL.csproj": {
+              "projectPath": "C:\\Users\\Inspiron\\Desktop\\ProyectoIng2\\Proyecto2GYM\\BL\\BL.csproj"
             },
-            "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/DTO.csproj": {
-              "projectPath": "/Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DTO/DTO.csproj"
+            "C:\\Users\\Inspiron\\Desktop\\ProyectoIng2\\Proyecto2GYM\\DTO\\DTO.csproj": {
+              "projectPath": "C:\\Users\\Inspiron\\Desktop\\ProyectoIng2\\Proyecto2GYM\\DTO\\DTO.csproj"
+            },
+            "C:\\Users\\Inspiron\\Desktop\\ProyectoIng2\\Proyecto2GYM\\UI\\UI.csproj": {
+              "projectPath": "C:\\Users\\Inspiron\\Desktop\\ProyectoIng2\\Proyecto2GYM\\UI\\UI.csproj"
             }
           }
         }
@@ -5339,6 +5408,10 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[8.0.6, )"
+          },
+          "Microsoft.AspNetCore.Cors": {
+            "target": "Package",
+            "version": "[2.2.0, )"
           },
           "Microsoft.Data.SqlClient": {
             "target": "Package",
@@ -5372,7 +5445,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

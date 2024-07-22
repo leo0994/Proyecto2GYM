@@ -29,10 +29,16 @@ public class HomeController : Controller
         return View();
     }
 
-         public IActionResult Matriculas()
+    public IActionResult Matriculas()
     {
         return View();
     }
+    public IActionResult RoutineCreation()
+    {
+        return View();
+    }
+
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

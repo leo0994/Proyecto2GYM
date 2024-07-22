@@ -32,8 +32,8 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "dbo.CreateRoutine" };
 
-            sqlOperation.AddIntParam("@UserId", routine.UserId);
-            sqlOperation.AddIntParam("@CreatorId", routine.CreatorId);
+            sqlOperation.AddIntParam("@user_Id", routine.UserId);
+            sqlOperation.AddIntParam("@creator_Id", routine.CreatorId);
 
             return sqlOperation;
         }

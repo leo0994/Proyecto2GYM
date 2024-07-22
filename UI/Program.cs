@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using BL.Policies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +19,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         };
         });
 
-            
+      /*      
 builder.Services.AddAuthorization(options =>
     {
         options.AddPolicy("Administrator", policy =>
@@ -28,9 +27,22 @@ builder.Services.AddAuthorization(options =>
     });
 
 builder.Services.AddSingleton<IAuthorizationHandler, AdminPolicyHandler>();
+*/
 
 
 var app = builder.Build();
+
+var  MyAllowSpecificOrigins = "NocheCorsPolicy";
+
+builder.Services.AddCors(options => {
+    options.AddPolicy(name: "NocheCorsPolicy",
+        policy => {
+            policy.WithOrigins("*")
+                .AllowAnyHeader() //application/json  application/xml application/text
+                .AllowAnyMethod(); //GET, POST, PUT, DELETE
+        });
+});
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -39,6 +51,9 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseCors(MyAllowSpecificOrigins);
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
