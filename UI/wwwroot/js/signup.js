@@ -74,7 +74,7 @@ import { validateForm } from "./helpers.js";
             e.preventDefault();
             const currentForm = e.target.dataset.stateForm;
             const currentGroupForm = e.target.querySelector(`[data-${currentForm}]`);
-            const inputsList = Array.from(currentGroupForm.querySelectorAll("input"));
+            const inputsList = Array.from(currentGroupForm.querySelectorAll("input,select"));
             const inputsListErrors = validateForm(inputsList);
 
             if (Object.keys(inputsListErrors).length > 0) {

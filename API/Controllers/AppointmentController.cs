@@ -4,7 +4,6 @@ using BL.Managers;
 using System;
 
 namespace API.Controllers
-    //test // test 2 // test 3 //Test 4
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,12 +21,12 @@ namespace API.Controllers
         {
             try
             {
-                var createdAppointment = _manager.Create(appointment);
-                return Ok(createdAppointment);
+                var response = _manager.Create(appointment);
+                return Ok(ResponseHelper.Success<AppointmentDTO>(response, "Appointment created"));
             }
             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                return BadRequest(ResponseHelper.Error<AppointmentDTO>("Error creating the Appoinment"));
             }
         }
 
@@ -36,12 +35,13 @@ namespace API.Controllers
         {
             try
             {
-                var updatedAppointment = _manager.Update(appointment);
-                return Ok(updatedAppointment);
+                var response = _manager.Update(appointment);
+                return Ok(ResponseHelper.Success<AppointmentDTO>(response, "Appointment updated"));
             }
-            catch (Exception e)
+             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                Console.WriteLine(e.Message);
+                return BadRequest(ResponseHelper.Error<AppointmentDTO>("Error updating the Appoinment"));
             }
         }
 
@@ -50,12 +50,13 @@ namespace API.Controllers
         {
             try
             {
-                var deletedAppointment = _manager.Delete(appointment);
-                return Ok(deletedAppointment);
+                var response = _manager.Delete(appointment);
+                return Ok(ResponseHelper.Success<AppointmentDTO>(response, "Appointment deleted"));
             }
-            catch (Exception e)
+             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                Console.WriteLine(e.Message);
+                return BadRequest(ResponseHelper.Error<AppointmentDTO>("Error deleting the Appoinment"));
             }
         }
 
@@ -64,12 +65,28 @@ namespace API.Controllers
         {
             try
             {
-                var appointments = _manager.RetrieveAll();
-                return Ok(appointments);
+                var response = _manager.RetrieveAll();
+                return Ok(ResponseHelper.Success<List<AppointmentDTO>>(response, "Getting all appointments"));
             }
-            catch (Exception e)
+             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                Console.WriteLine(e.Message);
+                return BadRequest(e.Data);
+            }
+        }
+
+        [HttpGet("RetrieveAllByUser")]
+        public IActionResult RetrieveAllByUser(int id)
+        {
+            try
+            {
+                var response = _manager.RetrieveByUser(id);
+                return Ok(ResponseHelper.Success<List<AppointmentDTO>>(response, "Getting all appointments by user"+id));
+            }
+             catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return BadRequest(e.Data);
             }
         }
 
@@ -77,13 +94,14 @@ namespace API.Controllers
         public IActionResult RetrieveById(int id)
         {
             try
-            {
-                var appointment = _manager.RetrieveById(id);
-                return Ok(appointment);
+            {            
+                var response = _manager.RetrieveById(id);
+                return Ok(ResponseHelper.Success<AppointmentDTO>(response, "Getting appointment" + id));
             }
             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                Console.WriteLine(e.Message);
+                return BadRequest(e.Data);
             }
         }
     }

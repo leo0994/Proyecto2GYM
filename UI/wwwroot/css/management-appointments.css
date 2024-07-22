@@ -1,0 +1,99 @@
+.hero-banner {
+    background-image: url("https://pics.craiyon.com/2023-06-01/0963e84b4fd24fb8bc32155e3142a9ad.webp");
+    color: white;
+}
+
+.hero h1 {
+    font-size: var(--font-size-xlarge);
+    margin-bottom: var(--spacing-medium);
+    color: var(--color-secondary);
+}
+
+.hero p {
+    margin-bottom: var(--spacing-medium);
+    color: var(--color-secondary);
+}
+
+.cta-buttons a {
+    margin-right: var(--spacing-small);
+}
+
+.appointments-inventory {
+    margin: 128px 0;
+}
+
+.appointments-inventory h2 {
+    margin-bottom: 28px;
+}
+
+.create-appointment {
+    margin: 128px 0;
+}
+
+.create-appointment h2 {
+    margin-bottom: 28px;
+}
+
+.create-appointment .form-container {
+    max-width: 480px;
+}
+
+.create-appointment .form-container .footnote {
+    font-size: 12px;
+    margin-top: 28px;
+    text-align: center;
+}
+
+
+[data-form] [data-form-inputs] {
+    display: none;
+}
+
+[data-state-form="create"] [data-create] {
+    display: block;
+}
+
+[data-state-form="update"] [data-update] {
+    display: block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+th {
+    background-color: #f4f4f4;
+}
+
+.message {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+.message.loading {
+    background-color: #f9f9f9;
+}
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.filter-container {
+    margin-bottom: 20px;
+}
+
+.filter-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}

@@ -26,8 +26,30 @@ builder.Services.AddAuthorization(options =>
             policy.Requirements.Add(new AdminPolicyRequirement()));
     });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Employee", policy =>
+        policy.Requirements.Add(new EmployeePolicyRequirement()));
+});
+    
+builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("SuperAdministrator", policy =>
+            policy.Requirements.Add(new SuperAdminPolicyRequirement()));
+    });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Subscribers", policy =>
+        policy.Requirements.Add(new SubscribersPolicyRequirement()));
+});
+
+
 // Register custom handlers
 builder.Services.AddSingleton<IAuthorizationHandler, AdminPolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, EmployeePolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, SuperAdminPolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, SubscribersPolicyHandler>();
+
 
 builder.Services.AddControllers();
 

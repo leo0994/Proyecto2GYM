@@ -1,70 +1,88 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using BL.Policies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
-
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
        {
-            // options.LoginPath = "/home/";
             options.Events.OnRedirectToLogin = context =>
-        {
-            context.Response.Redirect("/home/#join");
-            return Task.CompletedTask;
-        };
+            {
+                context.Response.StatusCode = 401;
+                return Task.CompletedTask;
+            };
         });
-
-      /*      
+    
 builder.Services.AddAuthorization(options =>
     {
         options.AddPolicy("Administrator", policy =>
             policy.Requirements.Add(new AdminPolicyRequirement()));
     });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Employee", policy =>
+        policy.Requirements.Add(new EmployeePolicyRequirement()));
+});
+    
+builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("SuperAdministrator", policy =>
+            policy.Requirements.Add(new SuperAdminPolicyRequirement()));
+    });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Subscribers", policy =>
+        policy.Requirements.Add(new SubscribersPolicyRequirement()));
+});
+
+
+// Register custom handlers
 builder.Services.AddSingleton<IAuthorizationHandler, AdminPolicyHandler>();
-*/
+builder.Services.AddSingleton<IAuthorizationHandler, EmployeePolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, SuperAdminPolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, SubscribersPolicyHandler>();
 
 
-var app = builder.Build();
+builder.Services.AddControllers();
 
 var  MyAllowSpecificOrigins = "NocheCorsPolicy";
 
 builder.Services.AddCors(options => {
     options.AddPolicy(name: "NocheCorsPolicy",
         policy => {
-            policy.WithOrigins("*")
-                .AllowAnyHeader() //application/json  application/xml application/text
-                .AllowAnyMethod(); //GET, POST, PUT, DELETE
+            policy.WithOrigins("*");
+            policy.AllowAnyHeader(); //application/json  application/xml application/text
+            policy.AllowAnyMethod(); //GET, POST, PUT, DELETE
         });
 });
 
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseCors(MyAllowSpecificOrigins);
 
-
 app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllers();
 
 app.Run();
+

@@ -3,39 +3,41 @@ using Microsoft.AspNetCore.Http;
 using BL.Managers;
 
 namespace BL.Policies {
-    public class AdminPolicy 
+    public class GoersPolicy 
     {
     }
 
-    public class AdminPolicyRequirement : IAuthorizationRequirement
+    public class GoersPolicyRequirement : IAuthorizationRequirement
     {
     }
 
-    public class AdminPolicyHandler : AuthorizationHandler<AdminPolicyRequirement>
+    public class GoersPolicyHandler : AuthorizationHandler<GoersPolicyRequirement>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager _userManager; 
 
-        public AdminPolicyHandler(IHttpContextAccessor httpContextAccessor) // we can use inyection dependecies for userManager 
+        public GoersPolicyHandler(IHttpContextAccessor httpContextAccessor) // we can use inyection dependecies for userManager 
         {
             _httpContextAccessor = httpContextAccessor;
             _userManager = new UserManager();
         }
 
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, AdminPolicyRequirement requirement)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, GoersPolicyRequirement requirement)
         {
             var httpContext = _httpContextAccessor.HttpContext;
             if (httpContext.Request.Cookies.TryGetValue("user", out var cookieUser))
             {
+              
                 var user =  _userManager.RetrieveById(int.Parse(cookieUser)); // can be updated to string ID User --> db
                 if(user != null){
-                    if(user.TypeUserId == 1 || user.TypeUserId == 4){
+                    if(user.TypeUserId == 2){  
                         context.Succeed(requirement);
                         return Task.CompletedTask;
                     }
                 }
             }
             context.Fail();
+
             return Task.CompletedTask; 
         }
     }
