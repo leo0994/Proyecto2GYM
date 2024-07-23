@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/header.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.0/css/dataTables.dataTables.min.css" asp-append-version="true" /> <!-- Agregado por Maria -->
 </head>
 
 <body>
@@ -64,11 +64,9 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://cdn.datatables.net/2.1.0/js/dataTables.min.js"></script> <!-- Agregado por Maria, arma la tabla -->
 
-
-
+    @RenderSection("Scripts", required: false)  <!-- Agregado por Maria -->
 </body>
 
 </html>
