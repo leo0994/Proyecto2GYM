@@ -1,12 +1,15 @@
 using DTOs;
 using Managers;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace API.Controllers
 {
+    [EnableCors("NocheCorsPolicy")]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]/[action]")]
+
     public class TypeUserController : ControllerBase
     {
         private readonly TypeUserManager _typeUserManager;

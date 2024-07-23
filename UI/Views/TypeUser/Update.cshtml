@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Update Role";
+}
+
+    <h2>Update Role</h2>
+
+
+<div class="form-container">
+     
+    <div class="form-group">
+            <input type="hidden" id="idRole" name="idRole">
+
+            <label for="name" class="form-label">Name:</label>
+        <input type="text" class="form-input" id="name" name="name" required>
+    </div>
+    <button id="btnUpdateRole" class="btn btn-primary">Submit</button>
+
+
+</div>
+<br>
+<br />
+
+<!-- Referencia al archivo JavaScript -->
+@section Scripts {
+    <script src="~/js/typeUserUpdate.js"></script> 
+}
+
+
