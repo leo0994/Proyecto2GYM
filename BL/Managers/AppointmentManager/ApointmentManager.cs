@@ -37,5 +37,9 @@ namespace BL.Managers
         {
             return _crudFactory.RetrieveById(id);
         }
+        public List<AppointmentDTO> RetrieveByUser(int id)
+        {
+            return _crudFactory.RetrieveByUser(id);
+        }
     }
 }

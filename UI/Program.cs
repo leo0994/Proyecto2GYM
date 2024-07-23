@@ -82,6 +82,18 @@ builder.Services.AddCors(options =>
         });
 }); // línea nueva agregada por Maria
 
+var  MyAllowSpecificOrigins = "NocheCorsPolicy";
+
+builder.Services.AddCors(options => {
+    options.AddPolicy(name: "NocheCorsPolicy",
+        policy => {
+            policy.WithOrigins("*");
+            policy.AllowAnyHeader(); //application/json  application/xml application/text
+            policy.AllowAnyMethod(); //GET, POST, PUT, DELETE
+        });
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -91,6 +103,9 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

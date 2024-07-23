@@ -266,9 +266,8 @@ import { validateForm } from "./helpers.js";
                 `);
                 return;
             }
-
+            document.cookie = 'user' + "=" + response.data.id  + "; path=/";
             window.location.replace("/profile");
-
         } catch (error) {
             submitter.removeAttribute("disabled", "");
             createModal(`
