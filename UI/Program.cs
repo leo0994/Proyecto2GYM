@@ -5,18 +5,28 @@ using BL.Policies;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllersWithViews();
+
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
        {
+            // options.LoginPath = "/home/";
             options.Events.OnRedirectToLogin = context =>
-            {
-                context.Response.StatusCode = 401;
-                return Task.CompletedTask;
-            };
+        {
+            context.Response.Redirect("/home/#join");
+            //context.Response.StatusCode = 403;
+            return Task.CompletedTask;
+        };
+        // options.Events.OnRedirectToAccessDenied = context =>
+        //     {
+        //         context.Response.StatusCode = 403;
+        //         return Task.CompletedTask;
+        //     };
         });
-    
+
+            
 builder.Services.AddAuthorization(options =>
     {
         options.AddPolicy("Administrator", policy =>
@@ -40,15 +50,27 @@ builder.Services.AddAuthorization(options =>
         policy.Requirements.Add(new SubscribersPolicyRequirement()));
 });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Goers", policy =>
+        policy.Requirements.Add(new GoersPolicyRequirement()));
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Coach", policy =>
+        policy.Requirements.Add(new CoachPolicyRequirement()));
+});
+
 
 // Register custom handlers
 builder.Services.AddSingleton<IAuthorizationHandler, AdminPolicyHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, EmployeePolicyHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, SuperAdminPolicyHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, SubscribersPolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, GoersPolicyHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, CoachPolicyHandler>();
 
-
-builder.Services.AddControllers();
 
 var  MyAllowSpecificOrigins = "NocheCorsPolicy";
 
@@ -61,28 +83,30 @@ builder.Services.AddCors(options => {
         });
 });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
+
 
 app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-
-app.MapControllers();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-

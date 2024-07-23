@@ -8,7 +8,7 @@
 
 
 <div class="form-container">
-<form id="createExerciseForm">
+<form id="exerciseRegisterForm">
     <div class="form-group">
         <label for="exerciseID">Exercise ID:</label>
         <input type="text" class="form-control" id="exerciseID" name="id" required>
@@ -20,7 +20,12 @@
         <input type="text" class="form-control" id="weight" name="weight" required>
         <label for="time">Time:</label>
         <input type="text" class="form-control" id="time" name="time" required>
-
+        <label for="time">Machine ID:</label>
+        <input type="text" class="form-control" id="machineId" name="machineId" required>
+        <label for="time">Exercise Base ID:</label>
+        <input type="text" class="form-control" id="exerciseBaseId" name="exerciseBaseId" required>
+        <label for="time">Routine ID:</label>
+        <input type="text" class="form-control" id="routineID" name="routineID" required>
 
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -30,5 +35,5 @@
 <br />
 
 
-<script src="~/js/routineCreation.js" asp-append-version="true"></script>
+<script src="~/js/exerciseRegister.js" asp-append-version="true"></script>
 

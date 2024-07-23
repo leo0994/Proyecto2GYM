@@ -1,8 +1,9 @@
 using DTOs;
-using Managers;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using DTO.TypeExcercise;
+using BL.Managers;
+using Managers;
 
 namespace API.Controllers;
 [ApiController]

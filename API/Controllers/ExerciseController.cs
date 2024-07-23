@@ -1,7 +1,8 @@
 using DTOs;
-using Managers;
+using BL.Managers;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Managers;
 
 
 namespace API.Controllers

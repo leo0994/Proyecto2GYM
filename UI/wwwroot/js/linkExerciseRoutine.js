@@ -1,21 +1,21 @@
-const routineCreation = (e) => {
+const linkExerciseRoutine = (e) => {
     e.preventDefault()
-    const routineCreate = {}
+    const linkExercise = {}
 
 
 
 
-    routineCreate.id = 0
-    routineCreate.userId = $("#clientID").val()
-    routineCreate.creatorId = $("#trainerID").val()
-    console.log(routineCreate)
+    //linkExercise.id = 0
+    linkExercise.IdRoutine = $("#routineID").val()
+    linkExercise.IdExercise = $("#exerciseID").val()
+    console.log(linkExercise)
 
-    const apiUrl = API_URL_BASE + "/Routine/Create"
+    const apiUrl = API_URL_BASE + "/ExerciseRoutine/Create"
     $.ajax({
         url: apiUrl,
         method: "POST",
         hasContent: true,
-        data: JSON.stringify(routineCreate),
+        data: JSON.stringify(linkExercise),
         contentType: "application/json;charset=utf-8",
         dataType: "json",
     })
@@ -36,4 +36,4 @@ const routineCreation = (e) => {
         });
 }
 
-$("#createRoutineForm").on('submit', routineCreation)
+$("#linkRoutineForm").on('submit', linkExerciseRoutine)
