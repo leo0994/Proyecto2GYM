@@ -1,54 +1,47 @@
-const linkExerciseRoutine = (e) => {
+const routineDeletion = (e) => {
     e.preventDefault()
-    const linkExercise = {}
+    const routineDelete = {}
+
+    routineDelete.id = $("#routineID").val()
 
 
 
-
-    //linkExercise.id = 0
-    linkExercise.IdRoutine = $("#routineID").val()
-    linkExercise.IdExercise = $("#exerciseID").val()
-    console.log(linkExercise)
-
-    const apiUrl = API_URL_BASE + "/ExerciseRoutine/Create"
+    const apiUrl = API_URL_BASE + "/Routine/Delete"
     $.ajax({
         url: apiUrl,
-        method: "POST",
+        method: "DELETE",
         hasContent: true,
-        data: JSON.stringify(linkExercise),
+        data: JSON.stringify(routineDelete),
         contentType: "application/json;charset=utf-8",
         dataType: "json",
     })
         .done((result) => {
             console.log(result);
             Swal.fire({
-                title: "Routine",
-                text: "Exercise added to Routine",
+                title: "Routine Deletion",
+                text: "Routine Deleted",
                 icon: "success",
             })
         }).fail((response) => {
             console.log(response.responseText)
             Swal.fire({
-                title: "Routine",
-                text: "Exercise could not be added to Routine",
+                title: "Routine Deletion",
+                text: "Routine could not be Deleted",
                 icon: "error",
             })
         });
 }
 
-$("#linkRoutineForm").on('submit', linkExerciseRoutine)
+$("#deleteRoutineForm").on('submit', routineDeletion)
 
 
 
-
-
-let table = $('#ExerciseRoutine').DataTable({
+let table = $('#routineTable').DataTable({
     data: [],
     columns: [
         { data: 'id' },
-        { data: 'idRoutine' },
-        { data: 'idExercise' },
-    
+        { data: 'userId' },
+        { data: 'creatorId' },
     ]
 });
 
@@ -61,7 +54,7 @@ const prepareTableData = (result) => {
 }
 
 $(document).ready(() => {
-    const apiUrl = API_URL_BASE + "/ExerciseRoutine/RetrieveAll"
+    const apiUrl = API_URL_BASE + "/Routine/RetrieveAll"
     $.ajax({
         url: apiUrl,
     })

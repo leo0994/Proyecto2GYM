@@ -1,42 +1,42 @@
-const linkExerciseRoutine = (e) => {
+const unlinkExerciseRoutine = (e) => {
     e.preventDefault()
-    const linkExercise = {}
+    const unlinkExercise = {}
 
 
 
 
-    //linkExercise.id = 0
-    linkExercise.IdRoutine = $("#routineID").val()
-    linkExercise.IdExercise = $("#exerciseID").val()
-    console.log(linkExercise)
+    unlinkExercise.id = $("#routineID").val()
+    unlinkExercise.IdRoutine = 0
+    unlinkExercise.IdExercise = 0
+    console.log(unlinkExercise)
 
-    const apiUrl = API_URL_BASE + "/ExerciseRoutine/Create"
+    const apiUrl = API_URL_BASE + "/ExerciseRoutine/DELETE"
     $.ajax({
         url: apiUrl,
-        method: "POST",
+        method: "DELETE",
         hasContent: true,
-        data: JSON.stringify(linkExercise),
+        data: JSON.stringify(unlinkExercise),
         contentType: "application/json;charset=utf-8",
         dataType: "json",
     })
         .done((result) => {
             console.log(result);
             Swal.fire({
-                title: "Routine",
-                text: "Exercise added to Routine",
+                title: "Update",
+                text: "Exercise removed to Routine",
                 icon: "success",
             })
         }).fail((response) => {
             console.log(response.responseText)
             Swal.fire({
-                title: "Routine",
-                text: "Exercise could not be added to Routine",
+                title: "Error",
+                text: "Exercise could not be removed from Routine",
                 icon: "error",
             })
         });
 }
 
-$("#linkRoutineForm").on('submit', linkExerciseRoutine)
+$("#unlinkRoutineForm").on('submit', unlinkExerciseRoutine)
 
 
 

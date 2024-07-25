@@ -13,10 +13,12 @@ namespace DAO.Mapper
             {
                 Id = (int)row["id"],
                 Description = (string)row["description"],
-                MachineId = row["machine_id"] != DBNull.Value ? (int?)row["machine_id"] : null,
+                //MachineId = row["machine_id"] != DBNull.Value ? (int?)row["machine_id"] : null,
+                MachineId  =(int)row["machine_id"],
                 ExerciseBaseId = (int)row["exerciseBase_id"],
                 Reps = row["reps"] != DBNull.Value ? (int?)row["reps"] : null,
-                Weight = row["weight"] != DBNull.Value ? (float?)row["reps"] : null,
+                //Weight = row["weight"] != DBNull.Value ? (float?)row["reps"] : null,
+                Weight = row["weight"] != DBNull.Value ? Convert.ToSingle(row["weight"]) : (float?)null,
                 Time=row["time"] != DBNull.Value ? (int?)row["reps"] : null,
             };
 

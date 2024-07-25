@@ -9,7 +9,7 @@ namespace DTOs
         public int? Reps { get; set; }
         public float? Weight { get; set; }
         public int? Time { get; set; }
-        public int? MachineId { get; set; }
+        public int MachineId { get; set; }
         public int ExerciseBaseId { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace DAO.Mapper
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "dbo.DeleteExerciseRoutine" };
-            sqlOperation.AddIntParam("@id", id);
+            sqlOperation.AddIntParam("@Id", id);
             return sqlOperation;
         }
 

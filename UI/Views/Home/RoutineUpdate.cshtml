@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Gym-Proyecto2";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/routineUpdate.js" defer asp-append-version="true"></script>
+
+
+
+    <h2>Routine Update</h2>
+
+<!-- Discounts Table -->
+        <div class="table-container">
+
+            <table id="routineTable" class="display">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User ID</th>
+                        <th>Creator ID</th>
+                    </tr>
+     
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+
+
+<div class="form-container">
+<form id="updateRoutineForm">
+    <div class="form-group">
+        <label for="routineID">Enter Routine ID to modify:</label>
+        <input type="text" class="form-control" id="routineID" name="id" required>
+        <label for="clientID">Enter New Client ID:</label>
+        <input type="text" class="form-control" id="clientID" name="client" required>
+        <label for="trainerID">Enter New Trainer ID:</label>
+        <input type="text" class="form-control" id="trainerID" name="trainer" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+<br>
+<br/>

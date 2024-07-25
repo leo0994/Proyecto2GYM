@@ -46,11 +46,11 @@ namespace API.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] ExerciseRoutineDTO exerciseRoutine)
         {
-            var exerciseRoutineDTO = new ExerciseRoutineDTO { Id = id };
-            var result = _exerciseRoutineManager.Delete(exerciseRoutineDTO);
+        
+            var result = _exerciseRoutineManager.Delete(exerciseRoutine);
             return Ok(result);
         }
     }

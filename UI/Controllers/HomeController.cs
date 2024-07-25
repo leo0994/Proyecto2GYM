@@ -43,7 +43,32 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult UnlinkExerciseRoutine()
+    {
+        return View();
+    }
+
     public IActionResult ExerciseRegister()
+    {
+        return View();
+    }
+
+    public IActionResult RoutineDelete()
+    {
+        return View();
+    }
+
+    public IActionResult RoutineUpdate()
+    {
+        return View();
+    }
+
+    public IActionResult ExerciseDelete()
+    {
+        return View();
+    }
+
+    public IActionResult ExerciseUpdate()
     {
         return View();
     }

@@ -1,53 +1,60 @@
-const linkExerciseRoutine = (e) => {
+const exerciseUpdate = (e) => {
     e.preventDefault()
-    const linkExercise = {}
+    const exerciseUpdate = {}
+
+    exerciseUpdate.id = $("#exerciseID").val()
+    exerciseUpdate.description = $("#description").val()
+    exerciseUpdate.machineId = $("#machineId").val()
+    exerciseUpdate.exerciseBaseId = $("#exerciseBaseId").val()
+    exerciseUpdate.reps = $("#reps").val()
+    exerciseUpdate.weight = $("#weight").val()
+    exerciseUpdate.time = $("#time").val()
 
 
 
+    console.log(exerciseUpdate)
 
-    //linkExercise.id = 0
-    linkExercise.IdRoutine = $("#routineID").val()
-    linkExercise.IdExercise = $("#exerciseID").val()
-    console.log(linkExercise)
-
-    const apiUrl = API_URL_BASE + "/ExerciseRoutine/Create"
+    const apiUrl = API_URL_BASE + "/Exercise/Update"
     $.ajax({
         url: apiUrl,
-        method: "POST",
+        method: "PUT",
         hasContent: true,
-        data: JSON.stringify(linkExercise),
+        data: JSON.stringify(exerciseUpdate),
         contentType: "application/json;charset=utf-8",
         dataType: "json",
     })
         .done((result) => {
             console.log(result);
             Swal.fire({
-                title: "Routine",
-                text: "Exercise added to Routine",
+                title: "Exercise",
+                text: "Exercise Updated",
                 icon: "success",
             })
         }).fail((response) => {
             console.log(response.responseText)
             Swal.fire({
-                title: "Routine",
-                text: "Exercise could not be added to Routine",
+                title: "Exercise",
+                text: "Exercise could not be updated",
                 icon: "error",
             })
         });
 }
 
-$("#linkRoutineForm").on('submit', linkExerciseRoutine)
+$("#exerciseUpdateForm").on('submit', exerciseUpdate)
 
 
 
 
-
-let table = $('#ExerciseRoutine').DataTable({
+let table = $('#exerciseTable').DataTable({
     data: [],
     columns: [
         { data: 'id' },
-        { data: 'idRoutine' },
-        { data: 'idExercise' },
+        { data: 'description' },
+        { data: 'machineId' },
+        { data: 'exerciseBaseId' },    
+        { data: 'reps' },
+        { data: 'weight' },
+        { data: 'time' },
     
     ]
 });
@@ -61,7 +68,7 @@ const prepareTableData = (result) => {
 }
 
 $(document).ready(() => {
-    const apiUrl = API_URL_BASE + "/ExerciseRoutine/RetrieveAll"
+    const apiUrl = API_URL_BASE + "/Exercise/RetrieveAll"
     $.ajax({
         url: apiUrl,
     })

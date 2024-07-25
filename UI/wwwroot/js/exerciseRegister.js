@@ -1,15 +1,15 @@
-const exerciseRegister = (e) => {
+const exerciseInsert = (e) => {
     e.preventDefault()
     const exerciseCreate = {}
 
     exerciseCreate.id = $("#exerciseID").val()
     exerciseCreate.description = $("#description").val()
-    exerciseCreate.machine_id = $("#machineId").val()
-    exerciseCreate.exerciseBase_id = $("#exerciseBaseId").val()
+    exerciseCreate.machineId = $("#machineId").val()
+    exerciseCreate.exerciseBaseId = $("#exerciseBaseId").val()
     exerciseCreate.reps = $("#reps").val()
     exerciseCreate.weight = $("#weight").val()
     exerciseCreate.time = $("#time").val()
-    exerciseCreate.routine_id = $("#routineID").val()
+
 
 
     console.log(exerciseCreate)
@@ -40,4 +40,4 @@ const exerciseRegister = (e) => {
         });
 }
 
-$("#exerciseRegisterForm").on('submit', exerciseRegister)
+$("#exerciseRegisterForm").on('submit', exerciseInsert)

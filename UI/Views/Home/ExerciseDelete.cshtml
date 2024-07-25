@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] = "Gym-Proyecto2";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/exerciseDeletion.js" defer asp-append-version="true"></script>
+<link rel="stylesheet" href="~/css/routineCreation.css" asp-append-version="true" />
+
+    <h2>Exercise Register</h2>
+
+            <div class="table-container">
+
+            <table id="exerciseTable" class="display">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Equipment ID</th>
+                        <th>Exercise Base ID</th>
+                        <th>Reps </th>
+                        <th>Weight </th>
+                        <th>Time </th>
+                    </tr>
+     
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+
+<div class="form-container">
+<form id="deleteExerciseForm">
+    <div class="form-group">
+
+        <p>Option to delete a current Exercise in the system. <br>Please enter ID of the exercise to delete:</p>
+        <br>
+        <br />
+        <label for="exerciseID">Exercise ID:</label>
+        <input type="routineID" class="form-control" id="exerciseID" name="exerciseID" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+<br>
+<br />
+
+
+
