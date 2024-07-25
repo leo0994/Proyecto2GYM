@@ -1,9 +1,6 @@
 
 
-SELECT * FROM Appointment
-
-
-
+SELECT * FROM [User]
 
 CREATE PROCEDURE GetUserById
     @p_user_id INT
@@ -19,12 +16,12 @@ END;
 go
 
 
-execute RetrieveAllAppointments
+drop procedure RetrieveAllAppointments
 
 CREATE PROCEDURE RetrieveAllAppointments
 AS
 BEGIN
-    SELECT A.id, A.date, A.user_A_id, A.user_B_id, U.name  FROM Appointment A INNER JOIN dbo.[User] U on U.id = A.user_A_id;
+    SELECT A.id, A.date, A.user_A_id, A.user_B_id, U.name 'user_A_name', U2.name 'user_B_name'  FROM Appointment A INNER JOIN dbo.[User] U on U.id = A.user_A_id INNER JOIN dbo.[User] U2 on U2.id = A.user_B_id;
 END;
 
 CREATE PROCEDURE RetrieveAppointmentById
