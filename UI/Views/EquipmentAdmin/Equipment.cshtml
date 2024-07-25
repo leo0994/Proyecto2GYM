@@ -1,0 +1,57 @@
+﻿
+<script src="~/js/entities/Equipment.js" defer></script>
+
+<div class="text-center">
+
+    <form class="form-container" id="createEquipmentForm" action="submit">
+
+        <h1 class="">Equipment Registration</h1>
+
+        <br><br>
+
+        <!-- Name Input -->
+        <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" class="form-input" placeholder="e.g. Dumbbell">
+            <small class="form-help-text"></small>
+        </div>
+
+        <!-- Description Input -->
+        <div class="form-group">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" id="description" class="form-input" placeholder="e.g. STINGRAY Hexagonal Dumbbell 20LB">
+            <small class="form-help-text"></small>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+    </form>
+    
+    <br><br>
+
+    <div class="form-container">
+
+        <h1 class="">Equipment List</h1>
+        <br><br>
+
+        <!-- Discounts Table -->
+        <div class="table-container">
+
+            <table id="equipmentTable" class="display">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br><br>
+</div>
