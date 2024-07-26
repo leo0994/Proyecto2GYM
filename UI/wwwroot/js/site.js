@@ -2,3 +2,6 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+var API_URL_BASE = "http://localhost:5049/api";
+var API_URL_BASE_NORMAL = "https://localhost:7258";// frontEnd

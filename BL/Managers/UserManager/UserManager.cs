@@ -75,7 +75,7 @@ namespace BL.Managers
 
             // This should just be an endpoint to register client users
             // that's why we are setting the typeUserId
-            user.TypeUserId = 2;
+            // user.TypeUserId = 2;
             _userCrudFactory.Create(user);
 
             return authSendCodeUser;

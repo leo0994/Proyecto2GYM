@@ -1,0 +1,36 @@
+﻿
+<script src="~/js/entities/EquipmentUpdate.js" defer></script>
+
+<div class="text-center">
+
+    <form class="form-container" id="createEquipmentForm" action="submit">
+
+        <h1 class="">Equipment Update</h1>
+
+        <br><br>
+
+        <input type="hidden" id="idMachine" name="idMachine">
+
+        <!-- Name Input -->
+        <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" class="form-input" placeholder="e.g. Dumbbell" required>
+            <small class="form-help-text"></small>
+        </div>
+
+        <!-- Description Input -->
+        <div class="form-group">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" id="description" class="form-input" placeholder="e.g. STINGRAY Hexagonal Dumbbell 20LB">
+            <small class="form-help-text"></small>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="btnUpdate">Update</button>
+        </div>
+
+    </form>
+    
+    <br><br>
+</div>

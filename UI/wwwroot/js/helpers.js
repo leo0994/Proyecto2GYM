@@ -51,11 +51,11 @@ export function validateForm(inputs) {
                     }
                 }
                 break;
-            case 'tel':
-                if (!/^\+?[0-8]{4,8}$/.test(value)) {
-                    errors[name] = 'Invalid phone number format';
-                }
-                break;
+            // case 'tel':
+            //     if (!/^\+?[0-8]{4,8}$/.test(value)) {
+            //         errors[name] = 'Invalid phone number format';
+            //     }
+            //     break;
             case 'credit_card':
                 if (!/^\d{13,19}$/.test(value)) {
                     errors[name] = 'Invalid credit card number';

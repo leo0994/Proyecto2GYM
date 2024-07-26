@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Managers
 {
-    public class MachineManager
+    public class MachineManager : CrudFactory<MachineDTO>
     {
         private readonly MachineCrudFactory _crudFactory;
 
@@ -13,28 +13,27 @@ namespace Managers
             _crudFactory = new MachineCrudFactory();
         }
 
-        public void Create(MachineDTO machine)
+        public override MachineDTO Create(MachineDTO entityDTO)
         {
-            _crudFactory.Create(machine);
+            return _crudFactory.Create(entityDTO);
         }
 
-        public void Update(MachineDTO machine)
+        public override MachineDTO Update(MachineDTO entityDTO)
         {
-            _crudFactory.Update(machine);
+            return _crudFactory.Update(entityDTO);
         }
 
-        public void Delete(int id)
+        public override MachineDTO Delete(MachineDTO entityDTO)
         {
-            var machine = new MachineDTO { Id = id };
-            _crudFactory.Delete(machine);
+            return _crudFactory.Delete(entityDTO);
         }
 
-        public List<MachineDTO> RetrieveAll()
+        public override List<MachineDTO> RetrieveAll()
         {
             return _crudFactory.RetrieveAll();
         }
 
-        public MachineDTO RetrieveById(int id)
+        public override MachineDTO RetrieveById(int id)
         {
             return _crudFactory.RetrieveById(id);
         }

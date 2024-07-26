@@ -24,21 +24,21 @@ namespace DAO.Mapper
             return results;
         }
 
-        public SqlOperation GetCreateStatement(TypeUserDTO typeUser)
+        public SqlOperation GetCreateStatement(TypeUserDTO typeUser) // create
         {
             var operation = new SqlOperation { ProcedureName = "CreateTypeUser" };
             operation.AddVarcharParam("@name", typeUser.Name);
             return operation;
         }
 
-        public SqlOperation GetRetrieveByIdStatement(int id)
+        public SqlOperation GetRetrieveByIdStatement(int id) // return by ID
         {
             var operation = new SqlOperation { ProcedureName = "GetTypeUserById" };
             operation.AddIntParam("@id", id);
             return operation;
         }
 
-        public SqlOperation GetUpdateStatement(TypeUserDTO typeUser)
+        public SqlOperation GetUpdateStatement(TypeUserDTO typeUser) // Update
         {
             var operation = new SqlOperation { ProcedureName = "UpdateTypeUser" };
             operation.AddIntParam("@id", typeUser.Id);
@@ -46,14 +46,14 @@ namespace DAO.Mapper
             return operation;
         }
 
-        public SqlOperation GetDeleteStatement(int id)
+        public SqlOperation GetDeleteStatement(int id) // Delete
         {
             var operation = new SqlOperation { ProcedureName = "DeleteTypeUser" };
             operation.AddIntParam("@id", id);
             return operation;
         }
 
-        public SqlOperation GetRetrieveAllStatement()
+        public SqlOperation GetRetrieveAllStatement() // Update
         {
             return new SqlOperation { ProcedureName = "GetAllTypeUsers" };
         }
