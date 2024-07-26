@@ -31,7 +31,7 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "CreatePassword" }; // Assuming this stored procedure exists
 
-            sqlOperation.AddVarcharParam("@p_password", password.Password);
+            sqlOperation.AddVarcharParam("@password", password.Password);
 
             return sqlOperation;
         }
@@ -39,7 +39,7 @@ namespace DAO.Mapper
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "DeletePassword" }; // Assuming this stored procedure exists
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -51,7 +51,7 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetPasswordById" }; // Assuming this stored procedure exists
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -59,8 +59,8 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdatePassword" }; // Assuming this stored procedure exists
 
-            sqlOperation.AddIntParam("@p_id", password.Id);
-            sqlOperation.AddVarcharParam("@p_password", password.Password);
+            sqlOperation.AddIntParam("@id", password.Id);
+            sqlOperation.AddVarcharParam("@password", password.Password);
 
             return sqlOperation;
         }

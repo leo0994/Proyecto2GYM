@@ -30,14 +30,14 @@ namespace DAO.Mapper
         public SqlOperation GetCreateStatement(EnrollmentDTO enrollment)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "CreateEnrollment" };
-            sqlOperation.AddDecimalParam("@p_amount",enrollment.Amount);
+            sqlOperation.AddDecimalParam("@amount",enrollment.Amount);
             return sqlOperation;
         }
 
         public SqlOperation GetDeleteStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "DeleteEnrollment" };
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -49,7 +49,7 @@ namespace DAO.Mapper
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
             var sqlOperation = new SqlOperation { ProcedureName = "GetEnrollmentById" };
-            sqlOperation.AddIntParam("@p_id", id);
+            sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
@@ -57,8 +57,8 @@ namespace DAO.Mapper
         {
             var sqlOperation = new SqlOperation { ProcedureName = "UpdateEnrollment" };
 
-            sqlOperation.AddIntParam("@p_id", enrollment.Id);
-            sqlOperation.AddDecimalParam("@p_amount", enrollment.Amount);
+            sqlOperation.AddIntParam("@id", enrollment.Id);
+            sqlOperation.AddDecimalParam("@amount", enrollment.Amount);
 
             return sqlOperation;
         }
