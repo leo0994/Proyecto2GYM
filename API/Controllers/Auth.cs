@@ -28,7 +28,8 @@ namespace API.Controllers
             {
                 var response =  _userManager.LoginUserHandler(user);
                 // Setting cookie user id to the client
-                HttpContext.Response.Cookies.Append("user", user.Id + "");
+                HttpContext.Response.Cookies.Append("user", response.Id + "");
+                Console.WriteLine(response.Id);
                 return Ok(ResponseHelper.Success<UserDTO>(response, "got user"));
             }
             catch (ManagerException<ApiResponse<UserDTO>> ex)

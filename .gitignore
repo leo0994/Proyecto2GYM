@@ -2,6 +2,14 @@
 **/bin/
 **/obj/
 **/artifacts/
+/API/obj/
+/BL/obj/
+/DAO/obj/
+/DTO/obj/
+/UI/obj/
+*.csproj.user
+*.cache
+*.editorconfig
 
 # NuGet
 *.nupkg

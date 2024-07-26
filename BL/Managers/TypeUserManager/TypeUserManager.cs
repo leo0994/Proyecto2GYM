@@ -15,6 +15,7 @@ namespace Managers
 
         public override TypeUserDTO Create(TypeUserDTO entityDTO)
         {
+
             return _typeUserCrudFactory.Create(entityDTO);
         }
 

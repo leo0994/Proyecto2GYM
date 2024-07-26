@@ -8,8 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../DTO/DTO.csproj" />
-    <ProjectReference Include="../BL/BL.csproj" />
+    <ProjectReference Include="..\BL\BL.csproj" />
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <Content Update="Views\EquipmentAdmin\Update.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
