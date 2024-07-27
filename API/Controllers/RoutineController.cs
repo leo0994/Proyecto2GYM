@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using BL.Managers;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
+    [EnableCors("NocheCorsPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class RoutineController : ControllerBase
@@ -18,8 +21,10 @@ namespace API.Controllers
         }
 
         [HttpPost("Create")]
+
         public IActionResult Create([FromBody] RoutineDTO routine)
         {
+            /*
             try
             {
                 var createdRoutine = _manager.Create(routine);
@@ -29,6 +34,10 @@ namespace API.Controllers
             {
                 return StatusCode(500, e.Message);
             }
+            */
+        var result = _manager.Create(routine);
+        return Ok(result);
+
         }
 
         [HttpPut("Update")]

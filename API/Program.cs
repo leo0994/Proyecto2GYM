@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using BL.Policies;
+using Microsoft.AspNetCore.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 builder.Services.AddHttpContextAccessor();
@@ -55,9 +58,9 @@ var  MyAllowSpecificOrigins = "NocheCorsPolicy";
 builder.Services.AddCors(options => {
     options.AddPolicy(name: "NocheCorsPolicy",
         policy => {
-            policy.WithOrigins("*");
-            policy.AllowAnyHeader(); //application/json  application/xml application/text
-            policy.AllowAnyMethod(); //GET, POST, PUT, DELETE
+            policy.WithOrigins("*")
+                .AllowAnyHeader() //application/json  application/xml application/text
+                .AllowAnyMethod(); //GET, POST, PUT, DELETE
         });
 });
 
@@ -74,14 +77,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+
 app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
-
 app.MapControllers();
+
+
 
 app.Run();

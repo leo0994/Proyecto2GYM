@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Gym-Proyecto2";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/unlinkExerciseRoutine.js" defer asp-append-version="true"></script>
+<link rel="stylesheet" href="~/css/routineCreation.css" asp-append-version="true" />
+
+    <h2>Remove Exercise From Routine</h2>
+
+
+            <div class="table-container">
+
+            <table id="ExerciseRoutine" class="display">
+                <thead>
+                    <tr>
+                        <th>Base ID</th>
+                        <th>Id Routine</th>
+                        <th>Id Exercise ID</th>
+                    </tr>
+     
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+
+<div class="form-container">
+<form id="unlinkRoutineForm">
+    <div class="form-group">
+
+        <p>Option to delete a current Exercise in routine. <br>Please enter Base ID of the exercise to remove:</p>
+        <br>
+        <br />
+
+        <label for="routineID">Base ID:</label>
+        <input type="text" class="form-control" id="routineID" name="routine" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+<br>
+<br />
+
+
+

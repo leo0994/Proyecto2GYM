@@ -30,7 +30,7 @@ namespace DAO.Mapper
 
         public SqlOperation GetCreateStatement(ExerciseBaseDTO exerciseBase)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "CreateExerciseBase" }; // Assuming the existence of this stored procedure
+            var sqlOperation = new SqlOperation { ProcedureName = "dbo.InsertExerciseBase" }; 
 
             sqlOperation.AddVarcharParam("@name", exerciseBase.Name);
             sqlOperation.AddVarcharParam("@typeExercise", exerciseBase.TypeExercise);
@@ -47,19 +47,19 @@ namespace DAO.Mapper
 
         public SqlOperation GetRetrieveAllStatement()
         {
-            return new SqlOperation { ProcedureName = "GetAllExerciseBases" }; // Assuming the existence of this stored procedure
+            return new SqlOperation { ProcedureName = "dbo.GetAllExerciseBase" }; 
         }
 
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "GetExerciseBaseById" }; // Assuming the existence of this stored procedure
+            var sqlOperation = new SqlOperation { ProcedureName = "GetExerciseBaseById" };
             sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
         public SqlOperation GetUpdateStatement(ExerciseBaseDTO exerciseBase)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "UpdateExerciseBase" }; // Assuming the existence of this stored procedure
+            var sqlOperation = new SqlOperation { ProcedureName = "dbo.UpdateExerciseBaseById" };
 
             sqlOperation.AddIntParam("@id", exerciseBase.Id);
             sqlOperation.AddVarcharParam("@name", exerciseBase.Name);

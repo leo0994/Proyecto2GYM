@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Gym-Proyecto2";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/routineDeletion.js" defer asp-append-version="true"></script>
+
+<link rel="stylesheet" href="~/css/routineCreation.css" asp-append-version="true" />
+
+    <h2>Routine Deletion</h2>
+
+<!-- Discounts Table -->
+        <div class="table-container">
+
+            <table id="routineTable" class="display">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User ID</th>
+                        <th>Creator ID</th>
+                    </tr>
+     
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+
+
+<div class="form-container">
+<form id="deleteRoutineForm">
+    <div class="form-group">
+        <!--
+        <label for="routineID">Routine ID:</label>
+        <input type="text" class="form-control" id="routineID" name="id" required>
+        -->
+        <p>Option to delete a current Routine in the system <br>Please enter ID of the routine to delete.</p>
+        <br>
+        <br />
+        <label for="routineID">Routine ID:</label>
+        <input type="routineID" class="form-control" id="routineID" name="routineID" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+<br>
+<br />
+
+
+
+

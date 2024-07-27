@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Gym-Proyecto2";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/exerciseUpdate.js" defer asp-append-version="true"></script>
+<link rel="stylesheet" href="~/css/routineCreation.css" asp-append-version="true" />
+
+    <h2>Exercise Update</h2>
+
+            <div class="table-container">
+
+            <table id="exerciseTable" class="display">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Equipment ID</th>
+                        <th>Exercise Base ID</th>
+                        <th>Reps </th>
+                        <th>Weight </th>
+                        <th>Time </th>
+                    </tr>
+     
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+
+<div class="form-container">
+<form id="exerciseUpdateForm">
+    <div class="form-group">
+        <label for="exerciseID">Enter Id of Excercise to Modify:</label>
+        <input type="text" class="form-control" id="exerciseID" name="id" required>
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" id="description" name="description" required>
+        <label for="reps">Reps Quantity:</label>
+        <input type="text" class="form-control" id="reps" name="reps" required>
+        <label for="weight">Weight:</label>
+        <input type="text" class="form-control" id="weight" name="weight" required>
+        <label for="time">Time:</label>
+        <input type="text" class="form-control" id="time" name="time" required>
+        <label for="time">Machine ID:</label>
+        <input type="text" class="form-control" id="machineId" name="machineId" required>
+        <label for="time">Exercise Base ID:</label>
+        <input type="text" class="form-control" id="exerciseBaseId" name="exerciseBaseId" required>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+<br>
+<br />
+
+
+
+

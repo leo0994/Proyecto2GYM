@@ -1,0 +1,164 @@
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+/*
+nav {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+*/
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    padding: 15px;
+    display: block;
+}
+
+nav ul li a:hover {
+    color: #5555ff;
+}
+
+.container2 {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    width: 100%;
+    max-width: 900px;
+    flex-grow: 1;
+}
+
+/*
+table {
+    margin: 0 auto ;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #060607;
+    color: white;
+}
+*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+table th, table td {
+    padding: 12px 15px;
+}
+
+table th {
+    background-color: #404644;
+    color: #ffffff;
+    text-align: center;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+table tbody td input[type="checkbox"] {
+    transform: scale(1.5);
+    margin: 0 80px;
+}
+
+table th:first-child, table td:first-child {
+    width: 40%;
+}
+
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #060607;
+    color: white;
+    cursor: pointer;
+}
+
+
+button:hover {
+    background-color: #5d5d5f;
+}
+
+
+footer {
+    width: 100%;
+    background-color: #ffffff;
+    color: white;
+    text-align: center;
+    padding: 5px ;
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
+
+
+/* Responsive Design */
+@media only screen and (min-width: 768px) {
+    .header .container {
+        flex-direction: row;
+    }
+
+    .nav {
+        flex-direction: row;
+    }
+
+    .nav-link {
+        margin-left: var(--spacing-large);
+    }
+}

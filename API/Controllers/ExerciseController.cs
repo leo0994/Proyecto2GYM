@@ -1,12 +1,14 @@
 using DTOs;
-using Managers;
+using BL.Managers;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Managers;
+
 
 namespace API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ExerciseController : ControllerBase
     {
         private readonly ExerciseManager _exerciseManager;
@@ -16,14 +18,14 @@ namespace API.Controllers
             _exerciseManager = new ExerciseManager();
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create(ExerciseDTO exerciseDTO)
         {
             var result = _exerciseManager.Create(exerciseDTO);
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet("RetrieveAll")]
         public IActionResult GetAll()
         {
             var result = _exerciseManager.RetrieveAll();
@@ -37,17 +39,18 @@ namespace API.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public IActionResult Update(ExerciseDTO exerciseDTO)
         {
             var result = _exerciseManager.Update(exerciseDTO);
             return Ok(result);
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("Delete")]
+        
+        public IActionResult Delete([FromBody]ExerciseDTO exerciseDTO)
         {
-            var exerciseDTO = new ExerciseDTO { Id = id };
+            //var exerciseDTO = new ExerciseDTO { Id = id };
             var result = _exerciseManager.Delete(exerciseDTO);
             return Ok(result);
         }

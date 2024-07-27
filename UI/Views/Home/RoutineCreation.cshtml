@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "Gym-Proyecto2";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="~/css/routineCreation.css" asp-append-version="true" />
+
+    <h2>Routine Creation</h2>
+
+
+<div class="form-container">
+<form id="createRoutineForm">
+    <div class="form-group">
+        <!--
+        <label for="routineID">Routine ID:</label>
+        <input type="text" class="form-control" id="routineID" name="id" required>
+        -->
+        <label for="ClientID">Client ID:</label>
+        <input type="text" class="form-control" id="clientID" name="client" required>
+        <label for="TrainerID">Trainer ID:</label>
+        <input type="text" class="form-control" id="trainerID" name="trainer" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+<br>
+<br />
+
+
+<script src="~/js/routineCreation.js" asp-append-version="true"></script>
+

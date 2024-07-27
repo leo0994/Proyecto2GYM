@@ -30,9 +30,8 @@ namespace DAO.Mapper
 
         public SqlOperation GetCreateStatement(RoutineDTO routine)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "CreateRoutine" };
-
-            sqlOperation.AddIntParam("@user_Id", routine.UserId);
+            var sqlOperation = new SqlOperation { ProcedureName = "dbo.CreateRoutine" };
+            sqlOperation.AddIntParam("@user_id", routine.UserId);
             sqlOperation.AddIntParam("@creator_id", routine.CreatorId);
 
             return sqlOperation;
@@ -40,26 +39,26 @@ namespace DAO.Mapper
 
         public SqlOperation GetDeleteStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "DeleteRoutine" };
+            var sqlOperation = new SqlOperation { ProcedureName = "dbo.DeleteRoutine" };
             sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
         public SqlOperation GetRetrieveAllStatement()
         {
-            return new SqlOperation { ProcedureName = "GetAllRoutines" };
+            return new SqlOperation { ProcedureName = "dbo.GetAllRoutines" };
         }
 
         public SqlOperation GetRetrieveByIdStatement(int id)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "GetRoutineById" };
+            var sqlOperation = new SqlOperation { ProcedureName = "dbo.GetRoutineById" };
             sqlOperation.AddIntParam("@id", id);
             return sqlOperation;
         }
 
         public SqlOperation GetUpdateStatement(RoutineDTO routine)
         {
-            var sqlOperation = new SqlOperation { ProcedureName = "UpdateRoutine" };
+            var sqlOperation = new SqlOperation { ProcedureName = "dbo.UpdateRoutine" };
 
             sqlOperation.AddIntParam("@id", routine.Id);
             sqlOperation.AddIntParam("@user_id", routine.UserId);
