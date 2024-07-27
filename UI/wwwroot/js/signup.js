@@ -94,6 +94,7 @@ import { validateForm } from "./helpers.js";
                 default:
                     break;
             }
+            resetForm();
 
         } catch (error) {
             console.log(error)

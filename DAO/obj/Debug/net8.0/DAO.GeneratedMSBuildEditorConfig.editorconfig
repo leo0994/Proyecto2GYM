@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DAO
-build_property.ProjectDir = C:\Users\Matias\OneDrive\Documentos\Repositories\GymSiteProyecto2\Proyecto2GYM\DAO\
+build_property.ProjectDir = /Users/j.alvarez.mendoza/Desktop/jimmy/cenfotec/Proyecto2/DAO/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
