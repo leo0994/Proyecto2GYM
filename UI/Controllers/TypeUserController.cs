@@ -7,27 +7,27 @@ namespace UI.Controllers;
 
 public class TypeUserController : Controller
 {
-    //[Authorize(Policy = "Administrator")]
+    [Authorize(Policy = "Administrator")]
     public IActionResult Create()
     {
         return View();
     }
-    //[Authorize(Policy = "Administrator")]
+    [Authorize(Policy = "Administrator")]
     public IActionResult Update()
     {
         return View();
     }
-    //[Authorize(Policy = "Administrator")]
+    [Authorize(Policy = "Administrator")]
     public IActionResult Delete()
     {
         return View();
     }
-    //[Authorize(Policy = "Administrator")]
+    [Authorize(Policy = "Administrator")]
     public IActionResult GetById()
     {
         return View();
     }
-    //[Authorize(Policy = "Administrator")]
+    [Authorize(Policy = "Administrator")]
     public IActionResult GetAll()
     {
         return View();

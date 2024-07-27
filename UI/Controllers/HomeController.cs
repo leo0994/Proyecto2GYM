@@ -23,6 +23,7 @@ public class HomeController : Controller
     {
         return View();
     }
+    
     [Authorize(Policy = "Administrator")] 
      public IActionResult SignUp()
     {
