@@ -31,6 +31,11 @@ namespace DAO.Mapper
             var operation = new SqlOperation { ProcedureName = "CreateClassActivity" };
             operation.AddVarcharParam("@name", classActivity.Name);
             operation.AddVarcharParam("@description", classActivity.Description);
+            operation.AddVarcharParam("@image_url", classActivity.Image_url ?? null);
+            operation.AddIntParam("@instructor", classActivity.Instructor);
+            operation.AddVarcharParam("@dayOfWeek", classActivity.DayOfWeek);
+            operation.AddTimeParamAsString("@hour", classActivity.Hour);
+            operation.AddIntParam("@capacity", classActivity.Capacity ?? 0);
             return operation;
         }
 
