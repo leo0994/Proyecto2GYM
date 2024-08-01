@@ -123,3 +123,35 @@ BEGIN
     VALUES (@name, @description, @image_url, @instructor,@capacity, @dayOfWeek, @hour);
 END
 GO
+
+
+CREATE PROCEDURE UpdateClassActivity
+    @id INT,
+    @name NVARCHAR(100),
+    @description NVARCHAR(255),
+    @image_url NVARCHAR(255),
+    @instructor INT,
+    @dayOfWeek NVARCHAR(50),
+    @hour TIME,
+    @capacity INT
+AS
+BEGIN
+    UPDATE ClassActivity
+    SET name = @name,
+        description = @description,
+        image_url = @image_url,
+        instructor = @instructor,
+        DayOfWeek = @dayOfWeek,
+        Hour = @hour,
+        Capacity = @capacity
+    WHERE Id = @id;
+END
+
+
+
+CREATE PROCEDURE GetAllClassActivities
+AS
+BEGIN
+    SELECT A.id, A.name, A.description, A.image_url, A.instructor 'Instructor', U.name 'NameInstructor', A.Capacity, A.DayOfWeek, A.Hour FROM ClassActivity A
+    INNER JOIN dbo.[User] U on A.instructor = U.id
+END

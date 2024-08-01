@@ -12,7 +12,13 @@ namespace DAO.Mapper
             {
                 Id = (int)row["id"],
                 Name = (string)row["name"],
-                Description = (string)row["description"]
+                Description = (string)row["description"],
+                Image_url = row["image_url"] != DBNull.Value ? (string)row["image_url"] : null,
+                Instructor = (int)row["Instructor"],
+                NameInstructor = (string)row["NameInstructor"],
+                DayOfWeek = (string)row["DayOfWeek"],
+                Hour = TimeSpan.Parse((string)row["Hour"]),
+                Capacity = (int) row["Capacity"]
             };
         }
 
@@ -52,6 +58,11 @@ namespace DAO.Mapper
             operation.AddIntParam("@id", classActivity.Id);
             operation.AddVarcharParam("@name", classActivity.Name);
             operation.AddVarcharParam("@description", classActivity.Description);
+            operation.AddVarcharParam("@image_url", classActivity.Image_url ?? null);
+            operation.AddIntParam("@instructor", classActivity.Instructor);
+            operation.AddVarcharParam("@dayOfWeek", classActivity.DayOfWeek);
+            operation.AddTimeParamAsString("@hour", classActivity.Hour);
+            operation.AddIntParam("@capacity", classActivity.Capacity ?? 0);
             return operation;
         }
 

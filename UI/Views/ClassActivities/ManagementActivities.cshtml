@@ -15,7 +15,7 @@
     <h2>Activities</h2>
     <div data-table-activities>
         <div class="filter-container">
-            <input type="date" id="filterDate" class="filter-input">
+            @* <input type="time" id="filterTime" class="filter-input"> *@
             <input type="text" id="searchId" placeholder="Search by ID" class="filter-input">
             <button class="btn btn-primary" id="refresh">Refresh</button>
         </div>
@@ -23,13 +23,15 @@
             <table id="activitiesTable">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Instructor</th>
-                        <th>Schedule</th>
-                        <th>Capacity</th>
-                        <th>Image</th>
+                        <td>id</td> <!-- ID -->
+                        <td>name</td> <!-- Name -->
+                        <td>Description</td> <!-- Description -->
+                        <td>image</td> <!-- Instructor -->
+                        <td>idInstructor</td> <!-- Instructor -->
+                        <td>nameInstructor</td> <!-- Instructor -->
+                        <td>dayOfWeek</td> <!-- Schedule (Day and Hour) -->
+                        <td>hour</td>
+                        <td>capacity</td>
                     </tr>
                 </thead>
                 <tbody>
