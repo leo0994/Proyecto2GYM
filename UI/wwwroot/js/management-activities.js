@@ -51,8 +51,7 @@ import { validateForm } from "./helpers.js";
         const messageDiv = document.getElementById('message');
         messageDiv.textContent = message;
         messageDiv.className = 'message ' + type;
-
-        document.querySelector("#deleteBtn").style.display = 'none'
+        if(type == "error") document.querySelector("#deleteBtn").style.display = 'none';
     }
 
     // Refresh table data

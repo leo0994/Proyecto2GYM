@@ -21,13 +21,13 @@ public class ClassActivities : Controller
     {
         try
         {
-            // Task<string> response = fetch("http://localhost:5049/api/ClassActivity");  
-            // var res =  JObject.Parse(response.Result);
-            // if((string)res["success"] != "True"){
-            //     return RedirectToAction("Index", "Home");
-            // }
-            // ViewBag.activites = res["data"] ;
-            // Console.WriteLine(response.Result);
+            Task<string> response = fetch("http://localhost:5049/api/ClassActivity");  
+            var res =  JObject.Parse(response.Result);
+            if((string)res["success"] != "True"){
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.activites = res["data"] ;
+            Console.WriteLine(response.Result);
             return View();
         }
         catch (System.Exception e)
