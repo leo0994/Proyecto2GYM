@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using BL.Policies;
+using UI.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,7 +71,9 @@ builder.Services.AddSingleton<IAuthorizationHandler, SubscribersPolicyHandler>()
 builder.Services.AddSingleton<IAuthorizationHandler, GoersPolicyHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, CoachPolicyHandler>();
 
-// Configuración CORS // Maria
+builder.Services.AddHttpClient<HomeController>();
+
+// Configuraciï¿½n CORS // Maria
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
@@ -80,7 +83,7 @@ builder.Services.AddCors(options =>
                    .AllowAnyMethod()
                    .AllowAnyHeader();
         });
-}); // línea nueva agregada por Maria
+}); // lï¿½nea nueva agregada por Maria
 
 var  MyAllowSpecificOrigins = "NocheCorsPolicy";
 
@@ -112,7 +115,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseCors("AllowAllOrigins"); // línea nueva agregada por Maria
+app.UseCors("AllowAllOrigins"); // lï¿½nea nueva agregada por Maria
 
 app.UseAuthentication();
 app.UseAuthorization();
