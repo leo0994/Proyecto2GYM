@@ -33,10 +33,10 @@ $(document).ready(function () {
         var name = $('#name').val()
         var description = $('#description').val()
 
-        const apiUrl = API_URL_BASE_NORMAL + "/EquipmentAdmin/Equipment";
+        const apiUrl = API_URL_BASE_NORMAL + "/EquipmentAdmin/Equipment/";
 
         $.ajax({
-            url: API_URL_BASE + "/Machine/Update",
+            url: apiUrlUpdate,
             method: "PUT",
             hasContent: true,
             data: JSON.stringify({ 'id': idMachine, 'name': name, 'description': description }),

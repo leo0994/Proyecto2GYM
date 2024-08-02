@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using UI.Models;
+using DTOs;
 using Newtonsoft.Json.Linq;
 
 namespace UI.Controllers;
@@ -16,14 +17,35 @@ public class ClassActivities : Controller
         _logger = logger;
     }
 
-    // [Authorize(Policy = "Administrator")] 
+    public IActionResult Index()
+    {
+        try
+        {
+            // Task<string> response = fetch("http://localhost:5049/api/ClassActivity");  
+            // var res =  JObject.Parse(response.Result);
+            // if((string)res["success"] != "True"){
+            //     return RedirectToAction("Index", "Home");
+            // }
+            // ViewBag.activites = res["data"] ;
+            // Console.WriteLine(response.Result);
+            return View();
+        }
+        catch (System.Exception e)
+        {
+            Console.WriteLine(e);
+            return RedirectToAction("Index", "Home");
+        }
+        
+    }
+
+    [Authorize(Policy = "SuperAdministrator")] 
     public IActionResult ManagementActivities()
     {
         try
         {
-            // Task<string> response = fetch("http://localhost:5049/api/User/RetrieveAllCoaches");  
-            // ViewBag.coaches = JArray.Parse(response.Result);
-            // Console.WriteLine(response.Result);
+            Task<string> response = fetch("http://localhost:5049/api/User/RetrieveAllCoaches");  
+            ViewBag.coaches = JArray.Parse(response.Result);
+            Console.WriteLine(response.Result);
             return View();
         }
         catch (System.Exception e)

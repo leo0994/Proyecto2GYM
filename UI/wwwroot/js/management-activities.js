@@ -51,6 +51,8 @@ import { validateForm } from "./helpers.js";
         const messageDiv = document.getElementById('message');
         messageDiv.textContent = message;
         messageDiv.className = 'message ' + type;
+
+        document.querySelector("#deleteBtn").style.display = 'none'
     }
 
     // Refresh table data
@@ -104,13 +106,16 @@ import { validateForm } from "./helpers.js";
     // document.getElementById('filterTime').addEventListener('input', applyFilters);
     document.getElementById('searchId').addEventListener('input', applyFilters);
 
-    document.querySelector("#deleteBtn").addEventListener("click", deleteAppointment);
+    document.querySelector("#deleteBtn").addEventListener("click", deleteActivity);
 
     document.querySelector(".activities-inventory #refresh").addEventListener("click", refreshTable);
 
 
-    async function deleteAppointment(e) {
+    async function deleteActivity(e) {
         try {
+            if(!selectedRowId){
+               throw Error("Error Deleting, didn't select row");
+            }
             e.target.setAttribute("disabled", "");
             await fetch(`http://localhost:5049/api/ClassActivity/${selectedRowId}`, {
                 method: "DELETE",
