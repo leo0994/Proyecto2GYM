@@ -41,7 +41,11 @@
 }
 
 .logo img {
+<<<<<<< HEAD
     max-width: 40px;
+=======
+    max-width: 70px;
+>>>>>>> e3c15699367f117570818631b836484719888630
 }
 
 @media screen and (min-width: 768px) {

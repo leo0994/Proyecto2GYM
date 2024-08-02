@@ -1,0 +1,172 @@
+.hero-banner {
+    background-image: url("https://classpass-res.cloudinary.com/image/upload/f_auto/q_auto/se9bntuca77mwt8rl01e.jpg");
+    color: white;
+}
+
+.hero h1 {
+    font-size: var(--font-size-xlarge);
+    margin-bottom: var(--spacing-medium);
+    color: var(--color-secondary);
+}
+
+.hero p {
+    margin-bottom: var(--spacing-medium);
+    color: var(--color-secondary);
+}
+
+
+.services {
+    /* padding: var(--spacing-xlarge) 0; */
+    margin: 96px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.services h2 {
+    font-size: var(--font-size-xlarge);
+    margin-bottom: var(--spacing-medium);
+    text-align: left;
+}
+
+.services p {
+    margin-bottom: var(--spacing-large);
+    text-align: left;
+}
+
+.service-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+}
+
+.service-cards .card {
+    padding: var(--spacing-medium);
+    text-align: left;
+    border: 1px solid var(--color-accent);
+    border-radius: var(--spacing-small);
+}
+
+.service-cards .card h3 {
+    font-size: var(--font-size-large);
+    margin-bottom: var(--spacing-small);
+}
+
+.service-cards .card p {
+    margin-bottom: var(--spacing-small);
+}
+
+.services ul li {
+    margin-bottom: 8px;
+}
+
+.services img {
+    margin-bottom: 24px;
+ }
+
+/* Responsive Design */
+@media only screen and (min-width: 768px) {
+    .service-cards {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .services {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 80px;
+        margin: 128px 0;
+    }
+
+    .services div {
+        width: 50%;
+    }
+    .services img {
+       margin-bottom:  0;
+    }
+}
+
+
+.cta-buttons a {
+    margin-right: var(--spacing-small);
+}
+
+.activities-inventory {
+    margin: 128px 0;
+}
+
+.activities-inventory h2 {
+    margin-bottom: 28px;
+}
+
+.create-activities {
+    margin: 128px 0;
+}
+
+.create-activities h2 {
+    margin-bottom: 28px;
+}
+
+.create-activities .form-container {
+    max-width: 480px;
+}
+
+.create-activities .form-container .footnote {
+    font-size: 12px;
+    margin-top: 28px;
+    text-align: center;
+}
+
+
+[data-form] [data-form-inputs] {
+    display: none;
+}
+
+[data-state-form="create"] [data-create] {
+    display: block;
+}
+
+[data-state-form="update"] [data-update] {
+    display: block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+th {
+    background-color: #f4f4f4;
+}
+
+.message {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+.message.loading {
+    background-color: #f9f9f9;
+}
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.filter-container {
+    margin-bottom: 20px;
+}
+
+.filter-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}

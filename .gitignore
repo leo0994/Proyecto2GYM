@@ -4,7 +4,7 @@
 **/artifacts/
 /API/obj/
 /BL/obj/
-/DAO/obj/
+/DAO/obj/Debug
 /DTO/obj/
 /UI/obj/
 *.csproj.user

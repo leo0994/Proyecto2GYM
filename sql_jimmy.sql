@@ -56,3 +56,102 @@ AS
 BEGIN
     DELETE FROM Appointment WHERE id = @id;
 END;
+
+
+SELECT * FROM ClassActivity
+
+
+CREATE TABLE UserClassActivity (
+    UserClassActivityId INT PRIMARY KEY IDENTITY,
+    UserId INT FOREIGN KEY REFERENCES [User](id),
+    ClassActivityId INT FOREIGN KEY REFERENCES ClassActivity(id),
+    RegistrationDate DATETIME DEFAULT GETDATE()
+);
+
+ALTER TABLE ClassActivity
+ADD Capacity INT
+
+
+
+ALTER TABLE ClassActivity
+ADD image_url NVARCHAR(2048)
+ADD instructor NVARCHAR(100)
+    Schedule DATETIME,
+    Capacity INT
+
+
+ALTER TABLE ClassActivity
+ADD DayOfWeek NVARCHAR(50)
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT * FROM HistoryEnrollment
+INNER JOIN Enrollment E on E.id = HistoryEnrollment.user_id
+
+
+
+ALTER TABLE ClassActivity
+ADD Hour NVARCHAR(50)
+
+select * FROM ClassActivity
+
+drop procedure CreateClassActivity
+
+USE [GYM-Proyecto-2]
+
+CREATE PROCEDURE CreateClassActivity
+    @name NVARCHAR(100),
+    @description NVARCHAR(255),
+    @image_url NVARCHAR(255),
+    @instructor INT,
+    @dayOfWeek NVARCHAR(50),
+    @hour TIME,
+    @capacity INT
+AS
+BEGIN
+    INSERT INTO ClassActivity (name, description, image_url, instructor, Capacity, DayOfWeek, Hour)
+    VALUES (@name, @description, @image_url, @instructor,@capacity, @dayOfWeek, @hour);
+END
+GO
+
+
+CREATE PROCEDURE UpdateClassActivity
+    @id INT,
+    @name NVARCHAR(100),
+    @description NVARCHAR(255),
+    @image_url NVARCHAR(255),
+    @instructor INT,
+    @dayOfWeek NVARCHAR(50),
+    @hour TIME,
+    @capacity INT
+AS
+BEGIN
+    UPDATE ClassActivity
+    SET name = @name,
+        description = @description,
+        image_url = @image_url,
+        instructor = @instructor,
+        DayOfWeek = @dayOfWeek,
+        Hour = @hour,
+        Capacity = @capacity
+    WHERE Id = @id;
+END
+
+
+
+CREATE PROCEDURE GetAllClassActivities
+AS
+BEGIN
+    SELECT A.id, A.name, A.description, A.image_url, A.instructor 'Instructor', U.name 'NameInstructor', A.Capacity, A.DayOfWeek, A.Hour FROM ClassActivity A
+    INNER JOIN dbo.[User] U on A.instructor = U.id
+END
