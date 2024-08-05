@@ -37,3 +37,39 @@ const routineCreation = (e) => {
 }
 
 $("#createRoutineForm").on('submit', routineCreation)
+
+
+let table = $('#routineTable').DataTable({
+    data: [],
+    columns: [
+        { data: 'id' },
+        { data: 'userId' },
+        { data: 'creatorId' },
+    ]
+});
+
+const capitalize = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1)
+}
+
+const prepareTableData = (result) => {
+    table.clear().rows.add(result).draw();
+}
+
+$(document).ready(() => {
+    const apiUrl = API_URL_BASE + "/Routine/RetrieveAll"
+    $.ajax({
+        url: apiUrl,
+    })
+        .done((result) => {
+            prepareTableData(result)
+        })
+        .fail((error) => {
+            Swal.fire({
+                title: "Mensaje",
+                text: "There was an error uploading date to table: " + error,
+                icon: "error",
+            });
+        });
+}
+)

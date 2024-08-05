@@ -14,7 +14,7 @@
             <table id="routineTable" class="display">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Routine ID</th>
                         <th>User ID</th>
                         <th>Creator ID</th>
                     </tr>
@@ -30,14 +30,22 @@
 <div class="form-container">
 <form id="updateRoutineForm">
     <div class="form-group">
-        <label for="routineID">Enter Routine ID to modify:</label>
-        <input type="text" class="form-control" id="routineID" name="id" required>
-        <label for="clientID">Enter New Client ID:</label>
-        <input type="text" class="form-control" id="clientID" name="client" required>
-        <label for="trainerID">Enter New Trainer ID:</label>
-        <input type="text" class="form-control" id="trainerID" name="trainer" required>
+        <label class="form-label" for="routineID">Enter Routine ID to modify:</label>
+        <input class="form-input" type="text" class="form-control" id="routineID" name="id" required>
+    </div> 
+    <div class="form-group">   
+        <label class="form-label" for="clientID">Enter New Client ID:</label>
+        <input class="form-input" type="text" class="form-control" id="clientID" name="client" required>
     </div>
+    <div class="form-group">       
+        <label class="form-label" for="trainerID">Enter New Trainer ID:</label>
+        <input class="form-input" type="text" class="form-control" id="trainerID" name="trainer" required>
+    </div>
+
+    <div class="form-group"> 
     <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    
 </form>
 </div>
 <br>
