@@ -16,7 +16,7 @@ namespace API.Controllers
         }
 
         [HttpGet("RetrieveAll")]
-        public IActionResult RetrieveAll()
+        public IActionResult RetrieveAll() 
         {
             try
             {

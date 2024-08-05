@@ -15,7 +15,7 @@ namespace UI.Controllers
             _logger = logger;
         }
 
-
+        [Authorize(Policy = "Administrator")]
         public IActionResult Subscription()
         {
             return View();

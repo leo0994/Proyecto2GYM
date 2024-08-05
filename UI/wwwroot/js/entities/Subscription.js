@@ -1,5 +1,4 @@
-
-let table = ('#subscriptionTable').DataTable({
+let table = $('#subscriptionTable').DataTable({
     data: [],
     columns: [
         { data: 'name' },
@@ -14,7 +13,7 @@ const capitalize = (word) => {
 }
 
 const prepareTableData = (result) => {
-    table.clear().rows.add(result).draw();
+    table.clear().rows.add(result.data).draw();
 }
 
 $(document).ready(() => {
@@ -23,7 +22,8 @@ $(document).ready(() => {
         url: apiUrl,
     })
         .done((result) => {
-            prepareTableData(result)
+            console.log(result);
+            prepareTableData(result);
         })
         .fail((error) => {
             Swal.fire({
@@ -32,4 +32,4 @@ $(document).ready(() => {
                 icon: "error",
             });
         });
-})
+});

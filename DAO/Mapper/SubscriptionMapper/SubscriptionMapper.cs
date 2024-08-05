@@ -8,10 +8,10 @@ namespace DAO.Mapper
         {
             var subscription = new SubscriptionDTO
             {
-                Name = (string)row["name"],
-                Email = (string)row["email"],
-                Date = (string)row["date"],
-                Status = (string)row["status"]
+                Name = (string)row["Name"],
+                Email = (string)row["Contact"],
+                Date = (DateTime)row["Date"],
+                Status = (string)row["Status"]
             };
 
             return subscription;
