@@ -1,0 +1,197 @@
+<link rel="stylesheet" href="~/css/activities.css" asp-append-version="true" />
+
+<section class="hero-banner hero">
+    <div class="cta-content">
+        <h1>Enjoy our classes <br> and activites</h1>
+        <p>Welcome to our Gym Activites Creation Portal, <br> your one-stop solution for setting up and managing
+            <br> gym Activites effortlessly.
+        </p>
+        <a href="#activities" class="btn btn-secondary">activities </a>
+    </div>
+</section>
+
+
+<section>
+    @if (ViewBag.activites != null && ViewBag.activites.Count > 0)
+    {
+        @foreach (var activity in ViewBag.activites)
+        {
+            <div id="activities" class="services">
+                <div>
+                    <img src="/@activity.image_url" alt="">
+                </div>
+                <div>
+                    <h2
+                        style="background: -webkit-linear-gradient(180deg, rgba(236,1,1,0) 0%, rgba(2,189,222,1) 36%, rgba(0,0,0,1) 99%); -webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                        @activity.name</h2>
+                    <p>@activity.description</p>
+                    <ul>
+                        <li><strong>Hour:</strong> @activity.hour on @activity.dayOfWeek</li>
+                        <li><strong>Instructor:</strong> @activity.nameInstructor</li>
+                        <li><strong>Max members:</strong> @activity.capacity</li>
+                    </ul>
+                    <br>
+                    <button data-join-activity data-id-activity="@activity.id" href="/home/#join"
+                        class="btn btn-primary">Join</button>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div id="activities" class="services">
+            <h3
+                style="background: -webkit-linear-gradient(180deg, rgba(236,1,1,0) 0%, rgb(222, 2, 46) 36%, rgba(0,0,0,1) 99%); -webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+                Unfortunatly we don't have classes or activites yet. <br> Please stay tuned.. We are preparing new classes
+                very soon
+            </h3>
+        </div>
+    }
+</section>
+
+
+<script>
+
+    const participantEntity = {
+        "id": 0,
+        "userId": 0,
+        "classActivityId": 0,
+        "userName": "string",
+        "classActivityName": "string",
+        "registrationDate": null
+    }
+
+    document.addEventListener("click", (e) => {
+        if ('idActivity' in e.target?.dataset) {
+            e.target.setAttribute("disabled", "");
+
+            const idClass = e.target?.dataset.idActivity;
+            let user = getCookie('user');
+            const participant = { ...participantEntity }
+            participant.classActivityId = idClass;
+            participant.registrationDate = getCurrentDateTimeISO();
+            participant.userId = user;
+            registerParticipant(participant, e.target);
+        }
+    })
+
+    function createModal(HTML_dynamic) {
+        let modalHtml = `
+            <div data-modal-gym class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="content-modal">${HTML_dynamic}</div>
+                </div>
+            </div>
+        `;
+        $('body').append(modalHtml);
+
+        $(".close").click(function () {
+            $("[data-modal-gym]").fadeOut(function () {
+                $(this).remove();
+            });
+        });
+
+        $(window).click(function (event) {
+            if ($(event.target).is("[data-modal-gym]")) {
+                $("[data-modal-gym]").fadeOut(function () {
+                    $(this).remove();
+                });
+            }
+        });
+        $("[data-modal-gym]").fadeIn();
+    }
+
+    function getCurrentDateTimeISO() {
+        // Create a new Date object representing the current date and time
+        const now = new Date();
+
+        // Convert the Date object to an ISO 8601 string with the toISOString() method
+        const isoString = now.toISOString();
+
+        // Return the ISO 8601 string
+        return isoString;
+    }
+
+    function getCookie(name) {
+        // Retrieve all cookies as a single string
+        let cookies = document.cookie;
+
+        // Create a string pattern to find the cookie name followed by an '='
+        let cookiePattern = new RegExp('(^|; )' + name + '=([^;]*)');
+
+        // Use the regex to match and capture the cookie value
+        let match = cookies.match(cookiePattern);
+
+        // If the cookie is found, return its value; otherwise, return null
+        return match ? decodeURIComponent(match[2]) : null;
+    }
+
+    async function registerParticipant(participant, ele) {
+        try {
+            const response = await await fetch(`http://localhost:5049/api/Participant/Create`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(participant),
+            }).then(res => res.json());
+
+            ele.removeAttribute("disabled", "");
+
+            if (response == 1) {
+                createModal(`
+                    <div style="text-align: center;">
+                        <div style="display: flex; justify-content: center; color: #1e5603">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert h-4 w-4"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+                            <h2 style="padding-left: 12px" class="">Congrats!!</h2>
+                        </div>
+                        <br>
+                        <p style="font-size: 14px">You are registered to the Activity</p>
+                    </div>
+                `);
+                return
+            }
+            if (response == 2) {
+                createModal(`
+                    <div style="text-align: center;">
+                        <div style="display: flex; justify-content: center; color: #a70000">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert h-4 w-4"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+                        <h2 style="padding-left: 12px" class="">Error</h2>
+                        </div>
+                        <br>
+                        <p style="font-size: 14px">Registration for the activity is full.</p>
+                    </div>
+                `);
+                return
+            }
+            if (response == 3) {
+                createModal(`
+                    <div style="text-align: center;">
+                        <div style="display: flex; justify-content: center; color: #baba04">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert h-4 w-4"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+                        <h2 style="padding-left: 12px" class="">Warning!!</h2>
+                        </div>
+                        <br>
+                        <p style="font-size: 14px">You are already joined to this Activity</p>
+                    </div>
+                `);
+                return
+            }
+
+        } catch (error) {
+            ele.removeAttribute("disabled", "");
+            createModal(`
+                <div style="text-align: center;">
+                    <div style="display: flex; justify-content: center; color: #a70000">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert h-4 w-4"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+                        <h2 style="padding-left: 12px" class="">Error</h2>
+                    </div>
+                    <br>
+                    <p style="font-size: 14px">Something wrong happened, please try it again.</p>
+                </div>
+            `);
+        }
+    }
+
+</script>

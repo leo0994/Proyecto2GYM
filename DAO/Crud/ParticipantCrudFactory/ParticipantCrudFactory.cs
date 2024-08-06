@@ -21,6 +21,13 @@ namespace DAO.Crud
             return participant;
         }
 
+         public int RegisterParticipant(ParticipantDTO participant)
+        {
+            var sqlOperation = _mapper.GetCreateStatement(participant);
+            var result = dao.ExecuteQueryProcedure(sqlOperation);
+            return (int)result[0]["Status"];
+        }
+
         public override ParticipantDTO Delete(ParticipantDTO participant)
         {
             var sqlOperation = _mapper.GetDeleteStatement(participant.Id);

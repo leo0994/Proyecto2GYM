@@ -5,7 +5,7 @@
 <script src="~/js/exerciseDeletion.js" defer asp-append-version="true"></script>
 <link rel="stylesheet" href="~/css/routineCreation.css" asp-append-version="true" />
 
-    <h2>Exercise Register</h2>
+    <h2>Exercise Removal</h2>
 
             <div class="table-container">
 
@@ -32,11 +32,13 @@
 <form id="deleteExerciseForm">
     <div class="form-group">
 
-        <p>Option to delete a current Exercise in the system. <br>Please enter ID of the exercise to delete:</p>
+        <p>Option to delete a current Exercise from the system. <br>Please enter ID of the exercise to delete:</p>
         <br>
         <br />
-        <label for="exerciseID">Exercise ID:</label>
-        <input type="routineID" class="form-control" id="exerciseID" name="exerciseID" required>
+        <div class="form-group">
+        <label class="form-label"for="exerciseID">Exercise ID:</label>
+        <input class="form-input type="routineID" class="form-control" id="exerciseID" name="exerciseID" required>
+        </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

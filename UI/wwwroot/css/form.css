@@ -151,8 +151,10 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-input::placeholder {
+textarea::placeholder
+,input::placeholder {
   opacity: 0.5;
   font-style: italic;
   font-size: 0.9rem;
 }
+

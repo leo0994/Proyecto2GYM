@@ -14,8 +14,8 @@
                 <thead>
                     <tr>
                         <th>Base ID</th>
-                        <th>Id Routine</th>
-                        <th>Id Exercise ID</th>
+                        <th>ID Routine</th>
+                        <th>ID Exercise ID</th>
                     </tr>
      
                 </thead>
@@ -28,13 +28,16 @@
 <div class="form-container">
 <form id="linkRoutineForm">
     <div class="form-group">
-
-        <label for="routineID">Routine ID:</label>
-        <input type="text" class="form-control" id="routineID" name="routine" required>
-        <label for="ExerciseID">Exercise ID to be assigned:</label>
-        <input type="text" class="form-control" id="exerciseID" name="exercise" required>
+        <label class="form-label" for="routineID">Routine ID:</label>
+        <input class="form-input" type="text" class="form-control" id="routineID" name="routine" required>
     </div>
+    <div class="form-group">   
+        <label class="form-label" for="ExerciseID">Exercise ID to be assigned:</label>
+        <input class="form-input" type="text" class="form-control" id="exerciseID" name="exercise" required>
+    </div>
+    <div class="form-group">   
     <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </form>
 </div>
 <br>

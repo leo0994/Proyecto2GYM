@@ -2,10 +2,14 @@ Notes, for possible fixes in next spring
 
 1. Hashing password is implemented in most easy way, just hashing the password and compare it in DB (we are not generating salts for indivual users passwords).
 2. Recovery password - User will be able to update the password and use the same only the fist time, after that they will have to update the password using a different from the last 5 registered.
-3. In User table the Birthday is given as null value, we should need to review.
+3. Insted of redirect to homepage when an error happens, we should have a view or any UI on the page triggered with the error and details about what happened. 
 
 
-Client
-Administrator
-Trainner
-Receptionist
+
+
+When the user clicks join, the database should return 3 states
+a. Success
+b. Error --> maximun capacity
+c. Already joined
+
+we need to update the classActivity table to let the users know when the class is full
