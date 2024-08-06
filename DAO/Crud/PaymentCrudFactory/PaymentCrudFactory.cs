@@ -21,6 +21,16 @@ namespace DAO.Crud
             return payment;
         }
 
+        public string CreatePaymentReturnID(PaymentDTO payment) // Nueva funcion para ejecutar el store procedure y regresar el ID
+        {
+            var sqlOperation = _paymentMapper.GetCreateStatement(payment);
+            //dao.ExecuteProcedure(sqlOperation);
+            string result = dao.ExecuteReturnValue(sqlOperation); // nueva funcion ExecuteReturnValue
+            //Console.WriteLine(result);
+            return result;
+        }
+
+
         public override PaymentDTO Delete(PaymentDTO payment)
         {
             var sqlOperation = _paymentMapper.GetDeleteStatement(payment.Id);

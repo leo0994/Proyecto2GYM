@@ -13,10 +13,11 @@ namespace BL.Managers
             _crudFactory = new PaymentCrudFactory();
         }
 
-        public PaymentDTO Create(PaymentDTO payment)
+        public string Create(PaymentDTO payment) // Modificado por maria se ingreso una nueva funcion
         {
-            return _crudFactory.Create(payment);
+            return _crudFactory.CreatePaymentReturnID(payment); // se cambio create por create CreatePaymentReturnID
         }
+ 
 
         public PaymentDTO Update(PaymentDTO payment)
         {

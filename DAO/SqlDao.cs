@@ -53,6 +53,50 @@ namespace DAO
             }
         }
 
+
+        public string ExecuteReturnValue(SqlOperation sqlOperation) // Agregado por Maria // Ejecuta el llamado al store procedure para que regrese un ID
+        {
+            // Cual BD se va a usar
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                //Cual SP se va a usar
+                using (var command = new SqlCommand(sqlOperation.ProcedureName, conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                })
+                {
+                    //Recorremos la lista de parametros y los agregamos a la ejecucion
+                    foreach (var param in sqlOperation.Parameters)
+                    {
+                        command.Parameters.Add(param);
+
+                    }
+
+                    //Ejecutamos "contra" la base datos
+                    conn.Open();
+                    var reader = command.ExecuteReader();
+                    string result = "";
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var row = new Dictionary<string, object>();
+                            for (var i = 0; i < reader.FieldCount; i++)
+                            {
+                                result = reader.GetValue(i).ToString();
+                            }
+                        }
+                    }
+                    //command.ExecuteNonQuery();
+                    //command.ExecuteReader
+
+                    return result;
+                }
+
+            }
+        }
+
         public List<Dictionary<string, object>> ExecuteQueryProcedure(SqlOperation sqlOperation)
         {
             var result = new List<Dictionary<string, object>>();
