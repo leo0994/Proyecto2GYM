@@ -6,5 +6,4 @@ public class PaymentDTO
         public decimal Amount { get; set; }
         public int PaymentMethodId { get; set; }
         public string Status { get; set; }
-        public string CouponName { get; set; }
-}
+    }

@@ -14,8 +14,7 @@ namespace DAO.Mapper
                 Date = (DateTime)row["date"],
                 Amount = (decimal)row["amount"],
                 PaymentMethodId = (int)row["payment_method_id"],
-                Status = (string)row["status"],
-                CouponName = (string)row["CouponName"]
+                Status = (string)row["status"]
             };
 
             return payment;
@@ -41,7 +40,7 @@ namespace DAO.Mapper
             sqlOperation.AddFloatParam("@amount", (float)payment.Amount);
             sqlOperation.AddIntParam("@payment_method_id", payment.PaymentMethodId);
             sqlOperation.AddVarcharParam("@status", payment.Status);
-            sqlOperation.AddVarcharParam("@cupon_name", payment.CouponName);
+
             return sqlOperation;
         }
 
@@ -74,7 +73,6 @@ namespace DAO.Mapper
             sqlOperation.AddFloatParam("@amount", (float)payment.Amount);
             sqlOperation.AddIntParam("@payment_method_id", payment.PaymentMethodId);
             sqlOperation.AddVarcharParam("@status", payment.Status);
-            sqlOperation.AddVarcharParam("@cupon_name", payment.CouponName);
 
             return sqlOperation;
         }

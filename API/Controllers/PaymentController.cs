@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using BL.Managers;
 using System;
 using System.Collections.Generic;
-using DTO.ResponseDTO;
 
 namespace API.Controllers
 {
@@ -18,27 +17,18 @@ namespace API.Controllers
             _manager = new PaymentManager();
         }
 
-        [HttpPost("Create")] // Modificado por MARIA 
+        [HttpPost("Create")]
         public IActionResult Create([FromBody] PaymentDTO payment)
         {
             try
             {
-                int createdPaymentId = Int32.Parse(_manager.Create(payment)); // response del manager
-                var responseDTO = new ResponseDTO //  dto response 
-                {
-                    codeResponse = "0",
-                    messageResponse = "Payment registered correctly",
-                    dataResponse = createdPaymentId.ToString()
-                };
-
-                return Ok(responseDTO);
+                var createdPayment = _manager.Create(payment);
+                return Ok(createdPayment);
             }
             catch (Exception e)
             {
                 return StatusCode(500, e.Message);
             }
-
-
         }
 
         [HttpPut("Update")]
@@ -55,13 +45,12 @@ namespace API.Controllers
             }
         }
 
-        [HttpDelete("Delete")] //  Modificado por Maria
-        public IActionResult Delete(int id) //  Modificado por Maria - No tenia el id para delete y Estaba linkeado a invoice, entonces se modifico la base de datos para que elimianra en cascade
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] PaymentDTO payment)
         {
             try
             {
-                var PaymentDTO = new PaymentDTO { Id = id };
-                var deletedPayment = _manager.Delete(PaymentDTO);
+                var deletedPayment = _manager.Delete(payment);
                 return Ok(deletedPayment);
             }
             catch (Exception e)
