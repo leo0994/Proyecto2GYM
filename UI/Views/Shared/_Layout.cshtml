@@ -33,20 +33,19 @@
         <header class="header">
             <div class="wrap-main-navigation">
                 <a href="/" class="logo">
-                    <img src="/img/logo-2.png"
-                        alt="">
+                    <img src="/img/logo-2.png" alt="">
                 </a>
                 <nav class="nav">
                     <a href="/classActivities" class="nav-link">activities</a>
                     <a href="/home/About" class="nav-link">about</a>
-                    <a href="/" class="nav-link">contact</a>
+                    <a href="" class="nav-link">contact</a>
                 </nav>
             </div>
             <div class="wrap-management-navigation">
                 @* This will be dynamic *@
-                <a href="/home/#join" class="btn btn-primary">Sign in</a>
+                <a href="/home/#join" id="sign-in" class="btn btn-primary">Sign in</a>
                 @* This will be dynamic *@
-                <a href="" class="btn btn-secondary">Profile</a>
+                <a href="/home/profile" id="profile" class="btn btn-secondary">Profile</a>
             </div>
         </header>
     </div>
@@ -65,6 +64,7 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/header.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/2.1.0/js/dataTables.min.js"></script>
     <!-- Agregado por Maria, arma la tabla -->

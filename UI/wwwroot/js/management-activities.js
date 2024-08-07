@@ -123,6 +123,7 @@ import { validateForm } from "./helpers.js";
                 }
             });
 
+            selectedRowId = null;
             e.target.removeAttribute("disabled", "");
 
             createModal(`

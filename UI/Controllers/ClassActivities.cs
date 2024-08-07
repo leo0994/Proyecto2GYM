@@ -17,6 +17,8 @@ public class ClassActivities : Controller
         _logger = logger;
     }
 
+
+    [Authorize(Policy = "Subscribers")] 
     public IActionResult Index()
     {
         try

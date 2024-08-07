@@ -26,6 +26,12 @@ public class HomeController : Controller
         return View();
     }
 
+    [Authorize(Policy = "Subscribers")] 
+    public IActionResult Profile()
+    {
+        return View();
+    }
+
      public IActionResult Components()
     {
         return View();
