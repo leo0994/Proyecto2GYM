@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Coupons List";
+}
+
+<h2>Coupons List</h2>
+
+<br>
+<br />
+
+    <form action="/Discounts/Create">
+
+    <button class="btn btn-primary" type="submit" value="Create Cupon">Create Cupon</button>
+    </form>
+<br>
+<br />
+
+    <table id="CouponsTable">
+
+    <thead>
+        <tr size >
+            <th style="width:12%">Coupons Code</th>
+            <th >Name</th>
+            <th>Quantity </th>
+            <th>Expiration Date </th>
+            <th>Percentaje </th>
+            <th style ="width:10%">Update</th>
+            <th style ="width:10%">Delete</th>
+        </tr>
+    </thead>
+
+
+
+</table>
+
+
+
+<br>
+<br />
+
+<!-- Referencia al archivo JavaScript -->
+@section Scripts {
+    <script src="~/js/discounts.js"></script> 
+}
+
+

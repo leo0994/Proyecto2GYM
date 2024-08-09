@@ -2,29 +2,49 @@
     ViewData["Title"] = "Gym-Proyecto2";
 }
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/routineCreation.js" defer asp-append-version="true"></script>
 <link rel="stylesheet" href="~/css/routineCreation.css" asp-append-version="true" />
 
     <h2>Routine Creation</h2>
+    <br>
+    <br />
+    <h3>Routines in System:</h3>
+        <div class="table-container">
+
+            <table id="routineTable" class="display">
+                <thead>
+                    <tr>
+                        <th>Routine ID</th>
+                        <th>User ID</th>
+                        <th>Creator ID</th>
+                    </tr>
+     
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
 
 
 <div class="form-container">
 <form id="createRoutineForm">
     <div class="form-group">
-        <!--
-        <label for="routineID">Routine ID:</label>
-        <input type="text" class="form-control" id="routineID" name="id" required>
-        -->
         <label for="ClientID">Client ID:</label>
-        <input type="text" class="form-control" id="clientID" name="client" required>
-        <label for="TrainerID">Trainer ID:</label>
-        <input type="text" class="form-control" id="trainerID" name="trainer" required>
+        <input class="form-input type="text" class="form-control" id="clientID" name="client" required>
     </div>
+    <div class="form-group">
+        <label for="TrainerID">Trainer ID:</label>
+        <input class="form-input type="text" class="form-control" id="trainerID" name="trainer" required>
+    </div>
+
+    <div class="form-group"> 
     <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </form>
 </div>
 <br>
 <br />
 
 
-<script src="~/js/routineCreation.js" asp-append-version="true"></script>
+
 

@@ -62,7 +62,7 @@ export function validateForm(inputs) {
                 }
                 break;
             case 'file':
-                if (name === 'photo') {
+                if (name === 'image') {
                     if (!files || !files[0]) {
                         errors[name] = 'Photo file is required';
                     } else if (!/\.(jpg|jpeg|png|gif)$/i.test(files[0].name)) {
@@ -70,9 +70,20 @@ export function validateForm(inputs) {
                     }
                 }
                 break;
+            case 'time':
+                if (!/^\d{2}:\d{2}$/.test(value)) {
+                    errors[name] = 'Invalid time format. Please use HH:MM format';
+                }
+                break;
             default:
                 // Add more validations as needed
                 break;
+        }
+
+        if (input.tagName.toLowerCase() === 'textarea') {
+            if (value === "") {
+                errors[name] = 'This field cannot be empty';
+            }
         }
     });
 

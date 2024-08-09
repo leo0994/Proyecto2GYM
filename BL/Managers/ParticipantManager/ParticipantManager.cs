@@ -13,9 +13,9 @@ namespace BL.Managers
             _crudFactory = new ParticipantCrudFactory();
         }
 
-        public ParticipantDTO Create(ParticipantDTO participant)
+        public int Create(ParticipantDTO participant)
         {
-            return _crudFactory.Create(participant);
+            return _crudFactory.RegisterParticipant(participant);
         }
 
         public ParticipantDTO Update(ParticipantDTO participant)

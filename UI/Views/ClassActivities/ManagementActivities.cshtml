@@ -1,0 +1,213 @@
+<link rel="stylesheet" href="~/css/management-activities.css" asp-append-version="true" />
+
+<section class="hero-banner hero">
+    <div class="cta-content">
+        <h1>Create a New Gym Activites</h1>
+        <p>Welcome to our Gym Activites Creation Portal, <br> your one-stop solution for setting up and managing
+            <br> gym Activites effortlessly.
+        </p>
+        <a href="#activities-inventory" class="btn btn-secondary">activities </a>
+        <a href="#create-activities" class="btn btn-secondary">Create </a>
+    </div>
+</section>
+
+<section id="activities-inventory" class="activities-inventory">
+    <h2>Activities</h2>
+    <div data-table-activities>
+        <div class="filter-container">
+            @* <input type="time" id="filterTime" class="filter-input"> *@
+            <input type="text" id="searchId" placeholder="Search by ID" class="filter-input">
+            <button class="btn btn-primary" id="refresh">Refresh</button>
+        </div>
+        <div class="table-container">
+            <table id="activitiesTable">
+                <thead>
+                    <tr>
+                        <td>id</td> <!-- ID -->
+                        <td>name</td> <!-- Name -->
+                        <td>Description</td> <!-- Description -->
+                        <td>image</td> <!-- Instructor -->
+                        <td>idInstructor</td> <!-- Instructor -->
+                        <td>nameInstructor</td> <!-- Instructor -->
+                        <td>dayOfWeek</td> <!-- Schedule (Day and Hour) -->
+                        <td>hour</td>
+                        <td>capacity</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be inserted here -->
+                </tbody>
+            </table>
+            <div id="actionBtns" class="action-btns">
+                <button class="btn btn-secondary" id="deleteBtn">Delete</button>
+            </div>
+        </div>
+        <div id="message" class="message loading">Loading...</div>
+    </div>
+</section>
+
+<section class="create-activities" id="create-activities">
+    <div class="form-container">
+        <form data-form data-state-form="create">
+            <img class="logo" src="https://cdn.icon-icons.com/icons2/2941/PNG/512/activity_icon_183756.png" alt="">
+            <div class="form-main">
+                <div data-form-inputs data-create>
+                    <h3 class="form-title">Create an activities</h3>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Activity name">
+                        <small class="form-help-text error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" name="description" class="form-input"
+                            placeholder="Short description about the activity..."></textarea>
+                        <small class="form-help-text error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity" class="form-label">Capacity</label>
+                        <input type="number" max="30" id="capacity" name="capacity" class="form-input"
+                            placeholder="Max capacity">
+                        <small class="form-help-text error"></small>
+                    </div>
+                    @if (ViewBag.coaches != null)
+                    {
+                        <div class="form-group">
+                            <label for="coach" class="form-label">Select a Instructor</label>
+                            <select id="coach" name="coach" class="form-select">
+                                @foreach (var user in ViewBag.coaches)
+                                {
+                                    <option value="@user.id">@user.name</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            <label for="coach" class="form-label">Select a coach</label>
+                            <select id="coach" name="coach" class="form-select">
+                                <option value="3">Rodrigo</option>
+                                <option value="8">Juan</option>
+                                <option value="9">Ted</option>
+                            </select>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <label for="day" class="form-label">Select a day</label>
+                        <select id="day" name="day" class="form-select">
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="hour" class="form-label">Hour</label>
+                        <input type="time" id="hour" name="hour" class="form-input" placeholder="Hour">
+                        <small class="form-help-text error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="image" class="form-label">Ilustration</label>
+                        <input type="file" id="image" name="image" class="form-input" placeholder="">
+                        <small class="form-help-text error"></small>
+                    </div>
+                    <div class="form-group">
+                        <button data-update-activity style="text-align: left;">
+                            <small class="form-help-text">Do want to update activities <strong>Click
+                                    here</strong></small>
+                        </button>
+                    </div>
+                </div>
+                <div data-form-inputs data-update>
+                    <h3 class="form-title">Update an activities</h3>
+                    <div class="form-group">
+                        <label for="id" class="form-label">Id</label>
+                        <input type="text" id="id" name="id" class="form-input" placeholder="ID activity">
+                        <small class="form-help-text error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Activity name">
+                        <small class="form-help-text error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" name="description" class="form-input"
+                            placeholder="Short description about the activity..."></textarea>
+                        <small class="form-help-text error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity" class="form-label">Capacity</label>
+                        <input type="number" max="30" id="capacity" name="capacity" class="form-input"
+                            placeholder="Max capacity">
+                        <small class="form-help-text error"></small>
+                    </div>
+                    @if (ViewBag.coaches != null)
+                    {
+                        <div class="form-group">
+                            <label for="coach" class="form-label">Select a Instructor</label>
+                            <select id="coach" name="coach" class="form-select">
+                                @foreach (var user in ViewBag.coaches)
+                                {
+                                    <option value="@user.id">@user.name</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            <label for="coach" class="form-label">Select a Instructor</label>
+                            <select id="coach" name="coach" class="form-select">
+                                <option value="3">Rodrigo</option>
+                                <option value="8">Juan</option>
+                                <option value="9">Ted</option>
+                            </select>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <label for="day" class="form-label">Select a day</label>
+                        <select id="day" name="day" class="form-select">
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="hour" class="form-label">Hour</label>
+                        <input type="time" id="hour" name="hour" class="form-input" placeholder="Hour">
+                        <small class="form-help-text error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="image" class="form-label">Ilustration</label>
+                        <input type="file" id="image" name="image" class="form-input" placeholder="">
+                        <small class="form-help-text error"></small>
+                    </div>
+                    <div class="form-group">
+                        <button data-create-activity style="text-align: left;">
+                            <small class="form-help-text">Do want to update activities <strong>Click
+                                    here</strong></small>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-footer">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+                <small class="form-help-text footnote">Already have an account? <a href="/home/#join"
+                        class="link">Login</a></small>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script src="~/js/management-activities.js" type="module" asp-append-version="true"></script>
